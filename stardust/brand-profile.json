@@ -33,9 +33,9 @@
     "primary": [
       {
         "name": "Black",
-        "hex": "#0A0A0A",
+        "hex": "#1C1917",
         "pantone": null,
-        "role": "Primary background. The dominant surface — dark mode is the brand's natural state."
+        "role": "Primary background. Warm charcoal — dark mode is the brand's natural state."
       },
       {
         "name": "Cream",
@@ -63,7 +63,7 @@
       }
     ],
     "web": [
-      { "name": "Black", "hex": "#0A0A0A", "role": "Page background, button text on colored backgrounds" },
+      { "name": "Black", "hex": "#1C1917", "role": "Page background, button text on colored backgrounds" },
       { "name": "Cream", "hex": "#F5F0E8", "role": "Body text on dark, section backgrounds on light" },
       { "name": "Red", "hex": "#FF3D00", "role": "Primary CTA background, accent text, hover states" },
       { "name": "Blue", "hex": "#1A1AFF", "role": "Links, secondary interactive elements" },

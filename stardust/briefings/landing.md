@@ -73,16 +73,25 @@ Side-by-side. Same visitor, different experience. Make the marketer feel what th
 - After headline: Your visitor arrives.
 - After body: The page already knows what they're looking for. The case study matches their industry. The pricing reflects their size. They don't scroll — they read. They don't bounce — they stay.
 
-## Section 6 — Social proof
+## Section 6 — Why now (teaser)
 
-Understated. No logos, no testimonials — just a declaration that this is real and invite-only.
+A short, punchy bridge between the contrast and social proof. Manifesto rhythm — not explanatory prose. Links to the full vision page.
+
+- Eyebrow: Why now
+- Headline: Your visitors already know what *relevance* feels like.
+- Body: Every day, they use tools that remember them — that know their preferences, their history, their intent. Tools that respond accordingly. Then they arrive on your website. Same page as everyone else. That gap has a name. It's called a *confession.*
+- CTA: The vision → /why.html
+
+## Section 7 — Social proof
+
+Understated. (Renumbered from original Section 6.) No logos, no testimonials — just a declaration that this is real and invite-only.
 
 - Eyebrow: Early access
 - Headline: Built for the brands that already know segments aren't enough.
 - Subhead: Invite-only. Enterprise-grade. Already live in production.
 - Tags: Fortune 500 retail | Global B2B SaaS | DTC at scale
 
-## Section 7 — CTA
+## Section 8 — CTA
 
 The closing statement. The headline is the emotional peak.
 
@@ -90,7 +99,7 @@ The closing statement. The headline is the emotional peak.
 - Subhead: Join the brands building the future of relevant experiences.
 - CTA: Request early access
 
-## Section 8 — Footer
+## Section 9 — Footer
 
 Minimal.
 

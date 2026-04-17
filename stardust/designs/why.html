@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why now — of1</title>
+<meta property="og:title" content="Why now — of1">
+<meta property="og:description" content="The end of audiences. The beginning of everyone.">
+<meta property="og:image" content="https://of1.live/og-image.png">
+<meta property="og:url" content="https://of1.live/why.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<!-- stardust:provenance { "brand": "stardust/brand-profile.json", "briefing": "stardust/briefings/why.md", "wireframe": null, "synthesized": [] } -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Colors */
+    --color-bg: #1C1917;
+    --color-fg: #F5F0E8;
+    --color-accent: #FF3D00;
+    --color-secondary: #1A1AFF;
+    --color-tertiary: #00E5A0;
+    --color-fg-dim: rgba(245, 240, 232, 0.55);
+    --color-fg-faint: rgba(245, 240, 232, 0.06);
+    --color-fg-muted: rgba(245, 240, 232, 0.5);
+
+    /* Typography */
+    --heading-font-family: 'Cormorant Garamond', serif;
+    --body-font-family: 'JetBrains Mono', monospace;
+
+    --heading-xxl: clamp(40px, 5vw, 72px);
+    --heading-xl: clamp(32px, 4vw, 56px);
+    --heading-lg: clamp(24px, 3vw, 40px);
+    --heading-md: clamp(20px, 2vw, 28px);
+    --body: clamp(13px, 1.1vw, 16px);
+    --body-sm: clamp(12px, 1vw, 14px);
+    --eyebrow: 0.65rem;
+    --button: 0.75rem;
+    --pull-quote: clamp(1.4rem, 2.5vw, 2.2rem);
+
+    --line-height-heading: 1.1;
+    --line-height-body: 1.9;
+    --line-height-pull-quote: 1.5;
+    --letter-spacing-eyebrow: 0.35em;
+    --letter-spacing-button: 0.15em;
+
+    /* Spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 48px;
+    --spacing-2xl: 96px;
+
+    /* Layout */
+    --section-padding: 4rem;
+    --reading-width: 680px;
+    --max-width: 1200px;
+
+    /* Components */
+    --radius-card: 10px;
+    --radius-pill: 100px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--body-font-family);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .reading {
+    max-width: var(--reading-width);
+    margin: 0 auto;
+  }
+
+  .section-divider {
+    height: 1px;
+    background: var(--color-fg-faint);
+    margin: 0 var(--section-padding);
+  }
+
+  .bg-lifted {
+    background: var(--color-fg);
+    color: var(--color-bg);
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .bg-lifted h2 { color: var(--color-bg); }
+  .bg-lifted p { color: rgba(10, 10, 10, 0.85) !important; }
+
+  /* ========================================
+     HEADER
+     ======================================== */
+
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem var(--section-padding);
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-fg-faint);
+  }
+
+  .site-logo {
+    font-family: var(--body-font-family);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-fg);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+
+  .site-nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .site-nav a {
+    font-family: var(--body-font-family);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-fg-dim);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .site-nav a:hover { color: var(--color-fg); }
+  .site-nav a.active { color: var(--color-fg); }
+
+  .site-nav .nav-cta {
+    padding: 0.4rem 1.2rem;
+    background: var(--color-accent);
+    color: var(--color-bg);
+    border-radius: var(--radius-pill);
+    font-weight: 600;
+  }
+
+  .site-nav .nav-cta:hover {
+    background: var(--color-fg);
+  }
+
+  /* ========================================
+     SECTION 1: EDITORIAL HERO
+     ======================================== */
+
+  .editorial-hero {
+    padding: 8rem var(--section-padding) 5rem;
+  }
+
+  .editorial-hero .hero-eyebrow {
+    font-family: var(--body-font-family);
+    font-size: var(--eyebrow);
+    letter-spacing: var(--letter-spacing-eyebrow);
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+    margin-bottom: 2rem;
+    font-weight: 500;
+  }
+
+  .editorial-hero h1 {
+    font-family: var(--heading-font-family);
+    font-size: var(--heading-xxl);
+    font-weight: 700;
+    line-height: var(--line-height-heading);
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+
+  .editorial-hero .lede {
+    font-family: var(--body-font-family);
+    font-size: var(--body);
+    line-height: var(--line-height-body);
+    color: var(--color-fg-dim);
+  }
+
+  /* ========================================
+     BODY SECTIONS
+     ======================================== */
+
+  .body-section {
+    padding: var(--section-padding);
+  }
+
+  .body-section h2 {
+    font-family: var(--heading-font-family);
+    font-size: var(--heading-lg);
+    font-weight: 600;
+    line-height: var(--line-height-heading);
+    margin-bottom: 2rem;
+  }
+
+  .body-section h2 em {
+    font-style: italic;
+    font-weight: 700;
+    color: var(--color-accent);
+  }
+
+  .body-section p {
+    font-family: var(--body-font-family);
+    font-size: var(--body);
+    line-height: var(--line-height-body);
+    color: var(--color-fg-dim);
+    margin-bottom: 1.5rem;
+  }
+
+  .body-section p:last-child {
+    margin-bottom: 0;
+  }
+
+  .body-section p em {
+    font-style: italic;
+    color: var(--color-accent);
+  }
+
+  /* ========================================
+     PULL QUOTES
+     ======================================== */
+
+  .pull-quote {
+    padding: 2rem 0;
+    margin: 2rem 0;
+    border-top: 1px solid var(--color-fg-faint);
+    border-bottom: 1px solid var(--color-fg-faint);
+  }
+
+  .pull-quote blockquote {
+    font-family: var(--heading-font-family);
+    font-size: var(--pull-quote);
+    font-style: italic;
+    line-height: var(--line-height-pull-quote);
+    color: var(--color-fg);
+  }
+
+  .pull-quote blockquote strong {
+    color: var(--color-tertiary);
+    font-style: normal;
+    font-weight: 700;
+  }
+
+  /* ========================================
+     STAT HIGHLIGHT
+     ======================================== */
+
+  .stat-highlight {
+    margin: 2.5rem 0;
+    padding: 2.5rem;
+    border: 1px solid rgba(245, 240, 232, 0.08);
+    border-radius: var(--radius-card);
+    text-align: center;
+  }
+
+  .stat-value {
+    font-family: var(--heading-font-family);
+    font-size: clamp(3rem, 5vw, 5rem);
+    font-weight: 700;
+    color: var(--color-accent);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-family: var(--body-font-family);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-fg-dim);
+  }
+
+  .bg-lifted .stat-highlight {
+    border-color: rgba(10, 10, 10, 0.1);
+  }
+
+  .bg-lifted .stat-value {
+    color: var(--color-accent);
+  }
+
+  .bg-lifted .stat-label {
+    color: rgba(10, 10, 10, 0.5);
+  }
+
+  /* ========================================
+     CTA
+     ======================================== */
+
+  .editorial-cta {
+    padding: 5rem var(--section-padding) 6rem;
+    text-align: center;
+  }
+
+  .editorial-cta h2 {
+    font-family: var(--heading-font-family);
+    font-size: var(--heading-xl);
+    font-weight: 700;
+    line-height: var(--line-height-heading);
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+
+  .editorial-cta h2 em {
+    font-style: italic;
+    color: var(--color-accent);
+  }
+
+  .editorial-cta p {
+    font-family: var(--body-font-family);
+    font-size: var(--body-sm);
+    color: var(--color-fg-dim);
+    margin-bottom: 2.5rem;
+    max-width: 36em;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: var(--line-height-body);
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    padding: 1rem 3rem;
+    background: var(--color-accent);
+    color: var(--color-bg);
+    text-decoration: none;
+    font-family: var(--body-font-family);
+    font-weight: 600;
+    font-size: var(--button);
+    letter-spacing: var(--letter-spacing-button);
+    text-transform: uppercase;
+    border-radius: var(--radius-pill);
+    transition: background 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+  }
+
+  .cta-btn:hover {
+    background: var(--color-fg);
+    transform: translateY(-2px);
+  }
+
+  .cta-btn-secondary {
+    display: inline-block;
+    padding: 1rem 3rem;
+    background: transparent;
+    color: var(--color-fg);
+    text-decoration: none;
+    font-family: var(--body-font-family);
+    font-weight: 600;
+    font-size: var(--button);
+    letter-spacing: var(--letter-spacing-button);
+    text-transform: uppercase;
+    border-radius: var(--radius-pill);
+    border: 1px solid rgba(245, 240, 232, 0.15);
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .cta-btn-secondary:hover {
+    border-color: var(--color-fg);
+    transform: translateY(-2px);
+  }
+
+  /* ========================================
+     FOOTER
+     ======================================== */
+
+  .site-footer {
+    padding: 3rem var(--section-padding);
+    border-top: 1px solid var(--color-fg-faint);
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--body-font-family);
+    font-size: 0.65rem;
+    color: var(--color-fg-muted);
+    letter-spacing: 0.1em;
+  }
+
+  /* ========================================
+     MOBILE
+     ======================================== */
+
+  @media (max-width: 600px) {
+    :root {
+      --section-padding: 1.5rem;
+    }
+
+    .editorial-hero {
+      padding-top: 5rem;
+      padding-bottom: 3rem;
+    }
+
+    .editorial-cta {
+      padding: 3rem var(--section-padding) 4rem;
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 900px) and (min-width: 601px) {
+    :root {
+      --section-padding: 2.5rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="/" class="site-logo">of1</a>
+    <nav class="site-nav">
+      <a href="/">Home</a>
+      <a href="/why.html" class="active">Why now</a>
+      <a href="/how-it-works.html">How it works</a>
+      <a href="https://arco.coffee/" class="nav-cta" target="_blank" rel="noopener">See it live</a>
+    </nav>
+  </header>
+
+  <!-- SECTION 1: EDITORIAL HERO -->
+  <section class="editorial-hero" data-section="editorial-hero" data-intent="set the vision" data-layout="contained">
+    <div class="reading">
+      <div class="hero-eyebrow">of1 — The vision</div>
+      <h1>What if your website knew every visitor the way your best store associate would?</h1>
+      <p class="lede">Every premium brand obsesses over the in-store experience. A skilled associate reads you, remembers you, shapes every interaction around who you are. It's why people pay more, come back more, and tell their friends. That experience has never existed online. Until now.</p>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- SECTION 2: THE GROUND IS SHIFTING -->
+  <section class="body-section" data-section="shifting" data-intent="market context" data-layout="contained">
+    <div class="reading">
+      <h2>A new standard is <em>emerging.</em></h2>
+      <p>Nine hundred million people use AI tools every week that remember them. That know their preferences, their past conversations, their aesthetic sensibilities. When someone asks about a brand like yours, they get a relevant answer — shaped by everything the tool knows about that person.</p>
+      <p>Your premium clientele lives in these environments. They are learning — daily — what it feels like when a system actually knows them. The bar for what a good experience means is being set right now, by tools that have nothing to do with your brand.</p>
+      <p>This isn't a threat. It's a <em>preview.</em> The same possibility is now available for your website. The question isn't whether this standard arrives — it's which brands will set it.</p>
+    </div>
+  </section>
+
+  <!-- SECTION 3: PULL QUOTE -->
+  <section class="body-section" data-section="pull-quote-1" data-intent="anchor the argument" data-layout="contained">
+    <div class="reading">
+      <div class="pull-quote">
+        <blockquote>"The same possibility that makes those tools feel magical is now available for your <strong>website.</strong>"</blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: VISITORS ARRIVING NOW -->
+  <section class="body-section" data-section="visitors" data-intent="reframe the visitor" data-layout="contained">
+    <div class="reading">
+      <h2>The people coming to your site are <em>ready.</em></h2>
+      <p>Sixty-nine percent of searches now end without a website visit — AI absorbs the informational layer and delivers the answer directly. The visitors who do arrive are no longer casual browsers. They are higher-intent, more contextually primed, and increasingly accustomed to experiences that adapt to them. They came on purpose.</p>
+      <p>The browse use case — the emotional, unhurried discovery of a brand world — is not disappearing. It's evolving. Moving away from passive scrolling through category grids toward something more conversational, more responsive, more felt. That experience can happen on your terms, on your website, shaped by your brand — if you build for it.</p>
+
+      <div class="stat-highlight">
+        <div class="stat-value">69%</div>
+        <div class="stat-label">Of searches now end without a website visit</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- SECTION 5: THE OPPORTUNITY -->
+  <section class="body-section bg-lifted" data-section="opportunity" data-intent="paint the aspiration" data-layout="contained">
+    <div class="reading">
+      <h2>The brands that move first will <em>define</em> this.</h2>
+      <p>Premium customers have always expected to be recognized. In-store, that expectation is met through human memory and skilled intuition. Online, it hasn't been possible — until the technology caught up. Now it has.</p>
+      <p>Imagine: a customer who has bought from you six times, read three of your editorial pieces, and lingered on your sustainability story — they arrive at your homepage and it acknowledges the relationship. Their journey with you has been noticed. The page feels like walking into a store where someone remembers your name.</p>
+      <p>The brands that build this first won't just improve conversion metrics. They will define what it means to have a relationship with a brand online. That's the opportunity — and it's open right now.</p>
+    </div>
+  </section>
+
+  <!-- SECTION 6: THE CONCEPT -->
+  <section class="body-section" data-section="concept" data-intent="bridge to product" data-layout="contained">
+    <div class="reading">
+      <h2>Same brand. Same truth. Told for <em>one.</em></h2>
+      <p>A generative website uses real-time AI to individualize the page experience within a two-second delivery window — invisibly, on every visit. Not a different template. Not a reordered product grid. The same page, with its narrative and emphasis reshaped to resonate with this person — their history with the brand, where they are in their journey, what they care about.</p>
+      <p>The first-time visitor gets a page that opens the world of the brand with curiosity and warmth. The loyal customer gets a page that treats them as an insider. The visitor who just spent three minutes on your craft story gets product pages that lead with provenance, not price.</p>
+
+      <div class="pull-quote">
+        <blockquote>"Same brand. Same design. Same truth. Told in the way each person is most ready to <strong>receive</strong> it."</blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: CTA -->
+  <section class="editorial-cta" data-section="cta" data-intent="drive action" data-layout="contained">
+    <h2>The future of your website is <em>personal.</em></h2>
+    <p>of1 makes it real — for every visitor, on every page, in under two seconds.</p>
+    <div class="cta-buttons">
+      <a href="/how-it-works.html" class="cta-btn">See how it works</a>
+      <a href="https://arco.coffee/" class="cta-btn-secondary" target="_blank" rel="noopener">See it live</a>
+    </div>
+  </section>
+
+  <!-- SECTION 8: FOOTER -->
+  <footer class="site-footer" data-section="footer" data-intent="close" data-layout="contained">
+    <span>Audience of ONE</span>
+    <span>of1.live</span>
+  </footer>
+
+</body>
+</html>

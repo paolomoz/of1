@@ -18,7 +18,7 @@
 <style>
   :root {
     /* Colors */
-    --color-bg: #0A0A0A;
+    --color-bg: #1C1917;
     --color-fg: #F5F0E8;
     --color-accent: #FF3D00;
     --color-secondary: #1A1AFF;
@@ -714,7 +714,77 @@
   .cm-card.match .cm-card-bar { background: rgba(0, 229, 160, 0.3); }
 
   /* ========================================
-     SECTION 6: SOCIAL PROOF
+     SECTION 6: WHY NOW (TEASER)
+     ======================================== */
+
+  .why-teaser {
+    padding: 5rem var(--section-padding);
+    text-align: center;
+    max-width: 48rem;
+    margin: 0 auto;
+  }
+
+  .why-teaser-eyebrow {
+    font-family: var(--body-font-family);
+    font-size: var(--eyebrow);
+    letter-spacing: var(--letter-spacing-eyebrow);
+    text-transform: uppercase;
+    color: var(--color-tertiary);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+
+  .why-teaser h2 {
+    font-family: var(--heading-font-family);
+    font-size: var(--heading-lg);
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .why-teaser h2 em {
+    font-style: italic;
+    font-weight: 700;
+    color: var(--color-accent);
+  }
+
+  .why-teaser p {
+    font-family: var(--body-font-family);
+    font-size: var(--body-sm);
+    line-height: var(--line-height-body);
+    color: var(--color-fg-dim);
+    margin-bottom: 2rem;
+    max-width: 38em;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .why-teaser p em {
+    font-style: italic;
+    color: var(--color-accent);
+  }
+
+  .why-teaser-link {
+    display: inline-block;
+    font-family: var(--body-font-family);
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-fg);
+    text-decoration: none;
+    padding: 0.5rem 1.5rem;
+    border: 1px solid rgba(245, 240, 232, 0.15);
+    border-radius: var(--radius-pill);
+    transition: all 0.3s ease;
+  }
+
+  .why-teaser-link:hover {
+    border-color: var(--color-fg);
+  }
+
+  /* ========================================
+     SECTION 7: SOCIAL PROOF
      ======================================== */
 
   .social-proof {
@@ -911,6 +981,7 @@
     <a href="/stardust/designs/landing.html" class="site-logo">of1</a>
     <nav class="site-nav">
       <a href="/stardust/designs/landing.html" class="active">Home</a>
+      <a href="/stardust/designs/why.html">Why now</a>
       <a href="/stardust/designs/editorial.html">How it works</a>
       <a href="https://arco.coffee/" class="nav-cta" target="_blank" rel="noopener">See it live</a>
     </nav>
@@ -1083,7 +1154,17 @@
     </div>
   </section>
 
-  <!-- SECTION 6: SOCIAL PROOF -->
+  <!-- SECTION 6: WHY NOW (TEASER) -->
+  <section class="why-teaser" data-section="why-teaser" data-intent="bridge to vision" data-layout="contained">
+    <div class="why-teaser-eyebrow">Why now</div>
+    <h2>Your visitors already know what <em>relevance</em> feels like.</h2>
+    <p>Every day, they use tools that remember them — that know their preferences, their history, their intent. Tools that respond accordingly. Then they arrive on your website. Same page as everyone else. That gap has a name. It's called a <em>confession.</em></p>
+    <a href="/stardust/designs/why.html" class="why-teaser-link">The vision</a>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- SECTION 7: SOCIAL PROOF -->
   <section class="social-proof bg-lifted" data-section="social-proof" data-intent="build trust" data-layout="contained">
     <div class="social-proof-eyebrow">Early access</div>
     <h2>Built for the brands that already know segments aren't enough.</h2>

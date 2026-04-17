@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>of1 — Dark color alternatives</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'JetBrains Mono', monospace;
+    background: #111;
+    color: #F5F0E8;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .header {
+    text-align: center;
+    padding: 3rem 2rem 1.5rem;
+  }
+  .header h1 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.35em;
+    color: rgba(245,240,232,0.5);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem 2rem 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .option {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(245,240,232,0.06);
+  }
+
+  .option-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    background: rgba(245,240,232,0.03);
+    border-bottom: 1px solid rgba(245,240,232,0.06);
+  }
+  .option-label .name {
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+  }
+  .option-label .hex {
+    font-size: 0.6rem;
+    font-weight: 400;
+    color: rgba(245,240,232,0.4);
+  }
+  .option-label .current-tag {
+    font-size: 0.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    background: rgba(245,240,232,0.08);
+    padding: 0.2rem 0.6rem;
+    border-radius: 100px;
+    color: rgba(245,240,232,0.5);
+  }
+
+  .preview {
+    padding: 3rem 2.5rem;
+    min-height: 420px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .preview-top { display: flex; flex-direction: column; gap: 1.5rem; }
+
+  .wordmark {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: #F5F0E8;
+    letter-spacing: -0.02em;
+  }
+
+  .eyebrow {
+    font-size: 0.5rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.35em;
+    color: #00E5A0;
+  }
+
+  .headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 400;
+    line-height: 0.95;
+    color: #F5F0E8;
+  }
+  .headline em {
+    font-style: italic;
+    font-weight: 700;
+    color: #FF3D00;
+  }
+
+  .body-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 1.8;
+    color: rgba(245,240,232,0.4);
+    max-width: 38ch;
+  }
+
+  .preview-bottom {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: #FF3D00;
+    color: #0A0A0A;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.6rem 1.5rem;
+    border-radius: 100px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-secondary {
+    display: inline-block;
+    background: transparent;
+    color: #F5F0E8;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.6rem 1.5rem;
+    border-radius: 100px;
+    border: 1px solid rgba(245,240,232,0.15);
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .divider {
+    height: 1px;
+    background: rgba(245,240,232,0.06);
+    width: 100%;
+  }
+
+  .swatch-row {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+  .swatch {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    border: 1px solid rgba(245,240,232,0.1);
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Dark background color — alternatives</h1>
+</div>
+
+<div class="grid">
+
+  <!-- Current -->
+  <div class="option">
+    <div class="option-label">
+      <span class="name">Current — Black</span>
+      <span class="hex">#0A0A0A</span>
+      <span class="current-tag">Current</span>
+    </div>
+    <div class="preview" style="background: #0A0A0A;">
+      <div class="preview-top">
+        <div class="wordmark">of1</div>
+        <div class="eyebrow">Audience of one</div>
+        <h2 class="headline">The end of <em>audiences.</em></h2>
+        <p class="body-text">We made your website pay attention — so every visitor finds exactly what they came for.</p>
+        <div class="divider"></div>
+      </div>
+      <div class="preview-bottom">
+        <button class="btn-primary">Request early access</button>
+        <button class="btn-secondary">How it works</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Option 1 -->
+  <div class="option">
+    <div class="option-label">
+      <span class="name">Option 1 — Navy charcoal</span>
+      <span class="hex">#1A1A2E</span>
+    </div>
+    <div class="preview" style="background: #1A1A2E;">
+      <div class="preview-top">
+        <div class="wordmark">of1</div>
+        <div class="eyebrow">Audience of one</div>
+        <h2 class="headline">The end of <em>audiences.</em></h2>
+        <p class="body-text">We made your website pay attention — so every visitor finds exactly what they came for.</p>
+        <div class="divider"></div>
+      </div>
+      <div class="preview-bottom">
+        <button class="btn-primary">Request early access</button>
+        <button class="btn-secondary">How it works</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Option 2 -->
+  <div class="option">
+    <div class="option-label">
+      <span class="name">Option 2 — Warm charcoal</span>
+      <span class="hex">#1C1917</span>
+    </div>
+    <div class="preview" style="background: #1C1917;">
+      <div class="preview-top">
+        <div class="wordmark">of1</div>
+        <div class="eyebrow">Audience of one</div>
+        <h2 class="headline">The end of <em>audiences.</em></h2>
+        <p class="body-text">We made your website pay attention — so every visitor finds exactly what they came for.</p>
+        <div class="divider"></div>
+      </div>
+      <div class="preview-bottom">
+        <button class="btn-primary">Request early access</button>
+        <button class="btn-secondary">How it works</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Option 3 -->
+  <div class="option">
+    <div class="option-label">
+      <span class="name">Option 3 — Slate ink</span>
+      <span class="hex">#1E1E2A</span>
+    </div>
+    <div class="preview" style="background: #1E1E2A;">
+      <div class="preview-top">
+        <div class="wordmark">of1</div>
+        <div class="eyebrow">Audience of one</div>
+        <h2 class="headline">The end of <em>audiences.</em></h2>
+        <p class="body-text">We made your website pay attention — so every visitor finds exactly what they came for.</p>
+        <div class="divider"></div>
+      </div>
+      <div class="preview-bottom">
+        <button class="btn-primary">Request early access</button>
+        <button class="btn-secondary">How it works</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
