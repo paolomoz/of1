@@ -602,11 +602,35 @@
     padding: 3rem var(--section-padding);
     border-top: 1px solid var(--color-fg-faint);
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 1.25rem;
     font-family: var(--body-font-family);
     font-size: 0.65rem;
     color: var(--color-fg-muted);
     letter-spacing: 0.1em;
+  }
+
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .footer-attribution {
+    font-size: 0.6rem;
+    color: var(--color-fg-muted);
+    opacity: 0.7;
+    line-height: 1.6;
+  }
+
+  .footer-attribution a {
+    color: var(--color-fg-muted);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.2s;
+  }
+
+  .footer-attribution a:hover {
+    color: var(--color-fg);
   }
 
   /* ========================================
@@ -1381,8 +1405,13 @@
 
   <!-- SECTION 10: FOOTER -->
   <footer class="site-footer" data-section="footer" data-intent="close" data-layout="contained">
-    <span>Audience of ONE</span>
-    <span>of1.live</span>
+    <div class="footer-top">
+      <span>Audience of ONE</span>
+      <span>of1.live</span>
+    </div>
+    <div class="footer-attribution">
+      &copy; 2026 Adobe. Early-stage technology by the <a href="https://business.adobe.com/products/experience-manager/sites.html">Adobe Experience Manager</a> team.
+    </div>
   </footer>
 
 <script>
