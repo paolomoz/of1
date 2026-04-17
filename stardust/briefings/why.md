@@ -58,7 +58,7 @@ The market context. No brand names — describe the experience, not the products
 The shift in visitor behavior. Higher-intent, more primed, more expectation. The browse use case is evolving, not dying.
 
 - Headline: The people coming to your site are *ready.*
-- Body: Sixty-nine percent of searches now end without a website visit — AI absorbs the informational layer and delivers the answer directly. The visitors who do arrive are no longer casual browsers. They are higher-intent, more contextually primed, and increasingly accustomed to experiences that adapt to them. They came on purpose.
+- Body: More and more searches now end without a website visit — AI absorbs the informational layer and delivers the answer directly. The visitors who do arrive are no longer casual browsers. They are higher-intent, more contextually primed, and increasingly accustomed to experiences that adapt to them. They came on purpose.
 - Body: The browse use case — the emotional, unhurried discovery of a brand world — is not disappearing. It's evolving. Moving away from passive scrolling through category grids toward something more conversational, more responsive, more felt. That experience can happen on your terms, on your website, shaped by your brand — if you build for it.
 
 ## Section 5 — The opportunity (cream background)
