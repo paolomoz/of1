@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>OG Mock — of1</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1200px;
+    height: 630px;
+    overflow: hidden;
+    background: #0A0A0A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .glow {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 61, 0, 0.15) 0%, rgba(255, 61, 0, 0.03) 50%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 180px;
+    font-weight: 700;
+    color: #F5F0E8;
+    letter-spacing: -0.04em;
+    position: relative;
+    z-index: 1;
+  }
+</style>
+</head>
+<body>
+  <div class="glow"></div>
+  <div class="logo">of1</div>
+</body>
+</html>

@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>of1 — Brand Board</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --black: #0A0A0A;
+    --cream: #F5F0E8;
+    --red: #FF3D00;
+    --blue: #1A1AFF;
+    --mint: #00E5A0;
+    --cream-dim: rgba(245,240,232,0.4);
+    --cream-faint: rgba(245,240,232,0.06);
+    --cream-ghost: rgba(245,240,232,0.02);
+    --cream-subtle: rgba(245,240,232,0.04);
+    --cream-muted: rgba(245,240,232,0.25);
+    --cream-soft: rgba(245,240,232,0.5);
+    --section-pad: 4rem;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--cream);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* ========== STICKY NAV ========== */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--cream-faint);
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 0.8rem var(--section-pad);
+    overflow-x: auto;
+  }
+
+  .nav-brand {
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+
+  .nav a {
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.2s;
+  }
+
+  .nav a:hover { color: var(--cream); }
+
+  /* ========== SECTION ========== */
+  .section {
+    padding: 4rem var(--section-pad);
+    border-bottom: 1px solid var(--cream-faint);
+  }
+
+  .section-label {
+    font-size: 0.55rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--cream-muted);
+    margin-bottom: 2rem;
+    font-weight: 500;
+  }
+
+  /* ========== PHILOSOPHY (HERO) ========== */
+  .philosophy {
+    padding: 6rem var(--section-pad);
+    text-align: center;
+  }
+
+  .philosophy .wordmark {
+    font-weight: 700;
+    font-size: 3rem;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.5rem;
+  }
+
+  .philosophy .fullname {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--cream-dim);
+    margin-bottom: 0.4rem;
+  }
+
+  .philosophy .tagline {
+    font-size: 0.7rem;
+    color: var(--red);
+    letter-spacing: 0.15em;
+    margin-bottom: 3rem;
+  }
+
+  .philosophy .mission {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--cream-soft);
+    max-width: 40em;
+    margin: 0 auto;
+  }
+
+  .philosophy .mission strong {
+    color: var(--cream);
+    font-weight: 600;
+  }
+
+  /* ========== KEY LINE ========== */
+  .keyline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 3vw, 2.5rem);
+    font-style: italic;
+    line-height: 1.5;
+    color: rgba(245,240,232,0.7);
+    max-width: 30em;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .keyline span {
+    color: var(--mint);
+    font-style: normal;
+    font-weight: 700;
+  }
+
+  /* ========== LOGO / WORDMARK ========== */
+  .wordmark-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .wm-card {
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+
+  .wm-dark { background: var(--black); border: 1px solid rgba(245,240,232,0.08); }
+  .wm-light { background: var(--cream); }
+  .wm-red { background: var(--red); }
+
+  .wm-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+  }
+
+  .wm-dark .wm-text { color: var(--cream); }
+  .wm-light .wm-text { color: var(--black); }
+  .wm-red .wm-text { color: var(--black); }
+
+  .wm-primary { font-size: 2.5rem; margin-bottom: 0.3rem; }
+  .wm-secondary { font-size: 1.2rem; font-weight: 400; opacity: 0.5; }
+
+  .logo-rules {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .logo-rule {
+    font-size: 0.65rem;
+    color: var(--cream-dim);
+    padding: 1rem;
+    background: var(--cream-ghost);
+    border: 1px solid var(--cream-subtle);
+    border-radius: 10px;
+  }
+
+  .logo-rule .rule-label {
+    font-size: 0.5rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  /* ========== COLOR PALETTE ========== */
+  .palette-section-label {
+    font-size: 0.5rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--cream-muted);
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+    font-weight: 500;
+  }
+
+  .palette-section-label:first-of-type { margin-top: 0; }
+
+  .palette {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .swatch {
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .swatch-color {
+    height: 100px;
+  }
+
+  .swatch-info {
+    padding: 0.8rem;
+    background: var(--cream-ghost);
+    border: 1px solid var(--cream-subtle);
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+  }
+
+  .swatch-name {
+    font-size: 0.65rem;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+  }
+
+  .swatch-hex {
+    font-size: 0.6rem;
+    color: var(--cream-dim);
+    margin-bottom: 0.3rem;
+  }
+
+  .swatch-role {
+    font-size: 0.55rem;
+    color: var(--cream-muted);
+    line-height: 1.5;
+  }
+
+  /* ========== TYPOGRAPHY ========== */
+  .type-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .type-col {
+    background: var(--cream-ghost);
+    border-radius: 10px;
+    padding: 2rem;
+    border: 1px solid var(--cream-subtle);
+  }
+
+  .type-role {
+    font-size: 0.5rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--cream-muted);
+    margin-bottom: 0.3rem;
+  }
+
+  .type-family {
+    font-size: 0.7rem;
+    color: var(--cream-soft);
+    margin-bottom: 1.5rem;
+  }
+
+  .type-specimen-display {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    line-height: 0.95;
+    margin-bottom: 1rem;
+  }
+
+  .type-specimen-display em {
+    font-style: italic;
+    color: var(--red);
+  }
+
+  .type-specimen-mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .type-weights {
+    font-size: 0.65rem;
+    color: rgba(245,240,232,0.3);
+    line-height: 2;
+  }
+
+  .type-weights span { margin-right: 1rem; }
+
+  .type-hierarchy {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .type-card {
+    background: var(--cream-ghost);
+    border: 1px solid var(--cream-subtle);
+    border-radius: 10px;
+    padding: 1.5rem;
+  }
+
+  .type-card-label {
+    font-size: 0.5rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--cream-muted);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  .type-card-sample {
+    margin-bottom: 0.5rem;
+  }
+
+  .type-card-meta {
+    font-size: 0.55rem;
+    color: var(--cream-muted);
+    line-height: 1.6;
+  }
+
+  .type-rules {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+  }
+
+  .type-rule {
+    font-size: 0.65rem;
+    color: var(--cream-dim);
+    padding: 0.8rem 1rem;
+    background: var(--cream-ghost);
+    border: 1px solid var(--cream-subtle);
+    border-radius: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .type-rule::before {
+    content: '→';
+    color: var(--red);
+    flex-shrink: 0;
+  }
+
+  /* ========== MOTIFS ========== */
+  .motifs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+
+  .motif-card {
+    background: var(--cream-ghost);
+    border: 1px solid var(--cream-subtle);
+    border-radius: 10px;
+    padding: 1.5rem;
+  }
+
+  .motif-card h3 {
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+  }
+
+  .motif-card p {
+    font-size: 0.6rem;
+    color: var(--cream-dim);
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+  }
+
+  .motif-card .motif-usage {
+    font-size: 0.55rem;
+    color: var(--cream-muted);
+    line-height: 1.5;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--cream-subtle);
+  }
+
+  /* ========== VOICE ========== */
+  .voice-character {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--cream-soft);
+    max-width: 40em;
+    margin-bottom: 2rem;
+  }
+
+  .voice-character strong {
+    color: var(--cream);
+    font-weight: 600;
+  }
+
+  .trait-row {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.8rem;
+  }
+
+  .trait-pill {
+    font-size: 0.65rem;
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+  }
+
+  .trait-do {
+    background: rgba(0,229,160,0.1);
+    color: var(--mint);
+    border: 1px solid rgba(0,229,160,0.15);
+  }
+
+  .trait-dont {
+    background: rgba(255,61,0,0.08);
+    color: rgba(255,61,0,0.6);
+    border: 1px solid rgba(255,61,0,0.1);
+    text-decoration: line-through;
+    text-decoration-color: rgba(255,61,0,0.3);
+  }
+
+  .voice-examples {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .examples-col {
+    border-radius: 10px;
+    padding: 2rem;
+  }
+
+  .examples-do {
+    background: rgba(0,229,160,0.04);
+    border: 1px solid rgba(0,229,160,0.1);
+  }
+
+  .examples-dont {
+    background: rgba(255,61,0,0.04);
+    border: 1px solid rgba(255,61,0,0.1);
+  }
+
+  .examples-col h3 {
+    font-size: 0.55rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    font-weight: 500;
+  }
+
+  .examples-do h3 { color: var(--mint); }
+  .examples-dont h3 { color: var(--red); }
+
+  .example-item {
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--cream-subtle);
+  }
+
+  .example-item:last-child { border-bottom: none; }
+
+  .example-text {
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+    line-height: 1.5;
+  }
+
+  .examples-dont .example-text {
+    text-decoration: line-through;
+    text-decoration-color: rgba(255,61,0,0.3);
+    color: rgba(245,240,232,0.3);
+  }
+
+  .example-context {
+    font-size: 0.55rem;
+    color: var(--cream-muted);
+    line-height: 1.5;
+  }
+
+  /* ========== VOICE RULES ========== */
+  .voice-rules-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+    margin-top: 2rem;
+  }
+
+  .voice-rule {
+    font-size: 0.65rem;
+    color: var(--cream-dim);
+    padding: 0.8rem 1rem;
+    background: var(--cream-ghost);
+    border: 1px solid var(--cream-subtle);
+    border-radius: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .voice-rule::before {
+    content: '×';
+    color: var(--red);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* ========== TONE ========== */
+  .tone-description {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--cream-soft);
+    max-width: 40em;
+    margin-bottom: 2rem;
+  }
+
+  .tone-goals {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .tone-goal {
+    background: var(--cream-ghost);
+    border: 1px solid var(--cream-subtle);
+    border-radius: 10px;
+    padding: 1.5rem;
+  }
+
+  .tone-goal h3 {
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .tone-goal p {
+    font-size: 0.6rem;
+    color: var(--cream-dim);
+    line-height: 1.6;
+  }
+
+  .tone-spectrum {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .tone-pole {
+    background: var(--cream-ghost);
+    border: 1px solid var(--cream-subtle);
+    border-radius: 10px;
+    padding: 1.5rem;
+  }
+
+  .tone-pole h3 {
+    font-size: 0.55rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+    font-weight: 500;
+  }
+
+  .tone-pole:first-child h3 { color: var(--blue); }
+  .tone-pole:last-child h3 { color: var(--mint); }
+
+  .tone-pole p {
+    font-size: 0.65rem;
+    color: var(--cream-dim);
+    line-height: 1.6;
+  }
+
+  /* ========== CONTENT PILLARS ========== */
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .pillar-card {
+    background: var(--cream-ghost);
+    border: 1px solid var(--cream-subtle);
+    border-radius: 10px;
+    padding: 1.5rem;
+  }
+
+  .pillar-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .pillar-card p {
+    font-size: 0.6rem;
+    color: var(--cream-dim);
+    line-height: 1.6;
+  }
+
+  /* ========== PERSONA ========== */
+  .persona-card {
+    background: var(--cream-ghost);
+    border: 1px solid var(--cream-subtle);
+    border-radius: 10px;
+    padding: 2rem;
+    max-width: 600px;
+  }
+
+  .persona-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .persona-card .persona-desc {
+    font-size: 0.65rem;
+    color: var(--cream-dim);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .persona-values {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+
+  .persona-value {
+    font-size: 0.6rem;
+    padding: 0.3rem 0.8rem;
+    border: 1px solid var(--cream-subtle);
+    border-radius: 100px;
+    color: var(--cream-soft);
+  }
+
+  .persona-motto {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--cream-soft);
+    padding-top: 1rem;
+    border-top: 1px solid var(--cream-subtle);
+  }
+
+  /* ========== SPACING & SHAPE ========== */
+  .spacing-row {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-end;
+    margin-bottom: 2rem;
+  }
+
+  .spacing-block {
+    text-align: center;
+  }
+
+  .spacing-visual {
+    background: var(--blue);
+    opacity: 0.4;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+    width: 40px;
+  }
+
+  .spacing-label {
+    font-size: 0.55rem;
+    color: var(--cream-muted);
+  }
+
+  .spacing-value {
+    font-size: 0.5rem;
+    color: var(--cream-dim);
+  }
+
+  .radius-row {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .radius-sample {
+    width: 80px;
+    height: 80px;
+    background: var(--cream-ghost);
+    border: 1px solid var(--cream-subtle);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .radius-sample .radius-label {
+    font-size: 0.55rem;
+    color: var(--cream-muted);
+    margin-top: 0.3rem;
+  }
+
+  .radius-sample .radius-value {
+    font-size: 0.5rem;
+    color: var(--cream-dim);
+  }
+
+  /* ========== SAMPLE APPLICATION ========== */
+  .sample-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .sample-card {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--cream-subtle);
+  }
+
+  .sample-dark {
+    padding: 2.5rem 2rem;
+    background: var(--black);
+  }
+
+  .sample-dark .s-eyebrow {
+    font-size: 0.5rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--mint);
+    margin-bottom: 1rem;
+  }
+
+  .sample-dark .s-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 0.95;
+    margin-bottom: 0.8rem;
+  }
+
+  .sample-dark .s-headline em {
+    color: var(--red);
+    font-style: italic;
+  }
+
+  .sample-dark .s-body {
+    font-size: 0.65rem;
+    line-height: 1.7;
+    color: var(--cream-dim);
+    max-width: 26em;
+  }
+
+  .sample-dark .s-body strong {
+    color: var(--cream);
+    font-weight: 500;
+  }
+
+  .s-btn {
+    display: inline-block;
+    margin-top: 1.2rem;
+    padding: 0.5rem 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.55rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border-radius: 100px;
+    text-decoration: none;
+  }
+
+  .sample-dark .s-btn {
+    background: var(--red);
+    color: var(--black);
+  }
+
+  .sample-light {
+    padding: 2.5rem 2rem;
+    background: var(--cream);
+    color: var(--black);
+  }
+
+  .sample-light .s-eyebrow {
+    font-size: 0.5rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 1rem;
+  }
+
+  .sample-light .s-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 0.95;
+    color: var(--black);
+    margin-bottom: 0.8rem;
+  }
+
+  .sample-light .s-headline em {
+    color: var(--red);
+    font-style: italic;
+  }
+
+  .sample-light .s-body {
+    font-size: 0.65rem;
+    line-height: 1.7;
+    color: rgba(10,10,10,0.5);
+    max-width: 26em;
+  }
+
+  .sample-light .s-btn {
+    background: var(--black);
+    color: var(--cream);
+  }
+
+  /* ========== PHOTOGRAPHY ========== */
+  .photo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .photo-col {
+    border-radius: 10px;
+    padding: 2rem;
+  }
+
+  .photo-do {
+    background: rgba(0,229,160,0.04);
+    border: 1px solid rgba(0,229,160,0.1);
+  }
+
+  .photo-dont {
+    background: rgba(255,61,0,0.04);
+    border: 1px solid rgba(255,61,0,0.1);
+  }
+
+  .photo-col h3 {
+    font-size: 0.55rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    font-weight: 500;
+  }
+
+  .photo-do h3 { color: var(--mint); }
+  .photo-dont h3 { color: var(--red); }
+
+  .photo-col li {
+    font-size: 0.7rem;
+    line-height: 1.6;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid var(--cream-subtle);
+    color: var(--cream-dim);
+    list-style: none;
+  }
+
+  .photo-col li:last-child { border-bottom: none; }
+
+  .photo-dont li {
+    text-decoration: line-through;
+    text-decoration-color: rgba(255,61,0,0.3);
+    color: rgba(245,240,232,0.25);
+  }
+
+  .photo-style {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--cream-soft);
+    margin-bottom: 2rem;
+    max-width: 40em;
+  }
+
+  /* ========== FOOTER ========== */
+  .board-footer {
+    padding: 3rem var(--section-pad);
+    border-top: 1px solid var(--cream-faint);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.6rem;
+    color: rgba(245,240,232,0.15);
+  }
+
+  .board-footer .f-mark {
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--cream-muted);
+  }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 900px) {
+    :root { --section-pad: 2rem; }
+    .type-grid,
+    .voice-examples,
+    .photo-grid,
+    .tone-spectrum,
+    .sample-grid,
+    .pillars-grid { grid-template-columns: 1fr; }
+    .wordmark-grid { grid-template-columns: 1fr 1fr; }
+    .tone-goals { grid-template-columns: 1fr; }
+    .type-hierarchy { grid-template-columns: 1fr; }
+    .type-rules { grid-template-columns: 1fr; }
+    .voice-rules-grid { grid-template-columns: 1fr; }
+    .logo-rules { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- STICKY NAV -->
+  <nav class="nav">
+    <span class="nav-brand">of1</span>
+    <a href="#philosophy">Philosophy</a>
+    <a href="#keyline">Key line</a>
+    <a href="#logo">Logo</a>
+    <a href="#colors">Colors</a>
+    <a href="#typography">Typography</a>
+    <a href="#motifs">Motifs</a>
+    <a href="#photography">Photography</a>
+    <a href="#voice">Voice</a>
+    <a href="#tone">Tone</a>
+    <a href="#pillars">Pillars</a>
+    <a href="#persona">Persona</a>
+    <a href="#spacing">Spacing</a>
+    <a href="#samples">Samples</a>
+  </nav>
+
+  <!-- PHILOSOPHY -->
+  <section class="section philosophy" id="philosophy">
+    <div class="wordmark">of1</div>
+    <div class="fullname">Audience of ONE</div>
+    <div class="tagline">The marketing nirvana is real</div>
+    <div class="mission">
+      of1 wins by reframing personalization from a complex technical problem into an inevitable truth. While competitors sell segmentation engines and audience platforms, <strong>of1 sells the end of audiences as a concept</strong> — every person becomes their own audience. It's not better personalization. <strong>It's the death of impersonal.</strong>
+    </div>
+  </section>
+
+  <!-- KEY LINE -->
+  <section class="section" id="keyline">
+    <div class="section-label">Key line</div>
+    <div class="keyline">
+      "We made your website <span>pay attention</span> —
+      so every visitor finds exactly what they came for,
+      as if it had always been there."
+    </div>
+  </section>
+
+  <!-- LOGO / WORDMARK -->
+  <section class="section" id="logo">
+    <div class="section-label">Logo &amp; wordmark</div>
+    <div class="wordmark-grid">
+      <div class="wm-card wm-dark">
+        <div>
+          <div class="wm-text wm-primary">of1</div>
+          <div class="wm-text wm-secondary">ONE</div>
+        </div>
+      </div>
+      <div class="wm-card wm-light">
+        <div>
+          <div class="wm-text wm-primary">of1</div>
+          <div class="wm-text wm-secondary">ONE</div>
+        </div>
+      </div>
+      <div class="wm-card wm-red">
+        <div>
+          <div class="wm-text wm-primary">of1</div>
+          <div class="wm-text wm-secondary">ONE</div>
+        </div>
+      </div>
+    </div>
+    <div class="logo-rules">
+      <div class="logo-rule">
+        <div class="rule-label">Don't</div>
+        Never write 'OF1' or 'Of1' — always lowercase 'of1'
+      </div>
+      <div class="logo-rule">
+        <div class="rule-label">Don't</div>
+        Never separate 'of' and '1' with a space
+      </div>
+      <div class="logo-rule">
+        <div class="rule-label">Don't</div>
+        Never use a font other than JetBrains Mono Bold for the wordmark
+      </div>
+    </div>
+  </section>
+
+  <!-- COLOR PALETTE -->
+  <section class="section" id="colors">
+    <div class="section-label">Color palette — "Signal Fire"</div>
+
+    <div class="palette-section-label">Primary</div>
+    <div class="palette">
+      <div class="swatch">
+        <div class="swatch-color" style="background: #0A0A0A; border: 1px solid rgba(245,240,232,0.1);"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Black</div>
+          <div class="swatch-hex">#0A0A0A</div>
+          <div class="swatch-role">Primary background. Dark mode is the brand's natural state.</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #F5F0E8;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Cream</div>
+          <div class="swatch-hex">#F5F0E8</div>
+          <div class="swatch-role">Primary text on dark. Secondary background for light sections. Warm, not white.</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #FF3D00;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Red</div>
+          <div class="swatch-hex">#FF3D00</div>
+          <div class="swatch-role">Primary accent. CTAs, italic accents, taglines. The signal fire.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="palette-section-label">Secondary</div>
+    <div class="palette">
+      <div class="swatch">
+        <div class="swatch-color" style="background: #1A1AFF;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Blue</div>
+          <div class="swatch-hex">#1A1AFF</div>
+          <div class="swatch-role">Secondary accent. Interactive states, structural tags. Electric, not corporate.</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #00E5A0;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Mint</div>
+          <div class="swatch-hex">#00E5A0</div>
+          <div class="swatch-role">Tertiary accent. Success states, highlighted phrases, positive indicators.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="palette-section-label">Web / functional</div>
+    <div class="palette">
+      <div class="swatch">
+        <div class="swatch-color" style="background: rgba(245,240,232,0.4);"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Cream (dim)</div>
+          <div class="swatch-hex">rgba(245,240,232,0.4)</div>
+          <div class="swatch-role">Subdued text, secondary labels, body copy on dark</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: rgba(245,240,232,0.25);"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Cream (muted)</div>
+          <div class="swatch-hex">rgba(245,240,232,0.25)</div>
+          <div class="swatch-role">Eyebrow labels, section labels</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: rgba(245,240,232,0.06); border: 1px solid rgba(245,240,232,0.1);"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Cream (faint)</div>
+          <div class="swatch-hex">rgba(245,240,232,0.06)</div>
+          <div class="swatch-role">Dividers, section borders — felt more than seen</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TYPOGRAPHY -->
+  <section class="section" id="typography">
+    <div class="section-label">Typography</div>
+
+    <div class="type-grid">
+      <div class="type-col">
+        <div class="type-role">Display — the literary voice</div>
+        <div class="type-family">Cormorant Garamond</div>
+        <div class="type-specimen-display">The end of <em>audiences.</em></div>
+        <div class="type-weights">
+          <span style="font-family:'Cormorant Garamond';font-weight:400">Regular 400</span>
+          <span style="font-family:'Cormorant Garamond';font-weight:600">SemiBold 600</span>
+          <span style="font-family:'Cormorant Garamond';font-weight:700">Bold 700</span>
+          <span style="font-family:'Cormorant Garamond';font-weight:400;font-style:italic">Italic</span>
+        </div>
+      </div>
+      <div class="type-col">
+        <div class="type-role">Body — the engineered voice</div>
+        <div class="type-family">JetBrains Mono</div>
+        <div class="type-specimen-mono">One button. Zero config.</div>
+        <div class="type-weights">
+          <span style="font-weight:400">Regular 400</span>
+          <span style="font-weight:500">Medium 500</span>
+          <span style="font-weight:600">SemiBold 600</span>
+          <span style="font-weight:700">Bold 700</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="type-hierarchy">
+      <div class="type-card">
+        <div class="type-card-label">Accent</div>
+        <div class="type-card-sample" style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;font-style:italic;color:var(--red)">audiences.</div>
+        <div class="type-card-meta">Cormorant Garamond Bold Italic — one word per headline max, always in red. The emotional pivot.</div>
+      </div>
+      <div class="type-card">
+        <div class="type-card-label">Eyebrow</div>
+        <div class="type-card-sample" style="font-size:0.55rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--cream-muted);font-weight:500">How it works</div>
+        <div class="type-card-meta">JetBrains Mono Medium, 0.5–0.55rem, uppercase, 0.3–0.35em tracking. Structural, not decorative.</div>
+      </div>
+      <div class="type-card">
+        <div class="type-card-label">Subheading</div>
+        <div class="type-card-sample" style="font-size:0.85rem;font-weight:600">Your site pays attention</div>
+        <div class="type-card-meta">JetBrains Mono SemiBold — section subheads, card titles. The engineered voice at medium scale.</div>
+      </div>
+      <div class="type-card">
+        <div class="type-card-label">Button</div>
+        <div class="type-card-sample"><span style="display:inline-block;padding:0.5rem 1.5rem;background:var(--red);color:var(--black);font-size:0.55rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;border-radius:100px">Request early access</span></div>
+        <div class="type-card-meta">JetBrains Mono SemiBold, 0.55rem, uppercase, 0.15em tracking. Capsule-shaped.</div>
+      </div>
+    </div>
+
+    <div class="type-rules">
+      <div class="type-rule">Sentence case for all headings — never Title Case or ALL CAPS except eyebrows</div>
+      <div class="type-rule">Never use exclamation marks</div>
+      <div class="type-rule">Em dashes (—) preferred over en dashes or hyphens for parenthetical breaks</div>
+      <div class="type-rule">Cormorant Garamond italic accent limited to one word per headline, always in red</div>
+    </div>
+  </section>
+
+  <!-- MOTIFS -->
+  <section class="section" id="motifs">
+    <div class="section-label">Visual motifs</div>
+    <div class="motifs-grid">
+      <div class="motif-card">
+        <h3>High-contrast editorial minimalism</h3>
+        <p>Generous negative space interrupted by bold typographic statements. Dark mode dominant with warm cream accents. No gradients, no glassmorphism, no safe corporate blue.</p>
+        <div class="motif-usage">Foundational layout principle. Every section breathes. Content is the ornament.</div>
+      </div>
+      <div class="motif-card">
+        <h3>Signal Fire palette</h3>
+        <p>The combination of black, cream, and red evokes urgency and conviction, like a signal fire in darkness.</p>
+        <div class="motif-usage">The three-color core (black/cream/red) should dominate. Blue and mint are punctuation, not co-stars.</div>
+      </div>
+      <div class="motif-card">
+        <h3>Serif italic accent</h3>
+        <p>Single words in Cormorant Garamond italic + red within mono or display headlines. The literary voice breaking through the engineered voice.</p>
+        <div class="motif-usage">One word per headline max. The italic word is the emotional pivot. e.g. "The end of <em style="font-family:'Cormorant Garamond',serif;color:var(--red)">audiences.</em>"</div>
+      </div>
+      <div class="motif-card">
+        <h3>Pill-shaped elements</h3>
+        <p>Buttons and tags use border-radius: 100px — fully rounded capsules. Tone tags, CTAs, and category labels all share this shape.</p>
+        <div class="motif-usage">All interactive elements and classification tags. Never square or slightly-rounded buttons.</div>
+      </div>
+      <div class="motif-card">
+        <h3>Faint dividers</h3>
+        <p>Section borders at rgba(245,240,232,0.06) — barely visible, felt more than seen.</p>
+        <div class="motif-usage">Between all major sections. The brand relies on negative space and faint structure, not heavy rules.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHOTOGRAPHY -->
+  <section class="section" id="photography">
+    <div class="section-label">Photography &amp; imagery</div>
+    <div class="photo-style">Abstract, high-contrast, editorial. Dark environments with warm light. No stock photography of smiling people at laptops.</div>
+    <div class="photo-grid">
+      <div class="photo-col photo-do">
+        <h3>Do</h3>
+        <ul>
+          <li>Abstract/conceptual imagery over literal product screenshots</li>
+          <li>Dark backgrounds consistent with brand palette</li>
+          <li>People silhouetted or partially obscured — the visitor, not the marketer</li>
+          <li>Warm color temperature — cream, amber, fire tones against dark</li>
+        </ul>
+      </div>
+      <div class="photo-col photo-dont">
+        <h3>Don't</h3>
+        <ul>
+          <li>Corporate stock photography</li>
+          <li>Bright white backgrounds</li>
+          <li>Group shots of diverse teams pointing at screens</li>
+          <li>Literal AI imagery (robots, neural networks, glowing brains)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- VOICE -->
+  <section class="section" id="voice">
+    <div class="section-label">Voice</div>
+    <div class="voice-character"><strong>Manifesto.</strong> Bold declarations. Short sentences. Poetic rhythm. Speaks from conviction. Doesn't ask permission. The voice of someone who has already seen the future and is calmly explaining it to you.</div>
+
+    <div class="trait-row" style="margin-bottom: 0.5rem;">
+      <span class="trait-pill trait-do">Provocatively calm</span>
+      <span class="trait-pill trait-do">Intimately bold</span>
+      <span class="trait-pill trait-do">Poetically precise</span>
+      <span class="trait-pill trait-do">Defiantly simple</span>
+      <span class="trait-pill trait-do">Quietly revolutionary</span>
+    </div>
+    <div class="trait-row">
+      <span class="trait-pill trait-dont">Hype-driven</span>
+      <span class="trait-pill trait-dont">Corporate</span>
+      <span class="trait-pill trait-dont">Jargon-heavy</span>
+      <span class="trait-pill trait-dont">Apologetic</span>
+      <span class="trait-pill trait-dont">Feature-listing</span>
+      <span class="trait-pill trait-dont">Exclamatory</span>
+    </div>
+
+    <div class="voice-examples">
+      <div class="examples-col examples-do">
+        <h3>Say this</h3>
+        <div class="example-item">
+          <div class="example-text">The end of audiences. The beginning of everyone.</div>
+          <div class="example-context">Hero headline — staccato contrast, big claim delivered calmly</div>
+        </div>
+        <div class="example-item">
+          <div class="example-text">We made your website pay attention — so every visitor finds exactly what they came for, as if it had always been there.</div>
+          <div class="example-context">Key line — long sentence with em dash break, ends on an intimate image</div>
+        </div>
+        <div class="example-item">
+          <div class="example-text">Most AI wants you to know it's there. Ours wants you to forget.</div>
+          <div class="example-context">AI positioning — subverts the expectation, speaks through contrast</div>
+        </div>
+        <div class="example-item">
+          <div class="example-text">Segments are a confession.</div>
+          <div class="example-context">Provocative reframe — turns industry language against itself</div>
+        </div>
+        <div class="example-item">
+          <div class="example-text">Your website just becomes — quietly, impossibly — relevant.</div>
+          <div class="example-context">Parenthetical rhythm, ends on the brand's replacement word</div>
+        </div>
+        <div class="example-item">
+          <div class="example-text">Every person is a market of one.</div>
+          <div class="example-context">The philosophy in one line</div>
+        </div>
+        <div class="example-item">
+          <div class="example-text">Not a recommendation engine in a box.</div>
+          <div class="example-context">Anti-positioning — says what it isn't to define what it is</div>
+        </div>
+      </div>
+      <div class="examples-col examples-dont">
+        <h3>Never say</h3>
+        <div class="example-item">
+          <div class="example-text">Our AI-powered personalization engine delivers optimized experiences.</div>
+          <div class="example-context">Violates three word rules — 'AI-powered', 'personalization', 'optimized'</div>
+        </div>
+        <div class="example-item">
+          <div class="example-text">Seamless integration with your existing tech stack!</div>
+          <div class="example-context">'Seamless integration' banned. Exclamation mark banned. Says nothing.</div>
+        </div>
+        <div class="example-item">
+          <div class="example-text">Next-gen segmentation for the modern marketer.</div>
+          <div class="example-context">'Next-gen' banned. 'Segmentation' is what the brand is ending.</div>
+        </div>
+        <div class="example-item">
+          <div class="example-text">Boost conversions with cutting-edge AI technology.</div>
+          <div class="example-context">Pure jargon. This is everyone else's copy.</div>
+        </div>
+        <div class="example-item">
+          <div class="example-text">of1 is the industry-leading personalization platform.</div>
+          <div class="example-context">Self-important, generic. The brand never claims 'leadership'.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="voice-rules-grid">
+      <div class="voice-rule">Never say 'personalization' — say 'relevance'</div>
+      <div class="voice-rule">Never say 'AI-powered' — say what it does</div>
+      <div class="voice-rule">Never say 'optimized' — say 'helpful'</div>
+      <div class="voice-rule">Never say 'seamless integration' — say 'technology disappears'</div>
+      <div class="voice-rule">Never say 'next-gen' or 'cutting-edge'</div>
+      <div class="voice-rule">Never use exclamation marks</div>
+      <div class="voice-rule">Always subvert, never adopt, industry jargon</div>
+      <div class="voice-rule">Name features for what the visitor experiences, not how it works</div>
+      <div class="voice-rule">Marketing pages: staccato fragments + long-then-short contrast</div>
+      <div class="voice-rule">Editorial and docs: measured prose — match structure to the job</div>
+    </div>
+  </section>
+
+  <!-- TONE -->
+  <section class="section" id="tone">
+    <div class="section-label">Tone adaptation</div>
+    <div class="tone-description">Context-dependent. Marketing surfaces use manifesto rhythm — staccato declarations, long-then-short contrasts, single italic accent words. Editorial and documentation use measured, precise prose. The conviction is constant; the cadence adapts.</div>
+
+    <div class="tone-goals">
+      <div class="tone-goal">
+        <h3>To provoke</h3>
+        <p>Reframe the familiar. Make the reader question what they accepted. "Segments are a confession."</p>
+      </div>
+      <div class="tone-goal">
+        <h3>To intimate</h3>
+        <p>Speak to one person, not an audience. The irony is intentional — a brand about one-to-one speaks one-to-one.</p>
+      </div>
+      <div class="tone-goal">
+        <h3>To simplify</h3>
+        <p>Complex technology described in human terms. What it feels like, not how it works. "Your site pays attention."</p>
+      </div>
+    </div>
+
+    <div class="tone-spectrum">
+      <div class="tone-pole">
+        <h3>Clever</h3>
+        <p>Headlines, taglines, hero copy, social cards. The manifesto voice. Rhythm and subversion.</p>
+      </div>
+      <div class="tone-pole">
+        <h3>Clear</h3>
+        <p>Product explanations, documentation, onboarding. Precise prose. No clever for its own sake.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENT PILLARS -->
+  <section class="section" id="pillars">
+    <div class="section-label">Content pillars</div>
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <h3>The death of impersonal</h3>
+        <p>The philosophical position — why segments, cohorts, and audiences are an admission of failure.</p>
+      </div>
+      <div class="pillar-card">
+        <h3>Invisible technology</h3>
+        <p>The product truth — AI that disappears behind the experience. No badges, no spinners, no novelty.</p>
+      </div>
+      <div class="pillar-card">
+        <h3>The visitor's experience</h3>
+        <p>Always told through the end user's eyes. The marketer is the buyer, but the visitor is the protagonist.</p>
+      </div>
+      <div class="pillar-card">
+        <h3>Effortless for everyone</h3>
+        <p>Zero config for the brand, zero friction for the visitor. Complexity is the product's problem, not the customer's.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PERSONA -->
+  <section class="section" id="persona">
+    <div class="section-label">Persona</div>
+    <div class="persona-card">
+      <h3>The disillusioned marketer</h3>
+      <div class="persona-desc">Forward-thinking marketing leader tired of segmentation theater. Has tried Dynamic Yield, Optimizely, Adobe Target. Knows the promise. Knows the gap. Wants true 1:1 without the complexity tax.</div>
+      <div class="persona-values">
+        <span class="persona-value">Authenticity over optimization</span>
+        <span class="persona-value">Results over dashboards</span>
+        <span class="persona-value">Simplicity over configurability</span>
+      </div>
+      <div class="persona-motto">"I don't want to build audiences. I want to reach people."</div>
+    </div>
+  </section>
+
+  <!-- SPACING & SHAPE -->
+  <section class="section" id="spacing">
+    <div class="section-label">Spacing &amp; shape</div>
+
+    <div class="spacing-row">
+      <div class="spacing-block">
+        <div class="spacing-visual" style="height:5px"></div>
+        <div class="spacing-label">XS</div>
+        <div class="spacing-value">0.3rem</div>
+      </div>
+      <div class="spacing-block">
+        <div class="spacing-visual" style="height:8px"></div>
+        <div class="spacing-label">S</div>
+        <div class="spacing-value">0.5rem</div>
+      </div>
+      <div class="spacing-block">
+        <div class="spacing-visual" style="height:16px"></div>
+        <div class="spacing-label">M</div>
+        <div class="spacing-value">1rem</div>
+      </div>
+      <div class="spacing-block">
+        <div class="spacing-visual" style="height:32px"></div>
+        <div class="spacing-label">L</div>
+        <div class="spacing-value">2rem</div>
+      </div>
+      <div class="spacing-block">
+        <div class="spacing-visual" style="height:48px"></div>
+        <div class="spacing-label">XL</div>
+        <div class="spacing-value">3rem</div>
+      </div>
+      <div class="spacing-block">
+        <div class="spacing-visual" style="height:64px"></div>
+        <div class="spacing-label">XXL</div>
+        <div class="spacing-value">4rem</div>
+      </div>
+    </div>
+
+    <div class="radius-row">
+      <div class="radius-sample" style="border-radius: 10px;">
+        <div class="radius-label">Card</div>
+        <div class="radius-value">10px</div>
+      </div>
+      <div class="radius-sample" style="border-radius: 12px;">
+        <div class="radius-label">Swatch</div>
+        <div class="radius-value">12px</div>
+      </div>
+      <div class="radius-sample" style="border-radius: 100px;">
+        <div class="radius-label">Pill / Button</div>
+        <div class="radius-value">100px</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAMPLE APPLICATION -->
+  <section class="section" id="samples">
+    <div class="section-label">Sample application</div>
+    <div class="sample-grid">
+      <div class="sample-card">
+        <div class="sample-dark">
+          <div class="s-eyebrow">of1</div>
+          <div class="s-headline">The end of <em>audiences.</em><br>The beginning of <em>everyone.</em></div>
+          <div class="s-body">For decades, marketing meant shouting at segments. Categories. Cohorts. <strong>We believe every person is a market of one.</strong></div>
+          <a href="#" class="s-btn">Request early access</a>
+        </div>
+      </div>
+      <div class="sample-card">
+        <div class="sample-light">
+          <div class="s-eyebrow">of1</div>
+          <div class="s-headline">Your audience<br>is <em>one.</em></div>
+          <div class="s-body">Most AI wants you to know it's there. Ours wants you to forget. Your website just becomes — quietly, impossibly — relevant.</div>
+          <a href="#" class="s-btn">Request early access</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="board-footer">
+    <span class="f-mark">of1</span>
+    <span>Brand board v2.0 — stardust</span>
+    <span>Audience of ONE</span>
+  </div>
+
+</body>
+</html>

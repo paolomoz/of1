@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>OG Mock 2 — of1</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1200px;
+    height: 630px;
+    overflow: hidden;
+    background: #0A0A0A;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .particles {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #FF3D00;
+  }
+
+  .p1 { top: 18%; left: 22%; opacity: 0.6; }
+  .p2 { top: 35%; left: 78%; opacity: 0.3; width: 2px; height: 2px; }
+  .p3 { top: 72%; left: 15%; opacity: 0.4; }
+  .p4 { top: 60%; left: 85%; opacity: 0.5; width: 4px; height: 4px; }
+  .p5 { top: 25%; left: 55%; opacity: 0.2; }
+  .p6 { top: 80%; left: 45%; opacity: 0.35; width: 2px; height: 2px; }
+  .p7 { top: 12%; left: 70%; opacity: 0.25; }
+  .p8 { top: 50%; left: 30%; opacity: 0.15; width: 4px; height: 4px; }
+  .p9 { top: 88%; left: 68%; opacity: 0.4; }
+  .p10 { top: 40%; left: 10%; opacity: 0.2; width: 2px; height: 2px; }
+  .p11 { top: 15%; left: 42%; opacity: 0.5; background: #00E5A0; }
+  .p12 { top: 65%; left: 60%; opacity: 0.3; background: #00E5A0; width: 2px; height: 2px; }
+  .p13 { top: 85%; left: 25%; opacity: 0.2; background: #1A1AFF; }
+  .p14 { top: 30%; left: 90%; opacity: 0.3; background: #1A1AFF; width: 2px; height: 2px; }
+
+  .logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 200px;
+    font-weight: 700;
+    color: #F5F0E8;
+    letter-spacing: -0.04em;
+    position: relative;
+    z-index: 1;
+  }
+
+  .tagline {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: rgba(245, 240, 232, 0.35);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-top: 24px;
+    position: relative;
+    z-index: 1;
+  }
+</style>
+</head>
+<body>
+  <div class="particles">
+    <div class="particle p1"></div><div class="particle p2"></div>
+    <div class="particle p3"></div><div class="particle p4"></div>
+    <div class="particle p5"></div><div class="particle p6"></div>
+    <div class="particle p7"></div><div class="particle p8"></div>
+    <div class="particle p9"></div><div class="particle p10"></div>
+    <div class="particle p11"></div><div class="particle p12"></div>
+    <div class="particle p13"></div><div class="particle p14"></div>
+  </div>
+  <div class="logo">of1</div>
+  <div class="tagline">Audience of one</div>
+</body>
+</html>

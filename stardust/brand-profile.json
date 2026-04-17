@@ -1,0 +1,312 @@
+{
+  "name": "of1",
+  "philosophy": "of1 wins by reframing personalization from a complex technical problem into an inevitable truth. While competitors sell segmentation engines and audience platforms, of1 sells the end of audiences as a concept — every person becomes their own audience. It's not better personalization. It's the death of impersonal.",
+
+  "logo": {
+    "primary": null,
+    "variants": [
+      {
+        "name": "of1 on dark",
+        "path": null,
+        "usage": "Primary usage — dark backgrounds (black #0A0A0A). Wordmark in cream #F5F0E8."
+      },
+      {
+        "name": "of1 on light",
+        "path": null,
+        "usage": "Light backgrounds (cream #F5F0E8). Wordmark in black #0A0A0A."
+      },
+      {
+        "name": "of1 on red",
+        "path": null,
+        "usage": "Accent contexts. Wordmark in black #0A0A0A on red #FF3D00."
+      }
+    ],
+    "clearSpace": "Minimum clear space equal to the height of the '1' character on all sides.",
+    "donts": [
+      "Never write 'OF1' or 'Of1' — always lowercase 'of1'",
+      "Never separate 'of' and '1' with a space",
+      "Never use a font other than JetBrains Mono Bold for the wordmark"
+    ]
+  },
+
+  "colors": {
+    "primary": [
+      {
+        "name": "Black",
+        "hex": "#0A0A0A",
+        "pantone": null,
+        "role": "Primary background. The dominant surface — dark mode is the brand's natural state."
+      },
+      {
+        "name": "Cream",
+        "hex": "#F5F0E8",
+        "pantone": null,
+        "role": "Primary text on dark. Secondary background for light sections. Warm, not white."
+      },
+      {
+        "name": "Red",
+        "hex": "#FF3D00",
+        "pantone": null,
+        "role": "Primary accent. CTAs, italic display accents, eyebrows on light backgrounds, tagline. The signal fire."
+      }
+    ],
+    "secondary": [
+      {
+        "name": "Blue",
+        "hex": "#1A1AFF",
+        "role": "Secondary accent. Interactive states, structural voice tags, link hovers. Electric, not corporate."
+      },
+      {
+        "name": "Mint",
+        "hex": "#00E5A0",
+        "role": "Tertiary accent. Success states, positive indicators, highlighted key phrases, 'say this' examples. Calm energy."
+      }
+    ],
+    "web": [
+      { "name": "Black", "hex": "#0A0A0A", "role": "Page background, button text on colored backgrounds" },
+      { "name": "Cream", "hex": "#F5F0E8", "role": "Body text on dark, section backgrounds on light" },
+      { "name": "Red", "hex": "#FF3D00", "role": "Primary CTA background, accent text, hover states" },
+      { "name": "Blue", "hex": "#1A1AFF", "role": "Links, secondary interactive elements" },
+      { "name": "Mint", "hex": "#00E5A0", "role": "Highlighted text, success states, eyebrows on dark" },
+      { "name": "Cream (dim)", "hex": "rgba(245,240,232,0.4)", "role": "Subdued text, secondary labels, fullname/subtitle" },
+      { "name": "Cream (faint)", "hex": "rgba(245,240,232,0.06)", "role": "Dividers, section borders" }
+    ],
+    "gradients": null
+  },
+
+  "componentStyle": {
+    "borderRadius": {
+      "default": "10px",
+      "usage": "Cards, type specimens, wordmark containers — consistent rounding across all contained elements."
+    },
+    "maxWidth": null,
+    "pagePadding": "4rem",
+    "navbarHeight": null,
+    "buttons": {
+      "patterns": [
+        {
+          "name": "Primary (red)",
+          "style": "background: #FF3D00; color: #0A0A0A; border-radius: 100px; padding: 0.5rem 1.5rem; font: JetBrains Mono 600 0.55rem; letter-spacing: 0.15em; text-transform: uppercase",
+          "example": "Request early access"
+        },
+        {
+          "name": "Primary (dark)",
+          "style": "background: #0A0A0A; color: #F5F0E8; border-radius: 100px; padding: 0.5rem 1.5rem; font: JetBrains Mono 600 0.55rem; letter-spacing: 0.15em; text-transform: uppercase",
+          "example": "Request early access"
+        }
+      ],
+      "dualCTA": null
+    }
+  },
+
+  "motifs": [
+    {
+      "name": "High-contrast editorial minimalism",
+      "description": "Generous negative space interrupted by bold typographic statements. Dark mode dominant with warm cream accents. No gradients, no glassmorphism, no safe corporate blue.",
+      "usage": "Foundational layout principle. Every section breathes. Content is the ornament."
+    },
+    {
+      "name": "Signal Fire palette",
+      "description": "Named color palette — the combination of black, cream, and red evokes urgency and conviction, like a signal fire in darkness.",
+      "usage": "The three-color core (black/cream/red) should dominate. Blue and mint are punctuation, not co-stars."
+    },
+    {
+      "name": "Serif italic accent",
+      "description": "Single words in Cormorant Garamond italic + red within mono or display headlines. Creates a visual catch — the literary voice breaking through the engineered voice.",
+      "usage": "One word per headline maximum. The italic word is the emotional pivot of the sentence. e.g. 'The end of *audiences.*'"
+    },
+    {
+      "name": "Pill-shaped elements",
+      "description": "Buttons and tags use border-radius: 100px — fully rounded capsules. Tone tags, CTAs, and category labels all share this shape.",
+      "usage": "All interactive elements and classification tags. Never use square or slightly-rounded buttons."
+    },
+    {
+      "name": "Faint dividers",
+      "description": "Section borders at rgba(245,240,232,0.06) — barely visible, felt more than seen.",
+      "usage": "Between all major sections. The brand relies on negative space and faint structure, not heavy rules."
+    }
+  ],
+
+  "typography": {
+    "heading": {
+      "family": "Cormorant Garamond",
+      "weights": ["Regular 400", "SemiBold 600", "Bold 700"],
+      "lineHeight": 0.95,
+      "letterSpacing": null,
+      "usage": "Headlines, statements, pull quotes — the literary voice. Display text that makes declarations."
+    },
+    "subheading": {
+      "family": "JetBrains Mono",
+      "weight": "SemiBold 600",
+      "usage": "Section subheads, card titles, voice rule headers. The engineered voice at medium scale."
+    },
+    "body": {
+      "family": "JetBrains Mono",
+      "weight": "Regular 400",
+      "opacity": 0.4,
+      "usage": "Body text, descriptions, explanatory copy. Deliberately subdued against dark backgrounds — the brand lets headlines carry the weight."
+    },
+    "accent": {
+      "family": "Cormorant Garamond",
+      "weight": "Bold 700 Italic",
+      "usage": "Single-word italic accents within headlines, colored red (#FF3D00). One word per headline max. The word is the emotional pivot."
+    },
+    "eyebrow": {
+      "family": "JetBrains Mono",
+      "weight": "Medium 500",
+      "transform": "uppercase",
+      "usage": "Section labels, category tags. Tiny (0.5-0.55rem), wide letter-spacing (0.3-0.35em), subdued opacity. Structural, not decorative."
+    },
+    "button": {
+      "family": "JetBrains Mono",
+      "weight": "SemiBold 600",
+      "usage": "CTA labels. Uppercase, 0.55rem, 0.15em letter-spacing. Capsule-shaped buttons."
+    },
+    "rules": [
+      "Sentence case for all headings — never Title Case or ALL CAPS except eyebrows",
+      "Never use exclamation marks",
+      "Em dashes (—) preferred over en dashes or hyphens for parenthetical breaks",
+      "Cormorant Garamond italic accent limited to one word per headline, always in red"
+    ]
+  },
+
+  "photography": {
+    "style": "Abstract, high-contrast, editorial. Dark environments with warm light. No stock photography of smiling people at laptops.",
+    "rules": [
+      "Prefer abstract/conceptual imagery over literal product screenshots",
+      "Dark backgrounds consistent with brand palette",
+      "If people appear, they are silhouetted or partially obscured — the brand is about the visitor, not the marketer",
+      "Warm color temperature — cream, amber, fire tones against dark"
+    ],
+    "donts": [
+      "No corporate stock photography",
+      "No bright white backgrounds in photography",
+      "No group shots of diverse teams pointing at screens",
+      "No literal AI imagery (robots, neural networks, glowing brains)"
+    ],
+    "social": "Same dark editorial aesthetic. Quote cards use the manifesto voice — short, declarative, one statement per card."
+  },
+
+  "voice": {
+    "character": "Manifesto. Bold declarations. Short sentences. Poetic rhythm. Speaks from conviction. Doesn't ask permission. The voice of someone who has already seen the future and is calmly explaining it to you.",
+    "traits": [
+      "Provocatively calm",
+      "Intimately bold",
+      "Poetically precise",
+      "Defiantly simple",
+      "Quietly revolutionary"
+    ],
+    "antiTraits": [
+      "Hype-driven",
+      "Corporate",
+      "Jargon-heavy",
+      "Apologetic",
+      "Feature-listing",
+      "Exclamatory"
+    ],
+    "examples": {
+      "do": [
+        { "text": "The end of audiences. The beginning of everyone.", "context": "Hero headline — staccato contrast, big claim delivered calmly" },
+        { "text": "We made your website pay attention — so every visitor finds exactly what they came for, as if it had always been there.", "context": "Key line — long sentence with em dash break, ends on an intimate image" },
+        { "text": "Most AI wants you to know it's there. Ours wants you to forget.", "context": "AI positioning — subverts the expectation, speaks through contrast" },
+        { "text": "Segments are a confession.", "context": "Provocative reframe — turns industry language against itself" },
+        { "text": "Your website just becomes — quietly, impossibly — relevant.", "context": "Product description — parenthetical rhythm, ends on the brand's replacement word" },
+        { "text": "Every person is a market of one.", "context": "Brand value — simple declaration, the philosophy in one line" },
+        { "text": "Not a recommendation engine in a box.", "context": "Anti-positioning — says what it isn't to define what it is" }
+      ],
+      "dont": [
+        { "text": "Our AI-powered personalization engine delivers optimized experiences.", "context": "Violates three word rules at once — 'AI-powered', 'personalization', 'optimized'" },
+        { "text": "Seamless integration with your existing tech stack!", "context": "'Seamless integration' is banned. Exclamation mark is banned. Says nothing." },
+        { "text": "Next-gen segmentation for the modern marketer.", "context": "'Next-gen' is banned. 'Segmentation' is what the brand is ending, not improving." },
+        { "text": "Boost conversions with cutting-edge AI technology.", "context": "Pure jargon. 'Cutting-edge', 'boost conversions' — this is everyone else's copy." },
+        { "text": "of1 is the industry-leading personalization platform.", "context": "Self-important, generic. The brand never calls itself a 'platform' or claims leadership." }
+      ]
+    },
+    "rules": [
+      "Never say 'personalization' — say 'relevance'",
+      "Never say 'AI-powered' — say what it does",
+      "Never say 'optimized' — say 'helpful'",
+      "Never say 'seamless integration' — say 'technology disappears'",
+      "Never say 'next-gen' or 'cutting-edge'",
+      "Never use exclamation marks",
+      "Always subvert, never adopt, industry jargon",
+      "Name features for what the visitor experiences, not how it works",
+      "Marketing pages: staccato fragments + long-then-short contrast",
+      "Editorial and docs: measured prose — match structure to the job"
+    ]
+  },
+
+  "tone": {
+    "description": "Context-dependent. Marketing surfaces use manifesto rhythm — staccato declarations, long-then-short contrasts, single italic accent words. Editorial and documentation use measured, precise prose. The conviction is constant; the cadence adapts.",
+    "writingGoals": [
+      {
+        "goal": "To provoke",
+        "description": "Reframe the familiar. Make the reader question what they accepted. 'Segments are a confession.'"
+      },
+      {
+        "goal": "To intimate",
+        "description": "Speak to one person, not an audience. The irony is intentional — a brand about one-to-one speaks one-to-one."
+      },
+      {
+        "goal": "To simplify",
+        "description": "Complex technology described in human terms. What it feels like, not how it works. 'Your site pays attention.'"
+      }
+    ],
+    "cleverVsClear": {
+      "clever": "Headlines, taglines, hero copy, social cards. The manifesto voice. Rhythm and subversion.",
+      "clear": "Product explanations, documentation, onboarding. Precise prose. No clever for its own sake."
+    }
+  },
+
+  "contentPillars": [
+    {
+      "name": "The death of impersonal",
+      "description": "The philosophical position — why segments, cohorts, and audiences are an admission of failure."
+    },
+    {
+      "name": "Invisible technology",
+      "description": "The product truth — AI that disappears behind the experience. No badges, no spinners, no novelty."
+    },
+    {
+      "name": "The visitor's experience",
+      "description": "Always told through the end user's eyes. The marketer is the buyer, but the visitor is the protagonist."
+    },
+    {
+      "name": "Effortless for everyone",
+      "description": "Zero config for the brand, zero friction for the visitor. Complexity is the product's problem, not the customer's."
+    }
+  ],
+
+  "personas": [
+    {
+      "name": "The disillusioned marketer",
+      "description": "Forward-thinking marketing leader tired of segmentation theater. Has tried Dynamic Yield, Optimizely, Adobe Target. Knows the promise. Knows the gap. Wants true 1:1 without the complexity tax.",
+      "values": ["Authenticity over optimization", "Results over dashboards", "Simplicity over configurability"],
+      "motto": "I don't want to build audiences. I want to reach people.",
+      "stats": null
+    }
+  ],
+
+  "spacing": {
+    "scale": [
+      { "name": "XS", "value": "0.3rem" },
+      { "name": "S", "value": "0.5rem" },
+      { "name": "M", "value": "1rem" },
+      { "name": "L", "value": "2rem" },
+      { "name": "XL", "value": "3rem" },
+      { "name": "XXL", "value": "4rem" }
+    ],
+    "borderRadius": [
+      { "name": "Card", "value": "10px" },
+      { "name": "Swatch", "value": "12px" },
+      { "name": "Pill / Button", "value": "100px" }
+    ]
+  },
+
+  "extraction": {
+    "method": "Manual — synthesized from existing brand-profile.json and brand-board.html created in prior session",
+    "source": "brand/brand-profile.json + brand/brand-board.html",
+    "capturedAt": "2026-04-17",
+    "screenshots": []
+  }
+}

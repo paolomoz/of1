@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How it works — of1</title>
+<meta property="og:title" content="How it works — of1">
+<meta property="og:description" content="The end of audiences. The beginning of everyone.">
+<meta property="og:image" content="https://of1.live/og-image.png">
+<meta property="og:url" content="https://of1.live/editorial.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<!-- stardust:provenance { "brand": "stardust/brand-profile.json", "briefing": "stardust/briefings/editorial.md", "wireframe": "stardust/wireframes/editorial.html", "synthesized": [] } -->
+<link rel="icon" type="image/svg+xml" href="/stardust/designs/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Colors */
+    --color-bg: #0A0A0A;
+    --color-fg: #F5F0E8;
+    --color-accent: #FF3D00;
+    --color-secondary: #1A1AFF;
+    --color-tertiary: #00E5A0;
+    --color-fg-dim: rgba(245, 240, 232, 0.55);
+    --color-fg-faint: rgba(245, 240, 232, 0.06);
+    --color-fg-muted: rgba(245, 240, 232, 0.5);
+
+    /* Typography */
+    --heading-font-family: 'Cormorant Garamond', serif;
+    --body-font-family: 'JetBrains Mono', monospace;
+
+    --heading-xxl: clamp(40px, 5vw, 72px);
+    --heading-xl: clamp(32px, 4vw, 56px);
+    --heading-lg: clamp(24px, 3vw, 40px);
+    --heading-md: clamp(20px, 2vw, 28px);
+    --body: clamp(13px, 1.1vw, 16px);
+    --body-sm: clamp(12px, 1vw, 14px);
+    --eyebrow: 0.65rem;
+    --button: 0.75rem;
+    --pull-quote: clamp(1.4rem, 2.5vw, 2.2rem);
+
+    --line-height-heading: 1.1;
+    --line-height-body: 1.9;
+    --line-height-pull-quote: 1.5;
+    --letter-spacing-eyebrow: 0.35em;
+    --letter-spacing-button: 0.15em;
+
+    /* Spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 48px;
+    --spacing-2xl: 96px;
+
+    /* Layout */
+    --section-padding: 4rem;
+    --reading-width: 680px;
+    --max-width: 1200px;
+
+    /* Components */
+    --radius-card: 10px;
+    --radius-pill: 100px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--body-font-family);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .reading {
+    max-width: var(--reading-width);
+    margin: 0 auto;
+  }
+
+  .section-divider {
+    height: 1px;
+    background: var(--color-fg-faint);
+    margin: 0 var(--section-padding);
+  }
+
+  .bg-lifted {
+    background: var(--color-fg);
+    color: var(--color-bg);
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .bg-lifted h2 { color: var(--color-bg); }
+  .bg-lifted p { color: rgba(10, 10, 10, 0.7); }
+
+  .bg-lifted .breakthrough-card {
+    border-color: rgba(10, 10, 10, 0.1);
+    background: rgba(10, 10, 10, 0.03);
+  }
+  .bg-lifted .breakthrough-title { color: var(--color-bg); }
+  .bg-lifted .breakthrough-body { color: rgba(10, 10, 10, 0.7); }
+
+  .bg-lifted .pipe-stage {
+    border-color: rgba(10, 10, 10, 0.1);
+    background: rgba(10, 10, 10, 0.03);
+  }
+  .bg-lifted .stage-number { opacity: 0.5; }
+  .bg-lifted .stage-title { color: var(--color-bg); }
+  .bg-lifted .stage-body { color: rgba(10, 10, 10, 0.7); }
+  .bg-lifted .stage-stat { color: var(--color-accent); }
+
+  .bg-lifted .callout {
+    border-color: rgba(10, 10, 10, 0.1);
+  }
+  .bg-lifted .callout-value { color: var(--color-accent); }
+  .bg-lifted .callout-label { color: rgba(10, 10, 10, 0.7); }
+
+  .bg-lifted .mock-browser {
+    border-color: rgba(10, 10, 10, 0.1);
+    background: #2a2a2a;
+  }
+  .bg-lifted .mock-chrome {
+    background: #353535;
+    border-bottom-color: rgba(245, 240, 232, 0.06);
+  }
+
+  /* ========================================
+     HEADER
+     ======================================== */
+
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem var(--section-padding);
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-fg-faint);
+  }
+
+  .site-logo {
+    font-family: var(--body-font-family);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-fg);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+
+  .site-nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .site-nav a {
+    font-family: var(--body-font-family);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-fg-dim);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .site-nav a:hover { color: var(--color-fg); }
+  .site-nav a.active { color: var(--color-fg); }
+
+  .site-nav .nav-cta {
+    padding: 0.4rem 1.2rem;
+    background: var(--color-accent);
+    color: var(--color-bg);
+    border-radius: var(--radius-pill);
+    font-weight: 600;
+  }
+
+  .site-nav .nav-cta:hover {
+    background: var(--color-fg);
+  }
+
+  /* ========================================
+     SECTION 1: EDITORIAL HERO
+     ======================================== */
+
+  .editorial-hero {
+    padding: 8rem var(--section-padding) 5rem;
+  }
+
+  .editorial-hero .hero-eyebrow {
+    font-family: var(--body-font-family);
+    font-size: var(--eyebrow);
+    letter-spacing: var(--letter-spacing-eyebrow);
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+    margin-bottom: 2rem;
+    font-weight: 500;
+  }
+
+  .editorial-hero h1 {
+    font-family: var(--heading-font-family);
+    font-size: var(--heading-xxl);
+    font-weight: 700;
+    line-height: var(--line-height-heading);
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+
+  .editorial-hero .lede {
+    font-family: var(--body-font-family);
+    font-size: var(--body);
+    line-height: var(--line-height-body);
+    color: var(--color-fg-dim);
+  }
+
+  /* ========================================
+     BODY SECTIONS (narrative)
+     ======================================== */
+
+  .body-section {
+    padding: var(--section-padding);
+  }
+
+  .body-section h2 {
+    font-family: var(--heading-font-family);
+    font-size: var(--heading-lg);
+    font-weight: 600;
+    line-height: var(--line-height-heading);
+    margin-bottom: 2rem;
+  }
+
+  .body-section p {
+    font-family: var(--body-font-family);
+    font-size: var(--body);
+    line-height: var(--line-height-body);
+    color: var(--color-fg-dim);
+    margin-bottom: 1.5rem;
+  }
+
+  .body-section p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ========================================
+     PULL QUOTES
+     ======================================== */
+
+  .pull-quote {
+    padding: 2rem 0;
+    margin: 2rem 0;
+    border-top: 1px solid var(--color-fg-faint);
+    border-bottom: 1px solid var(--color-fg-faint);
+  }
+
+  .pull-quote blockquote {
+    font-family: var(--heading-font-family);
+    font-size: var(--pull-quote);
+    font-style: italic;
+    line-height: var(--line-height-pull-quote);
+    color: var(--color-fg);
+  }
+
+  .pull-quote blockquote strong {
+    color: var(--color-tertiary);
+    font-style: normal;
+    font-weight: 700;
+  }
+
+  /* ========================================
+     SECTION 3: BREAKTHROUGHS (cards)
+     ======================================== */
+
+  .breakthroughs {
+    padding: var(--section-padding);
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  .breakthroughs h2 {
+    font-family: var(--heading-font-family);
+    font-size: var(--heading-lg);
+    font-weight: 600;
+    line-height: var(--line-height-heading);
+    margin-bottom: 2rem;
+  }
+
+  .breakthrough-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+  }
+
+  .breakthrough-card {
+    border: 1px solid rgba(245, 240, 232, 0.08);
+    border-radius: var(--radius-card);
+    padding: 2rem 1.5rem;
+  }
+
+  .breakthrough-num {
+    font-family: var(--heading-font-family);
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 1.2rem;
+  }
+
+  .breakthrough-card:nth-child(1) .breakthrough-num { color: var(--color-accent); }
+  .breakthrough-card:nth-child(2) .breakthrough-num { color: var(--color-tertiary); }
+  .breakthrough-card:nth-child(3) .breakthrough-num { color: #4D4DFF; }
+
+  .breakthrough-title {
+    font-family: var(--body-font-family);
+    font-size: var(--body-sm);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+    color: var(--color-fg);
+  }
+
+  .breakthrough-body {
+    font-family: var(--body-font-family);
+    font-size: var(--body-sm);
+    line-height: 1.8;
+    color: var(--color-fg-dim);
+  }
+
+  /* ========================================
+     SECTION 5: PIPELINE
+     ======================================== */
+
+  .pipeline-section {
+    padding: var(--section-padding);
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  .pipeline-section h2 {
+    font-family: var(--heading-font-family);
+    font-size: var(--heading-lg);
+    font-weight: 600;
+    line-height: var(--line-height-heading);
+    margin-bottom: 2rem;
+  }
+
+  .pipeline-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .pipeline-stages {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .pipe-stage {
+    border: 1px solid rgba(245, 240, 232, 0.08);
+    border-radius: var(--radius-card);
+    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    align-items: start;
+  }
+
+  .stage-number {
+    font-family: var(--heading-font-family);
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+    opacity: 0.4;
+  }
+
+  .pipe-stage:nth-child(1) .stage-number { color: var(--color-accent); }
+  .pipe-stage:nth-child(2) .stage-number { color: var(--color-tertiary); }
+  .pipe-stage:nth-child(3) .stage-number { color: #4D4DFF; }
+
+  .stage-label {
+    font-family: var(--body-font-family);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+    margin-bottom: 0.3rem;
+  }
+
+  .stage-title {
+    font-family: var(--body-font-family);
+    font-size: var(--body-sm);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--color-fg);
+  }
+
+  .stage-body {
+    font-family: var(--body-font-family);
+    font-size: var(--body-sm);
+    line-height: 1.8;
+    color: var(--color-fg-dim);
+  }
+
+  .stage-stat {
+    margin-top: 0.8rem;
+    font-family: var(--heading-font-family);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-accent);
+  }
+
+  .pipeline-mock-col .mock-browser {
+    margin-top: 0;
+    position: sticky;
+    top: 2rem;
+  }
+
+  /* ========================================
+     SECTION 6: TWO MODES
+     ======================================== */
+
+  .two-modes {
+    border-top: 1px solid var(--color-fg-faint);
+    border-bottom: 1px solid var(--color-fg-faint);
+  }
+
+  .two-modes-eyebrow {
+    padding: 3rem var(--section-padding) 1rem;
+    font-family: var(--body-font-family);
+    font-size: var(--eyebrow);
+    letter-spacing: var(--letter-spacing-eyebrow);
+    text-transform: uppercase;
+    color: var(--color-tertiary);
+    font-weight: 500;
+  }
+
+  .two-modes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .mode-col {
+    padding: 2rem var(--section-padding) 3rem;
+  }
+
+  .mode-explicit {
+    background: rgba(245, 240, 232, 0.02);
+    border-right: 1px solid var(--color-fg-faint);
+  }
+
+  .mode-implicit {
+    background: var(--color-bg);
+  }
+
+  .mode-label {
+    font-family: var(--body-font-family);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+  }
+
+  .mode-explicit .mode-label { color: var(--color-fg-dim); }
+  .mode-implicit .mode-label { color: var(--color-accent); }
+
+  .mode-headline {
+    font-family: var(--heading-font-family);
+    font-size: var(--heading-md);
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 1.2rem;
+  }
+
+  .mode-explicit .mode-headline { color: var(--color-fg-dim); }
+  .mode-implicit .mode-headline { color: var(--color-fg); }
+
+  .mode-body {
+    font-family: var(--body-font-family);
+    font-size: var(--body-sm);
+    line-height: 1.8;
+  }
+
+  .mode-explicit .mode-body { color: var(--color-fg-dim); }
+  .mode-implicit .mode-body { color: var(--color-fg-dim); }
+
+  .two-modes-footer {
+    padding: 1.5rem var(--section-padding) 2rem;
+    text-align: center;
+    font-family: var(--body-font-family);
+    font-size: var(--body-sm);
+    color: var(--color-fg-dim);
+    font-style: italic;
+  }
+
+  /* ========================================
+     SECTION 8: SPEED CONSTRAINT — CALLOUT
+     ======================================== */
+
+  .callout {
+    margin: 2rem 0;
+    padding: 2rem;
+    border: 1px solid rgba(245, 240, 232, 0.08);
+    border-radius: var(--radius-card);
+    text-align: center;
+  }
+
+  .callout-value {
+    font-family: var(--heading-font-family);
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    font-weight: 700;
+    color: var(--color-accent);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .callout-label {
+    font-family: var(--body-font-family);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-fg-dim);
+  }
+
+  /* ========================================
+     SECTION 9: CTA
+     ======================================== */
+
+  .editorial-cta {
+    padding: 5rem var(--section-padding) 6rem;
+    text-align: center;
+  }
+
+  .editorial-cta h2 {
+    font-family: var(--heading-font-family);
+    font-size: var(--heading-xl);
+    font-weight: 700;
+    line-height: var(--line-height-heading);
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+
+  .editorial-cta p {
+    font-family: var(--body-font-family);
+    font-size: var(--body-sm);
+    color: var(--color-fg-dim);
+    margin-bottom: 2.5rem;
+    max-width: 36em;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: var(--line-height-body);
+  }
+
+  .cta-btn {
+    display: inline-block;
+    padding: 1rem 3rem;
+    background: var(--color-accent);
+    color: var(--color-bg);
+    text-decoration: none;
+    font-family: var(--body-font-family);
+    font-weight: 600;
+    font-size: var(--button);
+    letter-spacing: var(--letter-spacing-button);
+    text-transform: uppercase;
+    border-radius: var(--radius-pill);
+    transition: background 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+  }
+
+  .cta-btn:hover {
+    background: var(--color-fg);
+    transform: translateY(-2px);
+  }
+
+  /* ========================================
+     SECTION 10: FOOTER
+     ======================================== */
+
+  .site-footer {
+    padding: 3rem var(--section-padding);
+    border-top: 1px solid var(--color-fg-faint);
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--body-font-family);
+    font-size: 0.65rem;
+    color: var(--color-fg-muted);
+    letter-spacing: 0.1em;
+  }
+
+  /* ========================================
+     INTERACTIVE MOCKS
+     ======================================== */
+
+  .mock-browser {
+    margin: 2.5rem 0 0;
+    border: 1px solid rgba(245, 240, 232, 0.08);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    background: #2a2a2a;
+  }
+
+  .mock-chrome {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    background: #353535;
+    border-bottom: 1px solid rgba(245, 240, 232, 0.06);
+  }
+
+  .mock-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(245, 240, 232, 0.15);
+  }
+
+  .mock-url {
+    flex: 1;
+    margin-left: 8px;
+    font-family: var(--body-font-family);
+    font-size: 0.55rem;
+    color: rgba(245, 240, 232, 0.3);
+    background: rgba(245, 240, 232, 0.04);
+    padding: 4px 12px;
+    border-radius: 4px;
+  }
+
+  .mock-viewport {
+    padding: 24px;
+    min-height: 280px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* --- PREMISE MOCK: page adapting --- */
+
+  .premise-mock .mock-viewport {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .premise-mock .mock-signal {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-family: var(--body-font-family);
+    font-size: 0.5rem;
+    letter-spacing: 0.1em;
+    color: var(--color-tertiary);
+    opacity: 0;
+    animation: signal-appear 8s ease infinite;
+  }
+
+  @keyframes signal-appear {
+    0%, 10% { opacity: 0; transform: translateY(4px); }
+    15%, 45% { opacity: 1; transform: translateY(0); }
+    50%, 100% { opacity: 0; transform: translateY(-4px); }
+  }
+
+  .mock-page-block {
+    border-radius: 4px;
+    transition: all 1.2s ease;
+  }
+
+  .mock-hero-block {
+    padding: 20px;
+    background: rgba(245, 240, 232, 0.03);
+    border-radius: 6px;
+  }
+
+  .mock-hero-block .mock-headline {
+    font-family: var(--heading-font-family);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-fg);
+    margin-bottom: 6px;
+    transition: opacity 0.6s ease;
+  }
+
+  .mock-hero-block .mock-subline {
+    font-family: var(--body-font-family);
+    font-size: 0.55rem;
+    color: var(--color-fg-dim);
+    line-height: 1.6;
+  }
+
+  .mock-cards-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  .mock-card {
+    padding: 12px;
+    background: rgba(245, 240, 232, 0.03);
+    border-radius: 4px;
+    border: 1px solid rgba(245, 240, 232, 0.04);
+    transition: all 1s ease;
+  }
+
+  .mock-card-label {
+    font-family: var(--body-font-family);
+    font-size: 0.45rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+    margin-bottom: 4px;
+  }
+
+  .mock-card-title {
+    font-family: var(--heading-font-family);
+    font-size: 0.7rem;
+    color: var(--color-fg);
+    transition: opacity 0.5s ease;
+  }
+
+  .mock-cta-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .mock-btn {
+    padding: 6px 16px;
+    background: var(--color-accent);
+    color: var(--color-bg);
+    font-family: var(--body-font-family);
+    font-size: 0.45rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border-radius: 100px;
+    transition: all 0.8s ease;
+  }
+
+  .mock-btn-ghost {
+    padding: 6px 16px;
+    background: transparent;
+    border: 1px solid rgba(245, 240, 232, 0.12);
+    color: var(--color-fg-dim);
+    font-family: var(--body-font-family);
+    font-size: 0.45rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border-radius: 100px;
+  }
+
+  /* Premise mock: phase transitions */
+  .premise-mock[data-phase="adapted"] .mock-highlight {
+    color: var(--color-tertiary);
+  }
+
+  .premise-mock[data-phase="adapted"] .mock-card-highlight {
+    border-color: rgba(0, 229, 160, 0.2);
+    background: rgba(0, 229, 160, 0.04);
+  }
+
+  /* --- PIPELINE MOCK: staged sequence --- */
+
+  .pipeline-mock .mock-viewport {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .pipeline-mock .mock-timer {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-family: var(--heading-font-family);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    opacity: 0.8;
+  }
+
+  .pipeline-mock .mock-stage-indicator {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+
+  .mock-stage-pip {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(245, 240, 232, 0.1);
+    transition: all 0.4s ease;
+  }
+
+  .mock-stage-pip.active {
+    background: var(--color-accent);
+    box-shadow: 0 0 8px rgba(255, 61, 0, 0.4);
+  }
+
+  .mock-stage-pip.done {
+    background: var(--color-tertiary);
+  }
+
+  .mock-scan-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px;
+    background: rgba(245, 240, 232, 0.02);
+    border-radius: 4px;
+    border: 1px solid rgba(245, 240, 232, 0.04);
+    min-height: 60px;
+  }
+
+  .mock-scan-line {
+    height: 3px;
+    border-radius: 2px;
+    background: rgba(245, 240, 232, 0.06);
+    transition: all 0.5s ease;
+  }
+
+  .mock-scan-line.scanned {
+    background: rgba(0, 229, 160, 0.25);
+  }
+
+  .mock-content-blocks {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .mock-content-block {
+    padding: 10px;
+    background: rgba(245, 240, 232, 0.03);
+    border-radius: 4px;
+    border: 1px solid rgba(245, 240, 232, 0.04);
+    min-height: 48px;
+    transition: all 0.6s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .mock-content-block .mock-block-bar {
+    height: 3px;
+    border-radius: 2px;
+    background: rgba(245, 240, 232, 0.08);
+    transition: all 0.5s ease;
+  }
+
+  .mock-content-block.reasoning {
+    border-color: rgba(255, 61, 0, 0.2);
+  }
+
+  .mock-content-block.composed {
+    border-color: rgba(0, 229, 160, 0.15);
+    background: rgba(0, 229, 160, 0.03);
+  }
+
+  .mock-content-block.composed .mock-block-bar {
+    background: rgba(0, 229, 160, 0.15);
+  }
+
+  .mock-composed-label {
+    font-family: var(--body-font-family);
+    font-size: 0.45rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-tertiary);
+    text-align: center;
+    padding: 8px 0 0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .mock-composed-label.visible {
+    opacity: 1;
+  }
+
+  /* ========================================
+     MOBILE
+     ======================================== */
+
+  @media (max-width: 600px) {
+    :root {
+      --section-padding: 1.5rem;
+    }
+
+    .editorial-hero {
+      padding-top: 5rem;
+      padding-bottom: 3rem;
+    }
+
+    .mock-cards-row {
+      grid-template-columns: 1fr;
+    }
+
+    .mock-content-blocks {
+      grid-template-columns: 1fr;
+    }
+
+    .breakthrough-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .pipeline-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .pipeline-mock-col .mock-browser {
+      position: static;
+    }
+
+    .two-modes-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .mode-explicit {
+      border-right: none;
+      border-bottom: 1px solid var(--color-fg-faint);
+    }
+
+    .editorial-cta {
+      padding: 3rem var(--section-padding) 4rem;
+    }
+  }
+
+  @media (max-width: 900px) and (min-width: 601px) {
+    :root {
+      --section-padding: 2.5rem;
+    }
+
+    .breakthrough-grid {
+      grid-template-columns: 1fr;
+      max-width: 480px;
+    }
+
+    .pipeline-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .pipeline-mock-col .mock-browser {
+      position: static;
+    }
+
+    .two-modes-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .mode-explicit {
+      border-right: none;
+      border-bottom: 1px solid var(--color-fg-faint);
+    }
+  }
+</style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="/stardust/designs/landing.html" class="site-logo">of1</a>
+    <nav class="site-nav">
+      <a href="/stardust/designs/landing.html">Home</a>
+      <a href="/stardust/designs/editorial.html" class="active">How it works</a>
+      <a href="https://arco.coffee/" class="nav-cta" target="_blank" rel="noopener">See it live</a>
+    </nav>
+  </header>
+
+  <!-- SECTION 1: EDITORIAL HERO -->
+  <section class="editorial-hero" data-section="editorial-hero" data-intent="set the editorial frame" data-layout="contained">
+    <div class="reading">
+      <div class="hero-eyebrow">of1 — Audience of ONE</div>
+      <h1>The era of audiences is ending. Here's what comes next.</h1>
+      <p class="lede">For twenty years, the web has worked backwards. We build pages for everyone and hope the right people find them. We sort visitors into segments and call it understanding. We've been confessing — to every visitor, on every page — that we don't know them well enough.</p>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- SECTION 2: THE PREMISE -->
+  <section class="body-section" data-section="premise" data-intent="establish the concept" data-layout="contained">
+    <div class="reading">
+      <h2>What if your website could listen</h2>
+      <p>Imagine a website that doesn't serve the same page to every visitor. Not a chatbot bolted on the corner. Not a recommendation widget at the bottom. The page itself — every headline, every case study, every call to action — considered for this person, at this moment.</p>
+      <p>The page your visitor sees isn't the page you published. It's the page they needed. And it arrives as if it had always been there.</p>
+
+      <div class="pull-quote">
+        <blockquote>"Not a chatbot. Not a recommendation engine. A website — that happens to be <strong>yours</strong>."</blockquote>
+      </div>
+
+      <div class="mock-browser premise-mock" id="premise-mock" data-phase="generic">
+        <div class="mock-chrome">
+          <div class="mock-dot"></div>
+          <div class="mock-dot"></div>
+          <div class="mock-dot"></div>
+          <div class="mock-url">acme.com</div>
+        </div>
+        <div class="mock-viewport">
+          <div class="mock-signal" id="premise-signal">Series A · SaaS · 12 employees</div>
+          <div class="mock-hero-block">
+            <div class="mock-headline" id="premise-headline">Grow your business with our platform</div>
+            <div class="mock-subline" id="premise-subline">The all-in-one solution for teams of every size.</div>
+          </div>
+          <div class="mock-cards-row">
+            <div class="mock-card" id="premise-card-1">
+              <div class="mock-card-label">Case study</div>
+              <div class="mock-card-title" id="premise-case">Fortune 500 Retail</div>
+            </div>
+            <div class="mock-card" id="premise-card-2">
+              <div class="mock-card-label">Pricing</div>
+              <div class="mock-card-title" id="premise-pricing">Enterprise</div>
+            </div>
+            <div class="mock-card" id="premise-card-3">
+              <div class="mock-card-label">Guide</div>
+              <div class="mock-card-title" id="premise-guide">Implementation playbook</div>
+            </div>
+          </div>
+          <div class="mock-cta-row">
+            <div class="mock-btn" id="premise-cta">Get started</div>
+            <div class="mock-btn-ghost">Learn more</div>
+          </div>
+        </div>
+      </div>
+
+      <p>This isn't science fiction. Three things changed, all at once — and they changed everything.</p>
+    </div>
+  </section>
+
+  <!-- SECTION 3: THREE BREAKTHROUGHS -->
+  <section class="breakthroughs bg-lifted" data-section="breakthroughs" data-intent="explain timing" data-layout="grid" data-items="3">
+    <h2>Three breakthroughs. All at once.</h2>
+    <div class="breakthrough-grid">
+      <div class="breakthrough-card">
+        <div class="breakthrough-num">01</div>
+        <div class="breakthrough-title">Inference moved to the edge</div>
+        <div class="breakthrough-body">AI that runs in milliseconds at the CDN layer, not in a distant data center. Speed isn't a feature — it's the reason visitors don't notice.</div>
+      </div>
+      <div class="breakthrough-card">
+        <div class="breakthrough-num">02</div>
+        <div class="breakthrough-title">Models got fast enough to disappear</div>
+        <div class="breakthrough-body">A year ago this would have taken seconds. Now it happens before the page renders. The gap between "authored" and "generated" closed.</div>
+      </div>
+      <div class="breakthrough-card">
+        <div class="breakthrough-num">03</div>
+        <div class="breakthrough-title">AI learned to stay on-brand</div>
+        <div class="breakthrough-body">Models can now compose content that respects your voice, your design system, your guardrails. Not generic — yours.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: VISITOR EXPERIENCE -->
+  <section class="body-section" data-section="visitor-experience" data-intent="make the visitor the protagonist" data-layout="contained">
+    <div class="reading">
+      <h2>Your visitor doesn't know. That's the point.</h2>
+      <p>The visitor arrives. The page makes sense to them. Not because they navigated perfectly — because the page already considered who they are. Less cognitive work. Relevant from the first interaction. Answers the question they actually have.</p>
+      <p>They don't feel targeted. They feel understood. There's a difference — and your visitors know it instantly.</p>
+      <p>If they look for the seams, they can find them. The page doesn't hide what it is. It just doesn't advertise it.</p>
+
+      <div class="pull-quote">
+        <blockquote>"Most AI wants you to know it's there. Ours wants you to <strong>forget</strong>."</blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: PIPELINE -->
+  <section class="pipeline-section bg-lifted" data-section="pipeline" data-intent="make the architecture feel inevitable" data-layout="contained" data-items="3">
+    <h2>Three stages. 2.5 seconds.</h2>
+    <div class="pipeline-layout">
+      <div class="pipeline-stages">
+        <div class="pipe-stage">
+          <div class="stage-number">01</div>
+          <div>
+            <div class="stage-title">Understand</div>
+            <div class="stage-body">The system reads the visitor — not by tracking, but by listening. What they searched for, where they came from, what time it is. A portrait drawn in seconds.</div>
+          </div>
+        </div>
+        <div class="pipe-stage">
+          <div class="stage-number">02</div>
+          <div>
+            <div class="stage-title">Reason</div>
+            <div class="stage-body">Given what it knows, the system decides what to change. Not everything. Small shifts — a different headline, a reordered section, a case study swapped for one in their industry.</div>
+          </div>
+        </div>
+        <div class="pipe-stage">
+          <div class="stage-number">03</div>
+          <div>
+            <div class="stage-title">Compose</div>
+            <div class="stage-body">The page renders. 72 composable blocks. Every element considered. The visitor sees a website — that happens to be theirs.</div>
+            <div class="stage-stat">2.5s</div>
+          </div>
+        </div>
+      </div>
+      <div class="pipeline-mock-col">
+        <div class="mock-browser pipeline-mock" id="pipeline-mock">
+      <div class="mock-chrome">
+        <div class="mock-dot"></div>
+        <div class="mock-dot"></div>
+        <div class="mock-dot"></div>
+        <div class="mock-url">visitor → acme.com/solutions</div>
+      </div>
+      <div class="mock-viewport">
+        <div class="mock-timer" id="pipeline-timer">0.0s</div>
+        <div class="mock-stage-indicator">
+          <div class="mock-stage-pip" id="pip-1"></div>
+          <div class="mock-stage-pip" id="pip-2"></div>
+          <div class="mock-stage-pip" id="pip-3"></div>
+        </div>
+        <div class="mock-scan-lines" id="scan-area">
+          <div class="mock-scan-line" style="width: 70%;"></div>
+          <div class="mock-scan-line" style="width: 55%;"></div>
+          <div class="mock-scan-line" style="width: 85%;"></div>
+          <div class="mock-scan-line" style="width: 40%;"></div>
+          <div class="mock-scan-line" style="width: 65%;"></div>
+        </div>
+        <div class="mock-content-blocks" id="content-blocks">
+          <div class="mock-content-block" id="block-1">
+            <div class="mock-block-bar" style="width: 80%;"></div>
+            <div class="mock-block-bar" style="width: 60%;"></div>
+          </div>
+          <div class="mock-content-block" id="block-2">
+            <div class="mock-block-bar" style="width: 70%;"></div>
+            <div class="mock-block-bar" style="width: 90%;"></div>
+          </div>
+          <div class="mock-content-block" id="block-3">
+            <div class="mock-block-bar" style="width: 85%;"></div>
+            <div class="mock-block-bar" style="width: 50%;"></div>
+          </div>
+          <div class="mock-content-block" id="block-4">
+            <div class="mock-block-bar" style="width: 65%;"></div>
+            <div class="mock-block-bar" style="width: 75%;"></div>
+          </div>
+        </div>
+        <div class="mock-composed-label" id="composed-label">Page composed · 4 blocks adapted</div>
+      </div>
+    </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: TWO MODES -->
+  <section class="two-modes" data-section="two-modes" data-intent="show the product's range" data-layout="split-media">
+    <div class="two-modes-eyebrow">Two modes. One pipeline.</div>
+    <div class="two-modes-grid">
+      <div class="mode-col mode-explicit">
+        <div class="mode-label">Explicit</div>
+        <div class="mode-headline">The visitor asks.</div>
+        <p class="mode-body">They type a question, express an intent. The page recomposes around their request. Like search — but instead of ten blue links, they get a whole page.</p>
+      </div>
+      <div class="mode-col mode-implicit">
+        <div class="mode-label">Implicit</div>
+        <div class="mode-headline">The site notices.</div>
+        <p class="mode-body">No typing required. Behavioral signals, referral context, time of day. The page shifts — subtly, invisibly — to meet them where they are.</p>
+      </div>
+    </div>
+    <div class="two-modes-footer">Both modes share the same pipeline. The difference is who starts the conversation.</div>
+  </section>
+
+  <!-- SECTION 7: MARKETER PAYOFF -->
+  <section class="body-section" data-section="marketer-payoff" data-intent="effortlessness for the buyer" data-layout="contained">
+    <div class="reading">
+      <h2>One button. Your entire site.</h2>
+      <p>Not a widget you embed. Not a recommendation engine bolted on. of1 works across your whole site — every page, every section. Enable it, and every visitor's experience improves.</p>
+      <p>No rules to write. No segments to define. No content matrix to maintain. The marketer's work is already done — the content is already on the site. of1 just decides which parts of it matter most to each person.</p>
+    </div>
+  </section>
+
+  <!-- SECTION 8: SPEED CONSTRAINT -->
+  <section class="body-section bg-lifted" data-section="speed-constraint" data-intent="engineering discipline as brand value" data-layout="contained">
+    <div class="reading">
+      <h2>2.5 seconds. Or it doesn't ship.</h2>
+      <p>Speed is not a feature of of1. It's a constraint that shapes everything. If the page takes longer than 2.5 seconds to render, the visitor notices. And if they notice, the technology isn't invisible — it's in the way.</p>
+      <p>Edge inference, aggressive caching, progressive rendering. The engineering is brutal because the experience must be effortless.</p>
+
+      <div class="callout">
+        <div class="callout-value">LCP: 2.5s</div>
+        <div class="callout-label">Maximum. Not average.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 9: EDITORIAL CTA -->
+  <section class="editorial-cta" data-section="cta" data-intent="drive action" data-layout="contained" data-fragment="request-early-access" data-fragment-role="reuse" data-fragment-source="/">
+    <h2>The web was never meant to be one-size-fits-all.</h2>
+    <p>of1 is in early access. We're working with a small number of brands who believe their visitors deserve better than segments.</p>
+    <a href="https://arco.coffee/" class="cta-btn">See it live</a>
+  </section>
+
+  <!-- SECTION 10: FOOTER -->
+  <footer class="site-footer" data-section="footer" data-intent="close" data-layout="contained">
+    <span>Audience of ONE</span>
+    <span>of1.live</span>
+  </footer>
+
+<script>
+(function() {
+  // --- PREMISE MOCK: page adapts to visitor ---
+  const premiseMock = document.getElementById('premise-mock');
+  const generic = {
+    headline: 'Grow your business with our platform',
+    subline: 'The all-in-one solution for teams of every size.',
+    case: 'Fortune 500 Retail',
+    pricing: 'Enterprise',
+    guide: 'Implementation playbook',
+    cta: 'Get started',
+  };
+  const adapted = {
+    headline: 'Scale your SaaS from Series A to B',
+    subline: 'Built for startup teams shipping fast on lean budgets.',
+    case: 'Series A SaaS — 40% faster onboarding',
+    pricing: 'Startup',
+    guide: 'SaaS quickstart',
+    cta: 'Start free trial',
+  };
+
+  function setPremisePhase(phase) {
+    const data = phase === 'adapted' ? adapted : generic;
+    premiseMock.dataset.phase = phase;
+    document.getElementById('premise-headline').textContent = data.headline;
+    document.getElementById('premise-subline').textContent = data.subline;
+    document.getElementById('premise-case').textContent = data.case;
+    document.getElementById('premise-pricing').textContent = data.pricing;
+    document.getElementById('premise-guide').textContent = data.guide;
+    document.getElementById('premise-cta').textContent = data.cta;
+
+    const cards = [
+      document.getElementById('premise-card-1'),
+      document.getElementById('premise-card-2'),
+      document.getElementById('premise-card-3'),
+    ];
+    cards.forEach(c => {
+      if (phase === 'adapted') c.classList.add('mock-card-highlight');
+      else c.classList.remove('mock-card-highlight');
+    });
+  }
+
+  let premisePhase = 'generic';
+  setInterval(() => {
+    premisePhase = premisePhase === 'generic' ? 'adapted' : 'generic';
+    setPremisePhase(premisePhase);
+  }, 4000);
+
+  // --- PIPELINE MOCK: 3-stage animated sequence ---
+  const timer = document.getElementById('pipeline-timer');
+  const pips = [
+    document.getElementById('pip-1'),
+    document.getElementById('pip-2'),
+    document.getElementById('pip-3'),
+  ];
+  const scanLines = document.querySelectorAll('#scan-area .mock-scan-line');
+  const blocks = [
+    document.getElementById('block-1'),
+    document.getElementById('block-2'),
+    document.getElementById('block-3'),
+    document.getElementById('block-4'),
+  ];
+  const composedLabel = document.getElementById('composed-label');
+
+  function resetPipeline() {
+    pips.forEach(p => { p.classList.remove('active', 'done'); });
+    scanLines.forEach(l => l.classList.remove('scanned'));
+    blocks.forEach(b => { b.classList.remove('reasoning', 'composed'); });
+    composedLabel.classList.remove('visible');
+    timer.textContent = '0.0s';
+  }
+
+  function runPipeline() {
+    resetPipeline();
+    let t = 0;
+    const tick = setInterval(() => {
+      t += 0.1;
+      timer.textContent = t.toFixed(1) + 's';
+      if (t >= 2.5) clearInterval(tick);
+    }, 100);
+
+    // Stage 1: Understand (0–0.8s)
+    pips[0].classList.add('active');
+    scanLines.forEach((line, i) => {
+      setTimeout(() => line.classList.add('scanned'), 150 * (i + 1));
+    });
+
+    // Stage 2: Reason (0.8–1.6s)
+    setTimeout(() => {
+      pips[0].classList.remove('active');
+      pips[0].classList.add('done');
+      pips[1].classList.add('active');
+      blocks.forEach((b, i) => {
+        setTimeout(() => b.classList.add('reasoning'), 150 * i);
+      });
+    }, 800);
+
+    // Stage 3: Compose (1.6–2.5s)
+    setTimeout(() => {
+      pips[1].classList.remove('active');
+      pips[1].classList.add('done');
+      pips[2].classList.add('active');
+      blocks.forEach((b, i) => {
+        setTimeout(() => {
+          b.classList.remove('reasoning');
+          b.classList.add('composed');
+        }, 150 * i);
+      });
+    }, 1600);
+
+    // Done
+    setTimeout(() => {
+      pips[2].classList.remove('active');
+      pips[2].classList.add('done');
+      composedLabel.classList.add('visible');
+    }, 2500);
+
+    // Restart
+    setTimeout(runPipeline, 5500);
+  }
+
+  // Start when visible
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        runPipeline();
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  observer.observe(document.getElementById('pipeline-mock'));
+})();
+</script>
+</body>
+</html>

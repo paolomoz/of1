@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Audience of ONE — of1</title>
+<meta property="og:title" content="Audience of ONE — of1">
+<meta property="og:description" content="The end of audiences. The beginning of everyone.">
+<meta property="og:image" content="https://of1.live/og-image.png">
+<meta property="og:url" content="https://of1.live/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<!-- stardust:provenance { "brand": "stardust/brand-profile.json", "briefing": "stardust/briefings/landing.md", "wireframe": "stardust/wireframes/landing.html", "synthesized": [] } -->
+<link rel="icon" type="image/svg+xml" href="/stardust/designs/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Colors */
+    --color-bg: #0A0A0A;
+    --color-fg: #F5F0E8;
+    --color-accent: #FF3D00;
+    --color-secondary: #1A1AFF;
+    --color-tertiary: #00E5A0;
+    --color-fg-dim: rgba(245, 240, 232, 0.55);
+    --color-fg-faint: rgba(245, 240, 232, 0.06);
+    --color-fg-muted: rgba(245, 240, 232, 0.5);
+
+    /* Typography */
+    --heading-font-family: 'Cormorant Garamond', serif;
+    --body-font-family: 'JetBrains Mono', monospace;
+
+    --heading-xxl: clamp(56px, 8vw, 128px);
+    --heading-xl: clamp(48px, 6vw, 96px);
+    --heading-lg: clamp(28px, 3.5vw, 48px);
+    --heading-md: clamp(24px, 2.5vw, 36px);
+    --body: clamp(14px, 1.2vw, 17px);
+    --body-sm: clamp(12px, 1vw, 15px);
+    --eyebrow: 0.7rem;
+    --button: 0.75rem;
+
+    --line-height-heading: 0.95;
+    --line-height-body: 1.8;
+    --letter-spacing-eyebrow: 0.35em;
+    --letter-spacing-button: 0.15em;
+
+    /* Spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 48px;
+    --spacing-2xl: 96px;
+
+    /* Layout */
+    --section-padding: 4rem;
+    --max-width: 1200px;
+
+    /* Components */
+    --radius-card: 10px;
+    --radius-pill: 100px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--body-font-family);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ========================================
+     HEADER
+     ======================================== */
+
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem var(--section-padding);
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-fg-faint);
+  }
+
+  .site-logo {
+    font-family: var(--body-font-family);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-fg);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+
+  .site-nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .site-nav a {
+    font-family: var(--body-font-family);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-fg-dim);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .site-nav a:hover { color: var(--color-fg); }
+  .site-nav a.active { color: var(--color-fg); }
+
+  .site-nav .nav-cta {
+    padding: 0.4rem 1.2rem;
+    background: var(--color-accent);
+    color: var(--color-bg);
+    border-radius: var(--radius-pill);
+    font-weight: 600;
+  }
+
+  .site-nav .nav-cta:hover {
+    background: var(--color-fg);
+  }
+
+  /* ========================================
+     SECTION 1: HERO
+     ======================================== */
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--section-padding);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: 'ONE';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(18rem, 38vw, 42rem);
+    font-weight: 700;
+    color: rgba(245, 240, 232, 0.12);
+    line-height: 0.8;
+    pointer-events: none;
+    user-select: none;
+    letter-spacing: -0.02em;
+    padding: 0 var(--section-padding) 1rem 0;
+    text-align: right;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--body-font-family);
+    font-size: var(--eyebrow);
+    letter-spacing: var(--letter-spacing-eyebrow);
+    text-transform: uppercase;
+    color: var(--color-tertiary);
+    margin-bottom: 2rem;
+    font-weight: 500;
+  }
+
+  .hero h1 {
+    font-family: var(--heading-font-family);
+    font-size: var(--heading-xxl);
+    font-weight: 700;
+    line-height: var(--line-height-heading);
+    max-width: 10em;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--color-accent);
+  }
+
+  .mono-accent {
+    font-family: var(--body-font-family);
+    font-weight: 700;
+    color: var(--color-accent);
+    font-size: 0.6em;
+  }
+
+  .hero-sub {
+    font-family: var(--body-font-family);
+    font-size: var(--body);
+    font-weight: 400;
+    max-width: 38em;
+    line-height: var(--line-height-body);
+    color: var(--color-fg-dim);
+  }
+
+  .hero-sub strong {
+    color: var(--color-fg);
+    font-weight: 500;
+  }
+
+  /* ========================================
+     DIVIDERS
+     ======================================== */
+
+  .section-divider {
+    height: 1px;
+    background: var(--color-fg-faint);
+    margin: 0 var(--section-padding);
+  }
+
+  .bg-lifted {
+    background: var(--color-fg);
+    color: var(--color-bg);
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .bg-lifted .metric-value { color: var(--color-bg) !important; }
+  .bg-lifted .metric:nth-child(1) .metric-value { color: var(--color-accent) !important; }
+  .bg-lifted .metric:nth-child(3) .metric-value { color: var(--color-secondary) !important; }
+  .bg-lifted .metric-label { color: rgba(10, 10, 10, 0.5); }
+
+  .bg-lifted blockquote { color: var(--color-bg); }
+  .bg-lifted blockquote strong { color: var(--color-accent); }
+  .bg-lifted .attribution { color: rgba(10, 10, 10, 0.35); }
+
+  .bg-lifted h2 { color: var(--color-bg); }
+  .bg-lifted .social-proof-eyebrow { color: var(--color-accent); }
+  .bg-lifted .social-proof-sub { color: rgba(10, 10, 10, 0.5); }
+  .bg-lifted .proof-tag {
+    border-color: rgba(10, 10, 10, 0.15);
+    color: rgba(10, 10, 10, 0.6);
+  }
+
+  /* ========================================
+     SECTION 2: MANIFESTO STATEMENTS
+     ======================================== */
+
+  .manifesto-section {
+    padding: 0 0 50px;
+  }
+
+  .statement {
+    padding: 1rem var(--section-padding);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 3rem;
+    align-items: center;
+    border-bottom: 1px solid var(--color-fg-faint);
+  }
+
+  .statement:last-child {
+    border-bottom: none;
+  }
+
+  .statement-number {
+    font-family: var(--heading-font-family);
+    font-size: clamp(5rem, 8vw, 8rem);
+    font-weight: 700;
+    color: #4D4DFF;
+    opacity: 0.6;
+    line-height: 1;
+    min-width: 1.5em;
+  }
+
+  .statement-text {
+    font-family: var(--heading-font-family);
+    font-size: var(--heading-lg);
+    font-weight: 400;
+    line-height: 1.35;
+  }
+
+  .statement-text em {
+    font-style: italic;
+    color: var(--color-accent);
+  }
+
+  /* ========================================
+     SECTION 3: METRICS
+     ======================================== */
+
+  .metrics {
+    padding: 4rem var(--section-padding);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .metric {
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .metric-value {
+    font-family: var(--body-font-family);
+    font-size: clamp(4rem, 8vw, 7rem);
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 0.8rem;
+  }
+
+  .metric:nth-child(1) .metric-value { color: var(--color-accent); }
+  .metric:nth-child(2) .metric-value { color: var(--color-tertiary); }
+  .metric:nth-child(3) .metric-value { color: #4D4DFF; }
+
+  .metric-label {
+    font-family: var(--body-font-family);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-fg-dim);
+    font-weight: 400;
+  }
+
+  /* ========================================
+     SECTION 4: KEY LINE (PULL QUOTE)
+     ======================================== */
+
+  .key-line {
+    padding: 5rem var(--section-padding);
+    max-width: 50rem;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .key-line blockquote {
+    font-family: var(--heading-font-family);
+    font-size: clamp(1.6rem, 3vw, 2.6rem);
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--color-fg);
+  }
+
+  .key-line blockquote strong {
+    color: var(--color-tertiary);
+    font-style: normal;
+    font-weight: 700;
+  }
+
+  .key-line .attribution {
+    margin-top: 2rem;
+    font-family: var(--body-font-family);
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+  }
+
+  /* ========================================
+     SECTION 5: CONTRAST (BEFORE / AFTER)
+     ======================================== */
+
+  .contrast {
+    padding: 0;
+  }
+
+  .contrast-eyebrow {
+    padding: 3rem var(--section-padding) 1.5rem;
+    font-family: var(--body-font-family);
+    font-size: var(--eyebrow);
+    letter-spacing: var(--letter-spacing-eyebrow);
+    text-transform: uppercase;
+    color: var(--color-tertiary);
+    font-weight: 500;
+  }
+
+  .contrast-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .contrast-col {
+    padding: 2rem var(--section-padding) 3rem;
+  }
+
+  .contrast-before {
+    background: rgba(245, 240, 232, 0.02);
+    border-right: 1px solid var(--color-fg-faint);
+  }
+
+  .contrast-after {
+    background: var(--color-bg);
+  }
+
+  .contrast-label {
+    font-family: var(--body-font-family);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+
+  .contrast-before .contrast-label {
+    color: rgba(245, 240, 232, 0.3);
+  }
+
+  .contrast-after .contrast-label {
+    color: var(--color-accent);
+  }
+
+  .contrast-headline {
+    font-family: var(--heading-font-family);
+    font-size: var(--heading-md);
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 1.2rem;
+  }
+
+  .contrast-before .contrast-headline {
+    color: rgba(245, 240, 232, 0.3);
+  }
+
+  .contrast-after .contrast-headline {
+    color: var(--color-fg);
+  }
+
+  .contrast-body {
+    font-family: var(--body-font-family);
+    font-size: var(--body-sm);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  .contrast-before .contrast-body {
+    color: rgba(245, 240, 232, 0.2);
+  }
+
+  .contrast-after .contrast-body {
+    color: var(--color-fg-dim);
+  }
+
+  /* Contrast mocks */
+  .contrast-mock {
+    border: 1px solid rgba(245, 240, 232, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    background: #2a2a2a;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contrast-mock-chrome {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 14px;
+    background: #353535;
+    border-bottom: 1px solid rgba(245, 240, 232, 0.08);
+    flex-shrink: 0;
+  }
+
+  .contrast-mock-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(245, 240, 232, 0.18);
+  }
+
+  .contrast-mock-url {
+    flex: 1;
+    margin-left: 6px;
+    font-family: var(--body-font-family);
+    font-size: 0.5rem;
+    color: rgba(245, 240, 232, 0.35);
+    background: rgba(245, 240, 232, 0.06);
+    padding: 5px 12px;
+    border-radius: 4px;
+  }
+
+  .contrast-mock {
+    min-height: 380px;
+  }
+
+  .contrast-mock-page {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Signal badge */
+  .cm-signal {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-family: var(--body-font-family);
+    font-size: 0.42rem;
+    letter-spacing: 0.08em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 2;
+  }
+
+  .cm-signal.visible { opacity: 1; }
+
+  .cm-signal-bad {
+    background: rgba(255, 61, 0, 0.1);
+    border: 1px solid rgba(255, 61, 0, 0.2);
+    color: rgba(255, 61, 0, 0.7);
+  }
+
+  .cm-signal-good {
+    background: rgba(0, 229, 160, 0.1);
+    border: 1px solid rgba(0, 229, 160, 0.2);
+    color: rgba(0, 229, 160, 0.8);
+  }
+
+  /* Nav */
+  .cm-nav {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(245, 240, 232, 0.06);
+  }
+
+  .cm-logo {
+    font-family: var(--body-font-family);
+    font-size: 0.55rem;
+    font-weight: 700;
+    color: rgba(245, 240, 232, 0.6);
+    margin-right: auto;
+  }
+
+  .cm-nav-link {
+    font-family: var(--body-font-family);
+    font-size: 0.38rem;
+    color: rgba(245, 240, 232, 0.3);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* Hero area */
+  .cm-hero-area {
+    padding: 20px;
+    background: rgba(245, 240, 232, 0.03);
+    border-radius: 6px;
+    border: 1px solid rgba(245, 240, 232, 0.04);
+    transition: all 0.6s ease;
+  }
+
+  .cm-eyebrow {
+    font-family: var(--body-font-family);
+    font-size: 0.38rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(245, 240, 232, 0.25);
+    margin-bottom: 6px;
+    transition: all 0.4s ease;
+  }
+
+  .cm-title {
+    font-family: var(--heading-font-family);
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgba(245, 240, 232, 0.85);
+    margin-bottom: 6px;
+    line-height: 1.2;
+    transition: all 0.4s ease;
+  }
+
+  .cm-subtitle {
+    font-family: var(--body-font-family);
+    font-size: 0.45rem;
+    color: rgba(245, 240, 232, 0.35);
+    line-height: 1.6;
+    transition: all 0.4s ease;
+  }
+
+  /* Cards */
+  .cm-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  .cm-card {
+    padding: 14px 12px;
+    border-radius: 6px;
+    border: 1px solid rgba(245, 240, 232, 0.06);
+    background: rgba(245, 240, 232, 0.02);
+    transition: all 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .cm-card-eyebrow {
+    font-family: var(--body-font-family);
+    font-size: 0.35rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(245, 240, 232, 0.25);
+    transition: all 0.4s ease;
+  }
+
+  .cm-card-text {
+    font-family: var(--body-font-family);
+    font-size: 0.45rem;
+    color: rgba(245, 240, 232, 0.5);
+    line-height: 1.4;
+    transition: all 0.4s ease;
+  }
+
+  .cm-card-bar {
+    height: 3px;
+    border-radius: 2px;
+    background: rgba(245, 240, 232, 0.06);
+    margin-top: 4px;
+    transition: all 0.5s ease;
+  }
+
+  /* CTA row */
+  .cm-cta-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-top: auto;
+  }
+
+  .cm-btn {
+    padding: 7px 18px;
+    border-radius: 100px;
+    font-family: var(--body-font-family);
+    font-size: 0.4rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all 0.4s ease;
+  }
+
+  .cm-btn-primary {
+    background: rgba(245, 240, 232, 0.12);
+    color: rgba(245, 240, 232, 0.5);
+  }
+
+  .cm-btn-ghost {
+    background: transparent;
+    border: 1px solid rgba(245, 240, 232, 0.08);
+    color: rgba(245, 240, 232, 0.3);
+  }
+
+  /* Status bar at bottom */
+  .cm-status {
+    padding: 8px 12px;
+    text-align: center;
+    font-family: var(--body-font-family);
+    font-size: 0.42rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-top: 1px solid rgba(245, 240, 232, 0.04);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .cm-status.visible { opacity: 1; }
+
+  .cm-status-bad { color: rgba(255, 61, 0, 0.6); }
+  .cm-status-good { color: var(--color-tertiary); }
+
+  /* Overlay for bounce effect */
+  .cm-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 10, 10, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    z-index: 3;
+  }
+
+  .cm-overlay.visible { opacity: 1; }
+
+  .cm-overlay-text {
+    font-family: var(--body-font-family);
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255, 61, 0, 0.8);
+  }
+
+  /* Card states */
+  .cm-card.reject {
+    border-color: rgba(255, 61, 0, 0.25);
+    background: rgba(255, 61, 0, 0.04);
+  }
+  .cm-card.reject .cm-card-eyebrow { color: rgba(255, 61, 0, 0.5); }
+  .cm-card.reject .cm-card-bar { background: rgba(255, 61, 0, 0.15); }
+
+  .cm-card.match {
+    border-color: rgba(0, 229, 160, 0.25);
+    background: rgba(0, 229, 160, 0.05);
+  }
+  .cm-card.match .cm-card-eyebrow { color: rgba(0, 229, 160, 0.8); }
+  .cm-card.match .cm-card-bar { background: rgba(0, 229, 160, 0.3); }
+
+  /* ========================================
+     SECTION 6: SOCIAL PROOF
+     ======================================== */
+
+  .social-proof {
+    padding: 5rem var(--section-padding);
+    text-align: center;
+  }
+
+  .social-proof-eyebrow {
+    font-family: var(--body-font-family);
+    font-size: var(--eyebrow);
+    letter-spacing: var(--letter-spacing-eyebrow);
+    text-transform: uppercase;
+    color: var(--color-tertiary);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+
+  .social-proof h2 {
+    font-family: var(--heading-font-family);
+    font-size: var(--heading-lg);
+    font-weight: 600;
+    line-height: 1.2;
+    max-width: 18em;
+    margin: 0 auto 1rem;
+  }
+
+  .social-proof-sub {
+    font-family: var(--body-font-family);
+    font-size: var(--body-sm);
+    color: var(--color-fg-dim);
+    margin-bottom: 2.5rem;
+  }
+
+  .proof-tags {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+  }
+
+  .proof-tag {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    border: 1px solid rgba(245, 240, 232, 0.12);
+    border-radius: var(--radius-pill);
+    font-family: var(--body-font-family);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-fg-dim);
+  }
+
+  /* ========================================
+     SECTION 7: CTA
+     ======================================== */
+
+  .cta {
+    padding: 6rem var(--section-padding) 8rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center bottom, rgba(255, 61, 0, 0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .cta h2 {
+    font-family: var(--heading-font-family);
+    font-size: var(--heading-xl);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta h2 em {
+    font-style: italic;
+    color: var(--color-accent);
+  }
+
+  .cta-sub {
+    font-family: var(--body-font-family);
+    font-size: var(--body-sm);
+    color: var(--color-fg-dim);
+    margin-bottom: 2.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    padding: 1rem 3rem;
+    background: var(--color-accent);
+    color: var(--color-bg);
+    text-decoration: none;
+    font-family: var(--body-font-family);
+    font-weight: 600;
+    font-size: var(--button);
+    letter-spacing: var(--letter-spacing-button);
+    text-transform: uppercase;
+    border-radius: var(--radius-pill);
+    position: relative;
+    z-index: 1;
+    transition: background 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+  }
+
+  .cta-btn:hover {
+    background: var(--color-fg);
+    transform: translateY(-2px);
+  }
+
+  /* ========================================
+     SECTION 8: FOOTER
+     ======================================== */
+
+  .site-footer {
+    padding: 3rem var(--section-padding);
+    border-top: 1px solid var(--color-fg-faint);
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--body-font-family);
+    font-size: 0.65rem;
+    color: var(--color-fg-muted);
+    letter-spacing: 0.1em;
+  }
+
+  /* ========================================
+     MOBILE
+     ======================================== */
+
+  @media (max-width: 600px) {
+    :root {
+      --section-padding: 1.5rem;
+    }
+
+    .hero {
+      padding: 5rem var(--section-padding) 4rem;
+      min-height: 90vh;
+    }
+
+    .statement {
+      grid-template-columns: 48px 1fr;
+      gap: 1.5rem;
+    }
+
+    .statement-number {
+      font-size: 3.5rem;
+    }
+
+    .metrics {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .key-line {
+      padding: 3rem var(--section-padding);
+    }
+
+    .contrast-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .contrast-before {
+      border-right: none;
+      border-bottom: 1px solid var(--color-fg-faint);
+    }
+
+    .cm-cards {
+      grid-template-columns: 1fr;
+    }
+
+    .cta {
+      padding: 4rem var(--section-padding) 5rem;
+    }
+  }
+
+  @media (max-width: 900px) and (min-width: 601px) {
+    :root {
+      --section-padding: 2.5rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="/stardust/designs/landing.html" class="site-logo">of1</a>
+    <nav class="site-nav">
+      <a href="/stardust/designs/landing.html" class="active">Home</a>
+      <a href="/stardust/designs/editorial.html">How it works</a>
+      <a href="https://arco.coffee/" class="nav-cta" target="_blank" rel="noopener">See it live</a>
+    </nav>
+  </header>
+
+  <!-- SECTION 1: HERO -->
+  <section class="hero" data-section="hero" data-intent="emotional hook" data-layout="full-bleed">
+    <div class="hero-eyebrow">Audience of One</div>
+    <h1>The end of <em>audiences.</em><br>The beginning <span class="mono-accent">of</span> <em>every</em><span class="mono-accent">ONE</span>.</h1>
+    <p class="hero-sub">
+      For decades, marketing meant shouting at segments. Categories. Cohorts.
+      of1 makes every person a market of one.
+      <br><strong>The marketing nirvana is real</strong> — and it's simpler than you think.
+    </p>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- SECTION 2: MANIFESTO STATEMENTS -->
+  <section class="manifesto-section" data-section="manifesto" data-intent="provoke and reframe" data-layout="contained" data-items="3">
+    <div class="statement">
+      <div class="statement-number">01</div>
+      <div class="statement-text">
+        Segments are <em>a confession</em> that you don't know your customer well enough.
+      </div>
+    </div>
+    <div class="statement">
+      <div class="statement-number">02</div>
+      <div class="statement-text">
+        It's not a feature. It's the <em>absence of compromise.</em>
+      </div>
+    </div>
+    <div class="statement">
+      <div class="statement-number">03</div>
+      <div class="statement-text">
+        The best technology <em>disappears</em> behind the experience it creates.
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: METRICS -->
+  <section class="metrics bg-lifted" data-section="metrics" data-intent="crystallize the argument" data-layout="contained" data-items="3">
+    <div class="metric">
+      <div class="metric-value">1</div>
+      <div class="metric-label">Audience size that matters</div>
+    </div>
+    <div class="metric">
+      <div class="metric-value">0</div>
+      <div class="metric-label">Segments required</div>
+    </div>
+    <div class="metric">
+      <div class="metric-value">∞</div>
+      <div class="metric-label">Unique experiences</div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: KEY LINE -->
+  <section class="key-line" data-section="key-line" data-intent="anchor statement" data-layout="contained" data-fragment="key-line-quote" data-fragment-role="source">
+    <blockquote>
+      "We made your website <strong>pay attention</strong> —
+      so every visitor finds exactly what they came for,
+      as if it had always been there."
+    </blockquote>
+    <div class="attribution">of1.live</div>
+  </section>
+
+  <!-- SECTION 5: CONTRAST (BEFORE / AFTER) -->
+  <section class="contrast" data-section="contrast" data-intent="make the benefit tangible" data-layout="split-media">
+    <div class="contrast-eyebrow">The same visitor. A different website.</div>
+    <div class="contrast-grid">
+      <div class="contrast-col contrast-before">
+        <div class="contrast-label">Without of1</div>
+        <div class="contrast-headline">Your visitor arrives.</div>
+        <p class="contrast-body">They scroll past three sections that don't apply to them. They open the pricing page meant for enterprise when they're a startup. They leave. Your analytics say they "bounced."</p>
+        <div class="contrast-mock" id="mock-before">
+          <div class="contrast-mock-chrome">
+            <div class="contrast-mock-dot"></div>
+            <div class="contrast-mock-dot"></div>
+            <div class="contrast-mock-dot"></div>
+            <div class="contrast-mock-url">acme.com</div>
+          </div>
+          <div class="contrast-mock-page">
+            <div class="cm-signal cm-signal-bad">Generic · No signal</div>
+            <div class="cm-overlay"><div class="cm-overlay-text">Bounced</div></div>
+            <div class="cm-nav">
+              <div class="cm-logo">acme</div>
+              <div class="cm-nav-link">Product</div>
+              <div class="cm-nav-link">Pricing</div>
+              <div class="cm-nav-link">Enterprise</div>
+            </div>
+            <div class="cm-hero-area">
+              <div class="cm-eyebrow">Platform</div>
+              <div class="cm-title">Enterprise-grade solutions for global teams</div>
+              <div class="cm-subtitle">Trusted by Fortune 500 companies worldwide. Deploy at scale with our enterprise platform.</div>
+            </div>
+            <div class="cm-cards">
+              <div class="cm-card">
+                <div class="cm-card-eyebrow">Case study</div>
+                <div class="cm-card-text">Global bank saves $2M with compliance suite</div>
+                <div class="cm-card-bar"></div>
+              </div>
+              <div class="cm-card">
+                <div class="cm-card-eyebrow">Pricing</div>
+                <div class="cm-card-text">Enterprise — Contact sales for custom pricing</div>
+                <div class="cm-card-bar"></div>
+              </div>
+              <div class="cm-card">
+                <div class="cm-card-eyebrow">Guide</div>
+                <div class="cm-card-text">SOC 2 compliance checklist for regulated industries</div>
+                <div class="cm-card-bar"></div>
+              </div>
+            </div>
+            <div class="cm-cta-row">
+              <div class="cm-btn cm-btn-primary">Talk to sales</div>
+              <div class="cm-btn cm-btn-ghost">Book a demo</div>
+            </div>
+            <div class="cm-status cm-status-bad">↑ scrolled past · bounced at 0:08</div>
+          </div>
+        </div>
+      </div>
+      <div class="contrast-col contrast-after">
+        <div class="contrast-label">With of1</div>
+        <div class="contrast-headline">Your visitor arrives.</div>
+        <p class="contrast-body">The page already knows what they're looking for. The case study matches their industry. The pricing reflects their size. They don't scroll — they read. They don't bounce — they stay.</p>
+        <div class="contrast-mock" id="mock-after">
+          <div class="contrast-mock-chrome">
+            <div class="contrast-mock-dot"></div>
+            <div class="contrast-mock-dot"></div>
+            <div class="contrast-mock-dot"></div>
+            <div class="contrast-mock-url">acme.com — composed for this visitor</div>
+          </div>
+          <div class="contrast-mock-page">
+            <div class="cm-signal cm-signal-good">Series A · SaaS · 12 employees</div>
+            <div class="cm-nav">
+              <div class="cm-logo">acme</div>
+              <div class="cm-nav-link">Product</div>
+              <div class="cm-nav-link">Pricing</div>
+              <div class="cm-nav-link">Startups</div>
+            </div>
+            <div class="cm-hero-area">
+              <div class="cm-eyebrow">For startups</div>
+              <div class="cm-title">Scale your SaaS from Series A to B</div>
+              <div class="cm-subtitle">Built for startup teams shipping fast on lean budgets. No enterprise bloat.</div>
+            </div>
+            <div class="cm-cards">
+              <div class="cm-card">
+                <div class="cm-card-eyebrow">Case study</div>
+                <div class="cm-card-text">Series A SaaS grew pipeline 40% in 3 months</div>
+                <div class="cm-card-bar"></div>
+              </div>
+              <div class="cm-card">
+                <div class="cm-card-eyebrow">Pricing</div>
+                <div class="cm-card-text">Startup plan — $49/mo · no contracts</div>
+                <div class="cm-card-bar"></div>
+              </div>
+              <div class="cm-card">
+                <div class="cm-card-eyebrow">Guide</div>
+                <div class="cm-card-text">SaaS quickstart: live in 15 minutes</div>
+                <div class="cm-card-bar"></div>
+              </div>
+            </div>
+            <div class="cm-cta-row">
+              <div class="cm-btn cm-btn-primary">Start free trial</div>
+              <div class="cm-btn cm-btn-ghost">See startup plans</div>
+            </div>
+            <div class="cm-status cm-status-good">reading · 2:34 on page</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: SOCIAL PROOF -->
+  <section class="social-proof bg-lifted" data-section="social-proof" data-intent="build trust" data-layout="contained">
+    <div class="social-proof-eyebrow">Early access</div>
+    <h2>Built for the brands that already know segments aren't enough.</h2>
+    <p class="social-proof-sub">Invite-only. Enterprise-grade. Already live in production.</p>
+    <div class="proof-tags">
+      <span class="proof-tag">Fortune 500 retail</span>
+      <span class="proof-tag">Global B2B SaaS</span>
+      <span class="proof-tag">DTC at scale</span>
+    </div>
+  </section>
+
+  <!-- SECTION 7: CTA -->
+  <section class="cta" data-section="cta" data-intent="drive action" data-layout="full-bleed" data-fragment="request-early-access" data-fragment-role="source">
+    <h2>Your audience<br>is <em>one.</em></h2>
+    <p class="cta-sub">Join the brands building the future of relevant experiences.</p>
+    <a href="https://arco.coffee/" class="cta-btn">See it live</a>
+  </section>
+
+  <!-- SECTION 8: FOOTER -->
+  <footer class="site-footer" data-section="footer" data-intent="close" data-layout="contained">
+    <span>Audience of ONE</span>
+    <span>of1.live</span>
+  </footer>
+
+  <script>
+  (function() {
+    function animateBefore(mock) {
+      const signal = mock.querySelector('.cm-signal');
+      const cards = mock.querySelectorAll('.cm-card');
+      const status = mock.querySelector('.cm-status');
+      const overlay = mock.querySelector('.cm-overlay');
+      const ctaRow = mock.querySelector('.cm-cta-row');
+
+      function reset() {
+        signal.classList.remove('visible');
+        overlay.classList.remove('visible');
+        status.classList.remove('visible');
+        cards.forEach(c => c.classList.remove('reject'));
+        if (ctaRow) ctaRow.style.opacity = '';
+      }
+
+      reset();
+
+      const steps = [
+        [800, () => { signal.classList.add('visible'); }],
+        [2000, () => { cards[0].classList.add('reject'); }],
+        [2600, () => { cards[1].classList.add('reject'); }],
+        [3200, () => { cards[2].classList.add('reject'); }],
+        [4000, () => { if (ctaRow) ctaRow.style.opacity = '0.3'; }],
+        [4800, () => { status.classList.add('visible'); }],
+        [5600, () => { overlay.classList.add('visible'); }],
+        [8000, () => { reset(); }],
+      ];
+
+      const timers = steps.map(([delay, fn]) => setTimeout(fn, delay));
+      return { timers, reset, duration: 8500 };
+    }
+
+    function animateAfter(mock) {
+      const signal = mock.querySelector('.cm-signal');
+      const cards = mock.querySelectorAll('.cm-card');
+      const status = mock.querySelector('.cm-status');
+      const heroArea = mock.querySelector('.cm-hero-area');
+      const ctaRow = mock.querySelector('.cm-cta-row');
+
+      function reset() {
+        signal.classList.remove('visible');
+        status.classList.remove('visible');
+        cards.forEach(c => c.classList.remove('match'));
+        if (heroArea) heroArea.style.borderColor = '';
+        if (ctaRow) {
+          const btn = ctaRow.querySelector('.cm-btn-primary');
+          if (btn) { btn.style.background = ''; btn.style.color = ''; }
+        }
+      }
+
+      reset();
+
+      const steps = [
+        [800, () => { signal.classList.add('visible'); }],
+        [1800, () => {
+          if (heroArea) heroArea.style.borderColor = 'rgba(0, 229, 160, 0.15)';
+        }],
+        [2400, () => { cards[0].classList.add('match'); }],
+        [3000, () => { cards[1].classList.add('match'); }],
+        [3600, () => { cards[2].classList.add('match'); }],
+        [4400, () => {
+          if (ctaRow) {
+            const btn = ctaRow.querySelector('.cm-btn-primary');
+            if (btn) { btn.style.background = 'rgba(0,229,160,0.2)'; btn.style.color = 'rgba(0,229,160,0.9)'; }
+          }
+        }],
+        [5200, () => { status.classList.add('visible'); }],
+        [8000, () => { reset(); }],
+      ];
+
+      const timers = steps.map(([delay, fn]) => setTimeout(fn, delay));
+      return { timers, reset, duration: 8500 };
+    }
+
+    const beforeMock = document.getElementById('mock-before');
+    const afterMock = document.getElementById('mock-after');
+    let beforeLoop, afterLoop;
+
+    function startLoops() {
+      const b = animateBefore(beforeMock);
+      const a = animateAfter(afterMock);
+      beforeLoop = setInterval(() => animateBefore(beforeMock), b.duration);
+      afterLoop = setInterval(() => animateAfter(afterMock), a.duration);
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          startLoops();
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.3 });
+
+    observer.observe(document.querySelector('.contrast'));
+  })();
+  </script>
+
+</body>
+</html>

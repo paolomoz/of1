@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>OG Mock 3 — of1</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1200px;
+    height: 630px;
+    overflow: hidden;
+    background: #0A0A0A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 61, 0, 0.08);
+  }
+
+  .ring-1 { width: 350px; height: 350px; }
+  .ring-2 { width: 500px; height: 500px; border-color: rgba(255, 61, 0, 0.05); }
+  .ring-3 { width: 650px; height: 650px; border-color: rgba(255, 61, 0, 0.03); }
+
+  .logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 160px;
+    font-weight: 700;
+    color: #F5F0E8;
+    letter-spacing: -0.04em;
+    position: relative;
+    z-index: 1;
+  }
+
+  .dot {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #FF3D00;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .dot { transform: translate(172px, -172px); }
+</style>
+</head>
+<body>
+  <div class="ring ring-1"></div>
+  <div class="ring ring-2"></div>
+  <div class="ring ring-3"></div>
+  <div class="logo">of1</div>
+  <div class="dot"></div>
+</body>
+</html>
