@@ -238,6 +238,17 @@
   .bg-lifted h2 { color: var(--color-bg); }
   .bg-lifted .social-proof-eyebrow { color: var(--color-accent); }
   .bg-lifted .social-proof-sub { color: rgba(10, 10, 10, 0.5); }
+
+  .social-proof-cta {
+    margin-top: 2rem;
+    background: var(--color-bg);
+    color: var(--color-fg);
+    border: none;
+  }
+  .social-proof-cta:hover {
+    background: var(--color-accent);
+    color: var(--color-bg);
+  }
   .bg-lifted .proof-tag {
     border-color: rgba(10, 10, 10, 0.15);
     color: rgba(10, 10, 10, 0.6);
@@ -1182,7 +1193,6 @@
       <a href="/why.html">Why now</a>
       <a href="/how-it-works.html">How it works</a>
       <a href="https://arco.coffee/" class="nav-cta" target="_blank" rel="noopener">See it live</a>
-      <button class="nav-cta nav-cta-interest" onclick="openInterestModal()">Register interest</button>
     </nav>
   </header>
 
@@ -1373,14 +1383,14 @@
       <span class="proof-tag">Global B2B SaaS</span>
       <span class="proof-tag">DTC at scale</span>
     </div>
+    <button class="cta-btn social-proof-cta" onclick="openInterestModal()">Register interest</button>
   </section>
 
   <!-- SECTION 7: CTA -->
   <section class="cta" data-section="cta" data-intent="drive action" data-layout="full-bleed" data-fragment="request-early-access" data-fragment-role="source">
     <h2>Your audience<br>is <em>one.</em></h2>
     <p class="cta-sub">Join the brands building the future of relevant experiences.</p>
-    <a href="https://arco.coffee/" class="cta-btn cta-btn-secondary-style" target="_blank" rel="noopener">See it live</a>
-    <button class="cta-btn" onclick="openInterestModal()">Register interest</button>
+    <a href="https://arco.coffee/" class="cta-btn" target="_blank" rel="noopener">See it live</a>
   </section>
 
   <!-- SECTION 8: FOOTER -->
