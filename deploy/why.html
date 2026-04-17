@@ -347,6 +347,7 @@
     letter-spacing: var(--letter-spacing-button);
     text-transform: uppercase;
     border-radius: var(--radius-pill);
+    border: none;
     transition: background 0.3s ease, transform 0.2s ease;
     cursor: pointer;
   }
@@ -421,6 +422,159 @@
       --section-padding: 2.5rem;
     }
   }
+
+  /* ========================================
+     INTEREST MODAL
+     ======================================== */
+
+  .nav-cta-interest {
+    cursor: pointer;
+    font-family: inherit;
+    background: var(--color-accent);
+    color: var(--color-bg);
+    border: none;
+    border-radius: var(--radius-pill);
+    padding: 0.5rem 1.25rem;
+    font-size: var(--button);
+    letter-spacing: var(--letter-spacing-button);
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: opacity 0.2s;
+  }
+  .nav-cta-interest:hover { opacity: 0.85; }
+
+  .interest-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(28, 25, 23, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+  }
+  .interest-backdrop.open { display: flex; }
+
+  .interest-modal {
+    background: var(--color-bg);
+    border: 1px solid rgba(245, 240, 232, 0.14);
+    border-radius: var(--radius-card);
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 480px;
+    position: relative;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+  }
+
+  .interest-close {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    background: none;
+    border: none;
+    color: var(--color-fg-muted);
+    cursor: pointer;
+    font-size: 1.25rem;
+    line-height: 1;
+    padding: 0.25rem;
+    transition: color 0.2s;
+  }
+  .interest-close:hover { color: var(--color-fg); }
+
+  .interest-modal h2 {
+    font-family: var(--heading-font-family);
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+  .interest-modal h2 em { color: var(--color-accent); font-style: normal; }
+
+  .interest-modal .interest-sub {
+    color: var(--color-fg-dim);
+    font-size: var(--body-sm);
+    margin-bottom: 1.75rem;
+  }
+
+  .interest-form { display: flex; flex-direction: column; gap: 1rem; }
+
+  .interest-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .interest-field label {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+  }
+
+  .interest-field input,
+  .interest-field textarea {
+    background: rgba(245, 240, 232, 0.05);
+    border: 1px solid rgba(245, 240, 232, 0.14);
+    border-radius: 6px;
+    color: var(--color-fg);
+    font-family: var(--body-font-family);
+    font-size: var(--body-sm);
+    padding: 0.7rem 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+    resize: vertical;
+    width: 100%;
+  }
+  .interest-field input:focus,
+  .interest-field textarea:focus {
+    border-color: rgba(245, 240, 232, 0.4);
+  }
+  .interest-field textarea { min-height: 90px; }
+
+  .interest-submit {
+    margin-top: 0.5rem;
+    background: var(--color-accent);
+    color: var(--color-bg);
+    border: none;
+    border-radius: var(--radius-pill);
+    padding: 0.85rem 1.5rem;
+    font-family: var(--body-font-family);
+    font-size: var(--button);
+    font-weight: 600;
+    letter-spacing: var(--letter-spacing-button);
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    align-self: flex-end;
+  }
+  .interest-submit:hover:not(:disabled) { opacity: 0.85; }
+  .interest-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .interest-error {
+    color: var(--color-accent);
+    font-size: var(--body-sm);
+    margin-top: 0.25rem;
+    display: none;
+  }
+  .interest-error.visible { display: block; }
+
+  .interest-success {
+    display: none;
+    text-align: center;
+    padding: 1.5rem 0;
+  }
+  .interest-success.visible { display: block; }
+  .interest-success h3 {
+    font-family: var(--heading-font-family);
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    font-weight: 400;
+    font-style: italic;
+    margin-bottom: 0.75rem;
+  }
+  .interest-success p { color: var(--color-fg-dim); font-size: var(--body-sm); }
 </style>
 </head>
 <body>
@@ -432,6 +586,7 @@
       <a href="/why.html" class="active">Why now</a>
       <a href="/how-it-works.html">How it works</a>
       <a href="https://arco.coffee/" class="nav-cta" target="_blank" rel="noopener">See it live</a>
+      <button class="nav-cta nav-cta-interest" onclick="openInterestModal()">Register interest</button>
     </nav>
   </header>
 
@@ -504,8 +659,8 @@
     <h2>The future of your website is <em>personal.</em></h2>
     <p>of1 makes it real — for every visitor, on every page, in under two seconds.</p>
     <div class="cta-buttons">
-      <a href="/how-it-works.html" class="cta-btn">See how it works</a>
-      <a href="https://arco.coffee/" class="cta-btn-secondary" target="_blank" rel="noopener">See it live</a>
+      <button class="cta-btn" onclick="openInterestModal()">Register interest</button>
+      <a href="/how-it-works.html" class="cta-btn-secondary">See how it works</a>
     </div>
   </section>
 
@@ -514,6 +669,93 @@
     <span>Audience of ONE</span>
     <span>of1.live</span>
   </footer>
+
+  <!-- INTEREST MODAL -->
+  <div class="interest-backdrop" id="interestBackdrop" role="dialog" aria-modal="true" aria-labelledby="interestTitle">
+    <div class="interest-modal">
+      <button class="interest-close" onclick="closeInterestModal()" aria-label="Close">&#x2715;</button>
+
+      <div id="interestFormWrap">
+        <h2 id="interestTitle">Register your<br><em>interest</em></h2>
+        <p class="interest-sub">We'll reach out directly. No pitch decks, no drip campaigns.</p>
+
+        <form class="interest-form" id="interestForm" onsubmit="submitInterest(event)">
+          <div class="interest-field">
+            <label for="iName">Name</label>
+            <input type="text" id="iName" name="name" placeholder="Your name" required autocomplete="name">
+          </div>
+          <div class="interest-field">
+            <label for="iEmail">Email</label>
+            <input type="email" id="iEmail" name="email" placeholder="you@company.com" required autocomplete="email">
+          </div>
+          <div class="interest-field">
+            <label for="iMessage">What are you working on?</label>
+            <textarea id="iMessage" name="message" placeholder="Tell us about your use case, website, or what problem you're trying to solve…"></textarea>
+          </div>
+          <div class="interest-error" id="interestError"></div>
+          <button type="submit" class="interest-submit" id="interestSubmit">Send &rarr;</button>
+        </form>
+      </div>
+
+      <div class="interest-success" id="interestSuccess">
+        <h3>We'll be<br>in touch.</h3>
+        <p>Thanks for registering your interest.<br>Expect a direct message from our team.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  function openInterestModal() {
+    document.getElementById('interestBackdrop').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => document.getElementById('iName').focus(), 50);
+  }
+  function closeInterestModal() {
+    document.getElementById('interestBackdrop').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('interestBackdrop').addEventListener('click', function(e) {
+    if (e.target === this) closeInterestModal();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeInterestModal();
+  });
+  async function submitInterest(e) {
+    e.preventDefault();
+    const btn = document.getElementById('interestSubmit');
+    const err = document.getElementById('interestError');
+    err.textContent = '';
+    err.classList.remove('visible');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    try {
+      const res = await fetch('/interest', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: document.getElementById('iName').value,
+          email: document.getElementById('iEmail').value,
+          message: document.getElementById('iMessage').value,
+        }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        document.getElementById('interestFormWrap').style.display = 'none';
+        document.getElementById('interestSuccess').classList.add('visible');
+      } else {
+        err.textContent = data.error || 'Something went wrong. Please try again.';
+        err.classList.add('visible');
+        btn.disabled = false;
+        btn.textContent = 'Send →';
+      }
+    } catch {
+      err.textContent = 'Network error. Please try again.';
+      err.classList.add('visible');
+      btn.disabled = false;
+      btn.textContent = 'Send →';
+    }
+  }
+  </script>
 
 </body>
 </html>

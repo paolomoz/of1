@@ -3,3 +3,12 @@ pages_build_output_dir = "deploy"
 
 [vars]
 CLOUDFLARE_ACCOUNT_ID = "68e6632adf76183424b251e874663bde"
+
+[[d1_databases]]
+binding = "LEADS_DB"
+database_name = "of1-leads"
+database_id = "5686d60f-9781-43d6-b433-268f8f34b385"
+
+[[kv_namespaces]]
+binding = "RATE_LIMIT_KV"
+id = "0a9d344829dd46d19d191fe09d4d7953"
