@@ -1,0 +1,5 @@
+name = "of1"
+pages_build_output_dir = "deploy"
+
+[vars]
+CLOUDFLARE_ACCOUNT_ID = "68e6632adf76183424b251e874663bde"
