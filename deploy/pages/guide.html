@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Demo Guide — of1 · Adobe Summit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-bg: #0A0A0A; --color-fg: #F5F0E8; --color-accent: #FF3D00;
+    --color-tertiary: #00E5A0; --color-blue: #4D4DFF;
+    --color-fg-dim: rgba(245,240,232,0.55); --color-fg-faint: rgba(245,240,232,0.06);
+    --color-fg-muted: rgba(245,240,232,0.4);
+    --heading-font: 'Cormorant Garamond', serif;
+    --mono-font: 'JetBrains Mono', monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { font-size: 18px; }
+  body { background: var(--color-bg); color: var(--color-fg); font-family: var(--mono-font); -webkit-font-smoothing: antialiased; }
+
+  /* TOP BAR */
+  .top-bar { display: flex; align-items: center; justify-content: space-between; padding: 1rem 2.5rem; border-bottom: 1px solid var(--color-fg-faint); position: sticky; top: 0; background: rgba(10,10,10,0.9); backdrop-filter: blur(10px); z-index: 10; }
+  .top-bar-logo { font-family: var(--mono-font); font-size: 0.9rem; font-weight: 700; color: var(--color-fg); letter-spacing: -0.02em; }
+  .top-bar-title { font-family: var(--mono-font); font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-fg-muted); }
+  .top-bar-badge { font-family: var(--mono-font); font-size: 0.5rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.3rem 0.8rem; border: 1px solid rgba(255,61,0,0.3); border-radius: 100px; color: var(--color-accent); }
+
+  /* LAYOUT */
+  .guide-body { display: grid; grid-template-columns: 280px 1fr; min-height: calc(100vh - 56px); }
+
+  /* SIDEBAR */
+  .guide-sidebar { border-right: 1px solid var(--color-fg-faint); padding: 2rem 1.5rem; position: sticky; top: 56px; height: calc(100vh - 56px); overflow-y: auto; }
+  .sidebar-section { margin-bottom: 2rem; }
+  .sidebar-label { font-family: var(--mono-font); font-size: 0.5rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-fg-muted); margin-bottom: 0.8rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--color-fg-faint); }
+  .sidebar-link { display: block; font-family: var(--mono-font); font-size: 0.6rem; color: var(--color-fg-dim); text-decoration: none; padding: 0.3rem 0; transition: color 0.15s ease; }
+  .sidebar-link:hover { color: var(--color-fg); }
+  .sidebar-link.active { color: var(--color-tertiary); }
+
+  .elevator-pitch { background: rgba(0,229,160,0.05); border: 1px solid rgba(0,229,160,0.15); border-radius: 8px; padding: 1rem; margin-top: 1.5rem; }
+  .elevator-label { font-family: var(--mono-font); font-size: 0.45rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-tertiary); margin-bottom: 0.6rem; }
+  .elevator-text { font-family: var(--heading-font); font-size: 0.95rem; font-style: italic; line-height: 1.6; color: var(--color-fg); }
+
+  /* MAIN */
+  .guide-main { padding: 2.5rem 3rem; max-width: 800px; }
+
+  /* SECTION */
+  .guide-section { margin-bottom: 3.5rem; scroll-margin-top: 72px; }
+  .guide-section-title { font-family: var(--heading-font); font-size: clamp(1.6rem, 2.5vw, 2.2rem); font-weight: 700; line-height: 1.1; margin-bottom: 0.5rem; }
+  .guide-section-sub { font-family: var(--mono-font); font-size: 0.65rem; color: var(--color-fg-muted); margin-bottom: 1.8rem; letter-spacing: 0.05em; }
+  .divider { height: 1px; background: var(--color-fg-faint); margin-bottom: 3.5rem; }
+
+  /* SETUP CHECKLIST */
+  .checklist { display: flex; flex-direction: column; gap: 0.5rem; }
+  .check-item { display: flex; gap: 0.8rem; align-items: flex-start; padding: 0.8rem 1rem; border: 1px solid rgba(245,240,232,0.06); border-radius: 6px; cursor: pointer; transition: background 0.15s ease, border-color 0.15s ease; }
+  .check-item:hover { background: rgba(245,240,232,0.02); }
+  .check-item.done { border-color: rgba(0,229,160,0.2); background: rgba(0,229,160,0.03); }
+  .check-box { width: 16px; height: 16px; border: 1px solid rgba(245,240,232,0.2); border-radius: 3px; flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center; transition: all 0.15s ease; }
+  .check-item.done .check-box { background: var(--color-tertiary); border-color: var(--color-tertiary); }
+  .check-box-tick { width: 8px; height: 5px; border-left: 1.5px solid #000; border-bottom: 1.5px solid #000; transform: rotate(-45deg) translateY(-1px); opacity: 0; transition: opacity 0.15s ease; }
+  .check-item.done .check-box-tick { opacity: 1; }
+  .check-text { font-family: var(--mono-font); font-size: 0.65rem; line-height: 1.7; color: var(--color-fg-dim); }
+  .check-item.done .check-text { color: var(--color-fg); }
+  .check-text code { font-family: var(--mono-font); font-size: 0.85em; background: rgba(245,240,232,0.08); border: 1px solid rgba(245,240,232,0.12); border-radius: 3px; padding: 1px 5px; color: var(--color-fg); }
+
+  /* DEMO STEPS */
+  .demo-steps { display: flex; flex-direction: column; gap: 0; }
+  .demo-step { display: grid; grid-template-columns: 32px 1fr; gap: 1.2rem; padding: 1.2rem 0; border-bottom: 1px solid var(--color-fg-faint); }
+  .demo-step:last-child { border-bottom: none; }
+  .step-dot-col { display: flex; flex-direction: column; align-items: center; padding-top: 2px; }
+  .step-dot { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--heading-font); font-size: 1rem; font-weight: 700; flex-shrink: 0; }
+  .step-connector { flex: 1; width: 1px; background: var(--color-fg-faint); margin-top: 6px; }
+  .demo-step:last-child .step-connector { display: none; }
+  .step-dot.red { background: rgba(255,61,0,0.15); color: var(--color-accent); border: 1px solid rgba(255,61,0,0.2); }
+  .step-dot.green { background: rgba(0,229,160,0.1); color: var(--color-tertiary); border: 1px solid rgba(0,229,160,0.2); }
+  .step-dot.blue { background: rgba(77,77,255,0.1); color: var(--color-blue); border: 1px solid rgba(77,77,255,0.2); }
+  .step-content { padding-bottom: 0.5rem; }
+  .step-title-row { display: flex; align-items: baseline; gap: 0.8rem; margin-bottom: 0.5rem; }
+  .step-name { font-family: var(--mono-font); font-size: 0.7rem; font-weight: 600; color: var(--color-fg); }
+  .step-timing { font-family: var(--mono-font); font-size: 0.5rem; letter-spacing: 0.1em; color: var(--color-fg-muted); }
+  .step-desc { font-family: var(--mono-font); font-size: 0.62rem; line-height: 1.75; color: var(--color-fg-dim); margin-bottom: 0.8rem; }
+
+  /* SAY THIS BOX */
+  .say-this { background: rgba(0,229,160,0.05); border-left: 2px solid var(--color-tertiary); border-radius: 0 6px 6px 0; padding: 0.8rem 1rem; margin-top: 0.6rem; }
+  .say-this-label { font-family: var(--mono-font); font-size: 0.45rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-tertiary); margin-bottom: 0.4rem; }
+  .say-this-text { font-family: var(--heading-font); font-size: 0.95rem; font-style: italic; line-height: 1.6; color: var(--color-fg); }
+
+  /* TIP BOX */
+  .tip { background: rgba(77,77,255,0.05); border-left: 2px solid rgba(77,77,255,0.4); border-radius: 0 6px 6px 0; padding: 0.7rem 1rem; margin-top: 0.6rem; }
+  .tip-label { font-family: var(--mono-font); font-size: 0.45rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-blue); margin-bottom: 0.3rem; }
+  .tip-text { font-family: var(--mono-font); font-size: 0.6rem; line-height: 1.7; color: var(--color-fg-dim); }
+
+  /* WARNING BOX */
+  .warn { background: rgba(255,61,0,0.05); border-left: 2px solid rgba(255,61,0,0.3); border-radius: 0 6px 6px 0; padding: 0.7rem 1rem; margin-top: 0.6rem; }
+  .warn-label { font-family: var(--mono-font); font-size: 0.45rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 0.3rem; }
+  .warn-text { font-family: var(--mono-font); font-size: 0.6rem; line-height: 1.7; color: var(--color-fg-dim); }
+
+  /* FAQ */
+  .faq-list { display: flex; flex-direction: column; gap: 0.5rem; }
+  .faq-item { border: 1px solid rgba(245,240,232,0.06); border-radius: 6px; overflow: hidden; }
+  .faq-q { font-family: var(--mono-font); font-size: 0.62rem; font-weight: 600; color: var(--color-fg); padding: 0.8rem 1rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+  .faq-q::after { content: '+'; color: var(--color-accent); font-size: 1rem; font-weight: 300; transition: transform 0.2s ease; }
+  .faq-item.open .faq-q::after { transform: rotate(45deg); }
+  .faq-a { font-family: var(--mono-font); font-size: 0.6rem; line-height: 1.75; color: var(--color-fg-dim); padding: 0 1rem 0.8rem; display: none; }
+  .faq-item.open .faq-a { display: block; }
+
+  /* CLOSE */
+  .close-section { background: rgba(255,61,0,0.05); border: 1px solid rgba(255,61,0,0.15); border-radius: 10px; padding: 1.5rem; }
+  .close-eyebrow { font-family: var(--mono-font); font-size: 0.5rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 0.8rem; }
+  .close-line { font-family: var(--heading-font); font-size: clamp(1.1rem, 1.8vw, 1.5rem); font-style: italic; line-height: 1.5; color: var(--color-fg); margin-bottom: 1rem; }
+  .close-bullets { display: flex; flex-direction: column; gap: 0.4rem; }
+  .close-bullet { font-family: var(--mono-font); font-size: 0.6rem; color: var(--color-fg-dim); line-height: 1.6; padding-left: 1rem; position: relative; }
+  .close-bullet::before { content: '→'; position: absolute; left: 0; color: var(--color-accent); }
+
+  /* PRINT */
+  @media print {
+    body { background: #fff; color: #000; }
+    .guide-sidebar { display: none; }
+    .guide-body { grid-template-columns: 1fr; }
+    .guide-main { max-width: 100%; padding: 1rem; }
+    .top-bar { position: static; background: #fff; border-bottom: 1px solid #ddd; }
+    .top-bar-logo, .top-bar-title { color: #000; }
+    .say-this { background: #f0fdf8; border-left-color: #00b37a; }
+    .say-this-text { color: #000; }
+    .tip { background: #f0f0ff; }
+    .warn { background: #fff5f0; }
+    .check-item { background: #fff !important; }
+    .faq-a { display: block !important; }
+  }
+  @media (max-width: 800px) {
+    .guide-body { grid-template-columns: 1fr; }
+    .guide-sidebar { position: static; height: auto; border-right: none; border-bottom: 1px solid var(--color-fg-faint); }
+    .guide-main { padding: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="top-bar">
+    <span class="top-bar-logo">of1</span>
+    <span class="top-bar-title">Adobe Summit 2026 — Demo Guide</span>
+    <span class="top-bar-badge">Internal use only</span>
+  </div>
+
+  <div class="guide-body">
+    <aside class="guide-sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-label">Contents</div>
+        <a href="#what-is-of1" class="sidebar-link">What is of1?</a>
+        <a href="#setup" class="sidebar-link">Setup checklist</a>
+        <a href="#demo-script" class="sidebar-link">Demo script</a>
+        <a href="#faq" class="sidebar-link">FAQ</a>
+        <a href="#close" class="sidebar-link">The close</a>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">Key URLs</div>
+        <a href="https://arco.coffee" class="sidebar-link" target="_blank">arco.coffee ↗</a>
+        <a href="https://wknd.site" class="sidebar-link" target="_blank">wknd.site ↗</a>
+        <a href="https://of1.live" class="sidebar-link" target="_blank">of1.live ↗</a>
+      </div>
+      <div class="elevator-pitch">
+        <div class="elevator-label">Elevator pitch</div>
+        <div class="elevator-text">"We make websites that rewrite themselves — for every visitor, in real time, based on what they actually came to find."</div>
+      </div>
+    </aside>
+
+    <main class="guide-main">
+
+      <!-- WHAT IS OF1 -->
+      <section class="guide-section" id="what-is-of1">
+        <div class="guide-section-title">What is of1?</div>
+        <div class="guide-section-sub">The 30-second brief for demoers</div>
+        <div class="checklist">
+          <div class="check-item" style="cursor:default">
+            <div style="width:16px;flex-shrink:0;margin-top:2px">
+              <div style="width:6px;height:6px;border-radius:50%;background:var(--color-accent);margin-top:3px"></div>
+            </div>
+            <div class="check-text">of1 stands for <strong>Audience of One</strong>. We build AI-powered websites that personalize every page for every visitor.</div>
+          </div>
+          <div class="check-item" style="cursor:default">
+            <div style="width:16px;flex-shrink:0;margin-top:2px">
+              <div style="width:6px;height:6px;border-radius:50%;background:var(--color-tertiary);margin-top:3px"></div>
+            </div>
+            <div class="check-text"><strong>arco.coffee</strong> is a generative website — built from the ground up to showcase what of1 can do. Use it as your primary demo surface.</div>
+          </div>
+          <div class="check-item" style="cursor:default">
+            <div style="width:16px;flex-shrink:0;margin-top:2px">
+              <div style="width:6px;height:6px;border-radius:50%;background:var(--color-blue);margin-top:3px"></div>
+            </div>
+            <div class="check-text">The extension is a <strong>demo tool</strong> to experience a taste of of1 on any site.</div>
+          </div>
+        </div>
+      </section>
+      <div class="divider"></div>
+
+      <!-- SETUP -->
+      <section class="guide-section" id="setup">
+        <div class="guide-section-title">Setup checklist</div>
+        <div class="guide-section-sub">Complete before the booth opens — click to check off</div>
+        <div class="checklist" id="setup-list">
+          <div class="check-item" onclick="this.classList.toggle('done')">
+            <div class="check-box"><div class="check-box-tick"></div></div>
+            <div class="check-text">Download the extension zip from the shared folder and decompress it to your Desktop</div>
+          </div>
+          <div class="check-item" onclick="this.classList.toggle('done')">
+            <div class="check-box"><div class="check-box-tick"></div></div>
+            <div class="check-text">Open <code>chrome://extensions</code> — enable <strong>Developer mode</strong> (top-right toggle)</div>
+          </div>
+          <div class="check-item" onclick="this.classList.toggle('done')">
+            <div class="check-box"><div class="check-box-tick"></div></div>
+            <div class="check-text">Click <strong>Load unpacked</strong> → select the unzipped extension folder → confirm of1 appears in the toolbar</div>
+          </div>
+          <div class="check-item" onclick="this.classList.toggle('done')">
+            <div class="check-box"><div class="check-box-tick"></div></div>
+            <div class="check-text">Test the extension on <a href="https://wknd.site" target="_blank" style="color:var(--color-tertiary)">wknd.site</a> before the demo — open the site, click <strong>Activate</strong> in the extension, wait ~1 minute for indexing, browse several adventure pages, then return to the homepage and press <strong>Personalise</strong></div>
+          </div>
+          <div class="check-item" onclick="this.classList.toggle('done')">
+            <div class="check-box"><div class="check-box-tick"></div></div>
+            <div class="check-text">Keep <a href="https://wknd.site" target="_blank" style="color:var(--color-tertiary)">wknd.site</a> as your fallback audience website — it works reliably with the extension</div>
+          </div>
+        </div>
+      </section>
+      <div class="divider"></div>
+
+      <!-- DEMO SCRIPT -->
+      <section class="guide-section" id="demo-script">
+        <div class="guide-section-title">Demo script</div>
+        <div class="guide-section-sub">Full flow — approximately 8–12 minutes</div>
+        <div class="demo-steps">
+
+          <div class="demo-step">
+            <div class="step-dot-col"><div class="step-dot red">1</div><div class="step-connector"></div></div>
+            <div class="step-content">
+              <div class="step-title-row"><span class="step-name">Ask the audience for a website</span><span class="step-timing">~1 min</span></div>
+              <div class="step-desc">Ask someone in the audience to name any website they know — ideally a brand or company site. wknd.site is a reliable fallback if nothing comes up. Navigate to it and open the of1 side panel.</div>
+              <div class="say-this">
+                <div class="say-this-label">Say this</div>
+                <div class="say-this-text">"Give me any website — a brand you know, a company site. We're going to run of1 on it, live, right now."</div>
+              </div>
+              <div class="tip">
+                <div class="tip-label">Tip</div>
+                <div class="tip-text">Avoid sites with aggressive bot protection (banks, government). Content-rich sites like retail, media, or B2B SaaS work best.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="demo-step">
+            <div class="step-dot-col"><div class="step-dot red">2</div><div class="step-connector"></div></div>
+            <div class="step-content">
+              <div class="step-title-row"><span class="step-name">Activate the extension on their site</span><span class="step-timing">~1 min indexing</span></div>
+              <div class="step-desc">Open the of1 side panel, click <strong>Activate</strong> on the domain. The extension starts crawling — reading the site's structure, indexing pages, building a content model. Watch the page count climb. This takes 1–2 minutes.</div>
+              <div class="say-this">
+                <div class="say-this-label">Say this</div>
+                <div class="say-this-text">"I just activated of1 on this site. Right now it's indexing most important pages — understanding the structure, the content, the blocks. It's building a model of what this site knows. Give it a minute."</div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="demo-step">
+            <div class="step-dot-col"><div class="step-dot green">3</div><div class="step-connector"></div></div>
+            <div class="step-content">
+              <div class="step-title-row"><span class="step-name">Pivot to arco.coffee</span><span class="step-timing">~3–4 min</span></div>
+              <div class="step-desc">While their site indexes, navigate to arco.coffee. This is your showcase — a site built from scratch as a generative website. Walk through it: show the homepage, a product page, the story. Then click Personalize and show the transformation.</div>
+              <div class="say-this">
+                <div class="say-this-label">Say this</div>
+                <div class="say-this-text">"This is arco.coffee — a coffee brand we built as a generative website. Every element is designed to be personalized. Watch what happens when I click Personalize."</div>
+              </div>
+              <div class="tip">
+                <div class="tip-label">What to highlight</div>
+                <div class="tip-text">Point to specific mutations in the widget: "This headline was rewritten. This product was swapped. This CTA changed. And here's the reason the AI gave for each one." The reasoning is the reveal.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="demo-step">
+            <div class="step-dot-col"><div class="step-dot green">4</div><div class="step-connector"></div></div>
+            <div class="step-content">
+              <div class="step-title-row"><span class="step-name">Tease — back to their site</span><span class="step-timing">~30 sec</span></div>
+              <div class="step-desc">End the arco demo by teasing that you're about to do the same on the site they gave you. Build anticipation before switching tabs.</div>
+              <div class="say-this">
+                <div class="say-this-label">Say this</div>
+                <div class="say-this-text">"That was a site we built for this. Now let's try the same thing on the site you gave me — one we've never touched."</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="demo-step">
+            <div class="step-dot-col"><div class="step-dot red">5</div><div class="step-connector"></div></div>
+            <div class="step-content">
+              <div class="step-title-row"><span class="step-name">Browse the audience's site</span><span class="step-timing">~2–3 min</span></div>
+              <div class="step-desc">Navigate back to the audience's site. Browse deliberately — look at a product, read a page, click into a category. You're building intent signals. Take your time. The extension is reading every click, every scroll, every page you land on.</div>
+              <div class="say-this">
+                <div class="say-this-label">Say this</div>
+                <div class="say-this-text">"I'm just browsing — the extension is watching. Every page I visit, every product I look at, it's building a picture of what I'm here for. It doesn't track me. It just pays attention."</div>
+              </div>
+              <div class="tip">
+                <div class="tip-label">Intent building</div>
+                <div class="tip-text">Browse 3–5 pages with a consistent theme (e.g. all outdoor gear, or all enterprise pricing). The more consistent your browsing, the stronger the intent signal and the more dramatic the personalization.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="demo-step">
+            <div class="step-dot-col"><div class="step-dot green">6</div><div class="step-connector"></div></div>
+            <div class="step-content">
+              <div class="step-title-row"><span class="step-name">Return to homepage — click Personalize</span><span class="step-timing">~1 min</span></div>
+              <div class="step-desc">Navigate back to the homepage. Open the side panel and click <strong>Personalize</strong>. The page rewrites in real time — headlines shift, content reorders, CTAs change. Use the widget to walk through each mutation.</div>
+              <div class="say-this">
+                <div class="say-this-label">Say this</div>
+                <div class="say-this-text">"Based on what I browsed, here's what of1 decided to change — and here's why it changed each one."</div>
+              </div>
+              <div class="warn">
+                <div class="warn-label">If nothing changes</div>
+                <div class="warn-text">The site may not have enough indexable content, or the intent signal was too weak. Refresh, browse 2–3 more pages with a clear theme, then try again. wknd.site is your safe fallback.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="demo-step">
+            <div class="step-dot-col"><div class="step-dot green">7</div><div class="step-connector"></div></div>
+            <div class="step-content">
+              <div class="step-title-row"><span class="step-name">Navigate the widget — before/after</span><span class="step-timing">~1 min</span></div>
+              <div class="step-desc">Use the mutation widget to walk through each change. Toggle between the original and personalized versions. Show the reasoning for each mutation. Let the audience ask questions here — this is the most engaging moment.</div>
+              <div class="say-this">
+                <div class="say-this-label">Say this</div>
+                <div class="say-this-text">"This is the original. This is what of1 changed it to. And this is the AI's reasoning. It's not guessing — it's explaining itself."</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="demo-step">
+            <div class="step-dot-col"><div class="step-dot blue">8</div><div class="step-connector"></div></div>
+            <div class="step-content">
+              <div class="step-title-row"><span class="step-name">Capture and share the demo</span><span class="step-timing">~30 sec</span></div>
+              <div class="step-desc">Click the <strong>Share</strong> button in the widget. A QR code appears. The audience can scan it to get their own copy of the demo — a permanent before/after page showing exactly what changed on a real website, live at the event.</div>
+              <div class="say-this">
+                <div class="say-this-label">Say this</div>
+                <div class="say-this-text">"Scan this. You'll get a page showing exactly what changed, with the AI's reasoning for each mutation. Something to take away from today."</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+      <div class="divider"></div>
+
+      <!-- FAQ -->
+      <section class="guide-section" id="faq">
+        <div class="guide-section-title">FAQ</div>
+        <div class="guide-section-sub">Questions you'll get at the booth</div>
+        <div class="faq-list">
+          <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Is this tracking me?</div>
+            <div class="faq-a">No. of1 reads behavioral signals within a single session — what you browse, how long you stay, where you come from. It doesn't use cookies, doesn't build a cross-site profile, and doesn't store personal data. The intelligence stays local.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">How is this different from A/B testing?</div>
+            <div class="faq-a">A/B testing shows different versions of a page to different segments. of1 creates a unique version for each individual visitor, in real time, based on who they are right now — not which bucket they were assigned to last week.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">How long does it take to implement?</div>
+            <div class="faq-a">For a site like arco.coffee, built from scratch as a generative website, we co-build it together. For an existing site, we work alongside your team to define the content model, the personalization rules, and the block library. Timeline depends on site complexity.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Does it work on any website?</div>
+            <div class="faq-a">The demo extension can run on most content-rich sites. A production generative website is built with of1's architecture from the start — so the full experience requires partnership, not just an extension install.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What AI model does it use?</div>
+            <div class="faq-a">of1 uses a combination of models depending on the task — fast edge inference for intent detection, and more capable models for content generation. The specific stack is part of the co-innovation conversation.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What does "co-innovate" mean?</div>
+            <div class="faq-a">We don't sell a product you install and configure. We partner with brands to build their generative website — designing the content model, building the block library, and tuning the personalization logic together. arco.coffee is what that looks like when it's done.</div>
+          </div>
+        </div>
+      </section>
+      <div class="divider"></div>
+
+      <!-- THE CLOSE -->
+      <section class="guide-section" id="close">
+        <div class="guide-section-title">The close</div>
+        <div class="guide-section-sub">How to end every demo conversation</div>
+        <div class="close-section">
+          <div class="close-eyebrow">Finish strong</div>
+          <div class="close-line">"arco.coffee is what a generative website looks like when it's built right. We could build the same thing for you — or co-innovate with your team to get there. That's the conversation we want to have."</div>
+          <div class="close-bullets">
+            <div class="close-bullet">Point to the QR code they just scanned — "That's yours. Show your team."</div>
+            <div class="close-bullet">Ask: "What would change on your homepage if it knew who was visiting?" — let them answer</div>
+            <div class="close-bullet">Hand off to the of1.live website for the full story</div>
+            <div class="close-bullet">Collect contact info — the goal is a follow-up conversation, not a sale today</div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+</body>
+</html>
