@@ -116,10 +116,10 @@
   .manifesto-section { padding: 0; }
 
   .statement {
-    padding: 48px;
+    padding: 16px 48px;
     display: grid;
-    grid-template-columns: 80px 1fr;
-    gap: 24px;
+    grid-template-columns: 48px 1fr;
+    gap: 16px;
     align-items: center;
     border-bottom: 1px solid #f0f0f0;
   }
@@ -127,7 +127,7 @@
   .statement:last-child { border-bottom: none; }
 
   .statement-num {
-    font-size: 64px;
+    font-size: 36px;
     font-weight: 700;
     color: #e0e0e0;
     line-height: 1;
@@ -336,9 +336,8 @@
   "page": "Landing",
   "briefing": "landing.md",
   "mode": "grey",
-  "sections": ["hero", "manifesto", "metrics", "key-line", "contrast", "social-proof", "cta", "footer"],
+  "sections": ["hero", "manifesto", "demo-video", "why-now", "social-proof", "cta", "footer"],
   "fragments": {
-    "key-line-quote": { "source": "/", "reusedOn": ["/how-it-works"] },
     "request-early-access": { "source": "shared", "reusedOn": ["/", "/how-it-works"] }
   }
 }
@@ -395,66 +394,43 @@
     <div class="caption" style="padding: 0 48px 16px;">Three numbered provocations. Each subverts an industry assumption. Large numbers in accent color, statement text in display serif. One per row, generous vertical rhythm.</div>
   </section>
 
-  <!-- SECTION 3: METRICS -->
-  <div class="section-label">Section 3 — Metrics</div>
-  <section class="metrics" data-section="metrics" data-intent="crystallize the argument" data-layout="contained" data-items="3">
-    <div class="metric-block">
-      <div class="metric-val">1</div>
-      <div class="metric-label-bar"></div>
-      <div class="caption">Audience size that matters</div>
-    </div>
-    <div class="metric-block">
-      <div class="metric-val">0</div>
-      <div class="metric-label-bar"></div>
-      <div class="caption">Segments required</div>
-    </div>
-    <div class="metric-block">
-      <div class="metric-val">∞</div>
-      <div class="metric-label-bar"></div>
-      <div class="caption">Unique experiences</div>
-    </div>
-  </section>
-
-  <!-- SECTION 4: KEY LINE -->
-  <div class="section-label">Section 4 — Key line (pull quote)</div>
-  <section class="quote-section" data-section="key-line" data-intent="anchor statement" data-layout="contained" data-fragment="key-line-quote" data-fragment-role="source">
-    <div class="quote-bar-group">
+  <!-- SECTION 4: DEMO VIDEO (light section) -->
+  <div class="section-label">Section 4 — Demo video</div>
+  <section style="padding: 64px 48px; text-align: center; background: #e5e5e5;" data-section="demo-video" data-intent="prove the concept with a real demo" data-layout="contained" data-media="video">
+    <div style="max-width: 600px; margin: 0 auto 32px;">
       <div class="quote-bar" style="width: 95%;"></div>
       <div class="quote-bar" style="width: 88%;"></div>
       <div class="quote-bar" style="width: 60%;"></div>
     </div>
-    <div class="quote-attr"></div>
-    <div class="note" style="text-align: left; max-width: 500px; margin: 16px auto 0;">"We made your website pay attention — so every visitor finds exactly what they came for, as if it had always been there." Italic display serif, centered. "pay attention" highlighted in accent color.</div>
+    <div class="note" style="max-width: 600px; margin: 0 auto 24px;">"We made your website pay attention — so every visitor finds exactly what they came for, as if it had always been there." Italic display serif, centered. "pay attention" in accent color. Sets up the video as the proof.</div>
+    <div style="background: #c0c0c0; width: 100%; max-width: 800px; margin: 0 auto; aspect-ratio: 16/9; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+      <div style="width: 60px; height: 60px; background: #aaa; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+        <div style="width: 0; height: 0; border-left: 20px solid #888; border-top: 12px solid transparent; border-bottom: 12px solid transparent; margin-left: 4px;"></div>
+      </div>
+    </div>
+    <div class="note" style="max-width: 600px; margin: 12px auto 0;">DEMO VIDEO 16:9 — narrated screen recording of arco.coffee. ~2 min. Play inline.</div>
+    <div style="margin-top: 24px;">
+      <div class="btn-placeholder">See it live</div>
+    </div>
+    <div class="note" style="margin-top: 8px;">CTA button linking to arco.coffee — lets the visitor try it themselves after watching the video.</div>
   </section>
 
-  <!-- SECTION 5: CONTRAST (BEFORE/AFTER) -->
-  <div class="section-label">Section 5 — Contrast (before / after)</div>
-  <section class="contrast" data-section="contrast" data-intent="make the benefit tangible" data-layout="split-media">
-    <div class="contrast-eyebrow">
-      <div class="bar-eyebrow" style="width: 200px;"></div>
-      <div class="note">"The same visitor. A different website."</div>
-    </div>
-    <div class="contrast-col contrast-before">
-      <div class="contrast-label"></div>
-      <div class="note">Label: "Without of1"</div>
-      <div class="bar-heading" style="width: 55%;"></div>
-      <div class="note">"Your visitor arrives." — same headline both sides</div>
+  <!-- SECTION 5: WHY NOW -->
+  <div class="section-label">Section 5 — Why now (teaser)</div>
+  <section style="padding: 64px 48px; text-align: center; max-width: 700px; margin: 0 auto;" data-section="why-now" data-intent="bridge to vision" data-layout="contained">
+    <div class="bar-eyebrow" style="margin: 0 auto 16px;"></div>
+    <div class="note">"Why now" eyebrow</div>
+    <div class="bar-heading" style="width: 65%; margin: 0 auto 16px;"></div>
+    <div class="note">"Your visitors already know what relevance feels like." Serif headline with italic accent on "relevance".</div>
+    <div style="max-width: 500px; margin: 0 auto 24px;">
+      <div class="bar" style="width: 95%;"></div>
       <div class="bar" style="width: 90%;"></div>
-      <div class="bar" style="width: 85%;"></div>
-      <div class="bar" style="width: 70%;"></div>
-      <div class="note">The bad experience — scrolling past irrelevant content, wrong pricing, bounce</div>
+      <div class="bar" style="width: 80%;"></div>
+      <div class="bar" style="width: 60%;"></div>
     </div>
-    <div class="contrast-col contrast-after">
-      <div class="contrast-label"></div>
-      <div class="note">Label: "With of1"</div>
-      <div class="bar-heading" style="width: 55%;"></div>
-      <div class="note">"Your visitor arrives." — identical opening, different outcome</div>
-      <div class="bar" style="width: 90%;"></div>
-      <div class="bar" style="width: 85%;"></div>
-      <div class="bar" style="width: 70%;"></div>
-      <div class="note">The good experience — relevant case study, right pricing, they stay</div>
-    </div>
-    <div class="caption" style="padding: 12px 48px 24px; grid-column: 1 / -1;">Side-by-side layout. Left side lighter/subdued, right side darker/emphasized. Both start the same way to highlight the divergence.</div>
+    <div class="note" style="max-width: 500px; margin: 0 auto 16px;">Body — tools that remember them, then they arrive on your website. Same page as everyone. That gap is called a "confession."</div>
+    <div class="btn-placeholder" style="background: transparent; border: 1px solid #ccc;">The vision →</div>
+    <div class="caption" style="margin-top: 12px;">Ghost button linking to /why.html. Short punchy bridge section — manifesto rhythm, not explanatory prose.</div>
   </section>
 
   <!-- SECTION 6: SOCIAL PROOF -->
