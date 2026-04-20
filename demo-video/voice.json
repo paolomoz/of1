@@ -1,0 +1,12 @@
+{
+  "voice_name": "Lorenzo Prada",
+  "voice_id": "yowh82B72eMNrxcxHgBh",
+  "model_id": "eleven_multilingual_v2",
+  "output_format": "mp3_44100_128",
+  "voice_settings": {
+    "stability": 0.25,
+    "similarity_boost": 0.75,
+    "style": 0.3
+  },
+  "notes": "Refined Italian accent, mid-aged, classy. Selected variant C from tuning session."
+}
