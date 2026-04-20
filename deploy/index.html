@@ -209,6 +209,48 @@
     font-weight: 500;
   }
 
+  .hero-demo-cta {
+    display: inline-block;
+    align-self: flex-start;
+    margin-top: 2rem;
+    font-family: var(--body-font-family);
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--color-fg);
+    padding: 0.6rem 2rem;
+    border: 1px solid rgba(245, 240, 232, 0.35);
+    border-radius: var(--radius-pill);
+    transition: color 0.3s ease, border-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .hero-demo-cta::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 0; height: 0;
+    background: var(--color-accent);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease, height 0.4s ease;
+    z-index: -1;
+  }
+
+  .hero-demo-cta:hover::before {
+    width: 300px;
+    height: 300px;
+  }
+
+  .hero-demo-cta:hover {
+    color: var(--color-bg);
+    border-color: var(--color-accent);
+  }
+
   /* ========================================
      DIVIDERS
      ======================================== */
@@ -226,10 +268,8 @@
     padding-right: 0;
   }
 
-  .bg-lifted .metric-value { color: var(--color-bg) !important; }
-  .bg-lifted .metric:nth-child(1) .metric-value { color: var(--color-accent) !important; }
-  .bg-lifted .metric:nth-child(3) .metric-value { color: var(--color-secondary) !important; }
-  .bg-lifted .metric-label { color: rgba(10, 10, 10, 0.5); }
+  .bg-lifted .demo-video-quote { color: var(--color-bg); }
+  .bg-lifted .demo-video-quote strong { color: var(--color-accent); }
 
   .bg-lifted blockquote { color: var(--color-bg); }
   .bg-lifted blockquote strong { color: var(--color-accent); }
@@ -250,8 +290,7 @@
     color: var(--color-bg);
   }
   .bg-lifted .proof-tag {
-    border-color: rgba(10, 10, 10, 0.15);
-    color: rgba(10, 10, 10, 0.6);
+    color: rgba(10, 10, 10, 0.5);
   }
 
   /* ========================================
@@ -259,14 +298,14 @@
      ======================================== */
 
   .manifesto-section {
-    padding: 0 0 50px;
+    padding: 0 0 20px;
   }
 
   .statement {
-    padding: 1rem var(--section-padding);
+    padding: 0.6rem var(--section-padding);
     display: grid;
     grid-template-columns: auto 1fr;
-    gap: 3rem;
+    gap: 1.5rem;
     align-items: center;
     border-bottom: 1px solid var(--color-fg-faint);
   }
@@ -277,17 +316,17 @@
 
   .statement-number {
     font-family: var(--heading-font-family);
-    font-size: clamp(5rem, 8vw, 8rem);
+    font-size: clamp(3rem, 5vw, 5rem);
     font-weight: 700;
     color: #4D4DFF;
     opacity: 0.6;
     line-height: 1;
-    min-width: 1.5em;
+    min-width: 1.2em;
   }
 
   .statement-text {
     font-family: var(--heading-font-family);
-    font-size: var(--heading-lg);
+    font-size: var(--heading-md);
     font-weight: 400;
     line-height: 1.35;
   }
@@ -298,432 +337,67 @@
   }
 
   /* ========================================
-     SECTION 3: METRICS
+     SECTION 3: DEMO VIDEO
      ======================================== */
 
-  .metrics {
+  .demo-video {
     padding: 4rem var(--section-padding);
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-  }
-
-  .metric {
-    text-align: center;
-    padding: 2rem;
-  }
-
-  .metric-value {
-    font-family: var(--body-font-family);
-    font-size: clamp(4rem, 8vw, 7rem);
-    font-weight: 700;
-    line-height: 1;
-    margin-bottom: 0.8rem;
-  }
-
-  .metric:nth-child(1) .metric-value { color: var(--color-accent); }
-  .metric:nth-child(2) .metric-value { color: var(--color-tertiary); }
-  .metric:nth-child(3) .metric-value { color: #4D4DFF; }
-
-  .metric-label {
-    font-family: var(--body-font-family);
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--color-fg-dim);
-    font-weight: 400;
-  }
-
-  /* ========================================
-     SECTION 4: KEY LINE (PULL QUOTE)
-     ======================================== */
-
-  .key-line {
-    padding: 5rem var(--section-padding);
-    max-width: 50rem;
-    margin: 0 auto;
     text-align: center;
   }
 
-  .key-line blockquote {
+  .demo-video-quote {
     font-family: var(--heading-font-family);
-    font-size: clamp(1.6rem, 3vw, 2.6rem);
+    font-size: clamp(1.4rem, 2.5vw, 2.2rem);
     font-style: italic;
     line-height: 1.5;
-    color: var(--color-fg);
+    color: var(--color-bg);
+    max-width: 42rem;
+    margin: 0 auto 2.5rem;
+    border: none;
+    padding: 0;
   }
 
-  .key-line blockquote strong {
-    color: var(--color-tertiary);
+  .demo-video-quote strong {
+    color: var(--color-accent);
     font-style: normal;
     font-weight: 700;
   }
 
-  .key-line .attribution {
+  .demo-video-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  .demo-video-wrapper video {
+    width: 100%;
+    display: block;
+  }
+
+  .demo-video-cta {
+    display: inline-block;
     margin-top: 2rem;
-    font-family: var(--body-font-family);
-    font-size: 0.65rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--color-fg-muted);
-  }
-
-  /* ========================================
-     SECTION 5: CONTRAST (BEFORE / AFTER)
-     ======================================== */
-
-  .contrast {
-    padding: 0;
-  }
-
-  .contrast-eyebrow {
-    padding: 3rem var(--section-padding) 1.5rem;
-    font-family: var(--body-font-family);
-    font-size: var(--eyebrow);
-    letter-spacing: var(--letter-spacing-eyebrow);
-    text-transform: uppercase;
-    color: var(--color-tertiary);
-    font-weight: 500;
-  }
-
-  .contrast-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .contrast-col {
-    padding: 2rem var(--section-padding) 3rem;
-  }
-
-  .contrast-before {
-    background: rgba(245, 240, 232, 0.02);
-    border-right: 1px solid var(--color-fg-faint);
-  }
-
-  .contrast-after {
+    padding: 0.85rem 2.5rem;
     background: var(--color-bg);
-  }
-
-  .contrast-label {
-    font-family: var(--body-font-family);
-    font-size: 0.6rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-    font-weight: 500;
-  }
-
-  .contrast-before .contrast-label {
-    color: rgba(245, 240, 232, 0.3);
-  }
-
-  .contrast-after .contrast-label {
-    color: var(--color-accent);
-  }
-
-  .contrast-headline {
-    font-family: var(--heading-font-family);
-    font-size: var(--heading-md);
-    font-weight: 600;
-    line-height: 1.2;
-    margin-bottom: 1.2rem;
-  }
-
-  .contrast-before .contrast-headline {
-    color: rgba(245, 240, 232, 0.3);
-  }
-
-  .contrast-after .contrast-headline {
     color: var(--color-fg);
-  }
-
-  .contrast-body {
+    text-decoration: none;
     font-family: var(--body-font-family);
-    font-size: var(--body-sm);
-    line-height: 1.8;
-    margin-bottom: 1.5rem;
-  }
-
-  .contrast-before .contrast-body {
-    color: rgba(245, 240, 232, 0.2);
-  }
-
-  .contrast-after .contrast-body {
-    color: var(--color-fg-dim);
-  }
-
-  /* Contrast mocks */
-  .contrast-mock {
-    border: 1px solid rgba(245, 240, 232, 0.1);
-    border-radius: 8px;
-    overflow: hidden;
-    background: #2a2a2a;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .contrast-mock-chrome {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 10px 14px;
-    background: #353535;
-    border-bottom: 1px solid rgba(245, 240, 232, 0.08);
-    flex-shrink: 0;
-  }
-
-  .contrast-mock-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: rgba(245, 240, 232, 0.18);
-  }
-
-  .contrast-mock-url {
-    flex: 1;
-    margin-left: 6px;
-    font-family: var(--body-font-family);
-    font-size: 0.5rem;
-    color: rgba(245, 240, 232, 0.35);
-    background: rgba(245, 240, 232, 0.06);
-    padding: 5px 12px;
-    border-radius: 4px;
-  }
-
-  .contrast-mock {
-    min-height: 380px;
-  }
-
-  .contrast-mock-page {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    flex: 1;
-    position: relative;
-    overflow: hidden;
-  }
-
-  /* Signal badge */
-  .cm-signal {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    font-family: var(--body-font-family);
-    font-size: 0.42rem;
-    letter-spacing: 0.08em;
-    padding: 4px 10px;
-    border-radius: 100px;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    z-index: 2;
-  }
-
-  .cm-signal.visible { opacity: 1; }
-
-  .cm-signal-bad {
-    background: rgba(255, 61, 0, 0.1);
-    border: 1px solid rgba(255, 61, 0, 0.2);
-    color: rgba(255, 61, 0, 0.7);
-  }
-
-  .cm-signal-good {
-    background: rgba(0, 229, 160, 0.1);
-    border: 1px solid rgba(0, 229, 160, 0.2);
-    color: rgba(0, 229, 160, 0.8);
-  }
-
-  /* Nav */
-  .cm-nav {
-    display: flex;
-    gap: 16px;
-    align-items: center;
-    padding-bottom: 10px;
-    border-bottom: 1px solid rgba(245, 240, 232, 0.06);
-  }
-
-  .cm-logo {
-    font-family: var(--body-font-family);
-    font-size: 0.55rem;
-    font-weight: 700;
-    color: rgba(245, 240, 232, 0.6);
-    margin-right: auto;
-  }
-
-  .cm-nav-link {
-    font-family: var(--body-font-family);
-    font-size: 0.38rem;
-    color: rgba(245, 240, 232, 0.3);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  /* Hero area */
-  .cm-hero-area {
-    padding: 20px;
-    background: rgba(245, 240, 232, 0.03);
-    border-radius: 6px;
-    border: 1px solid rgba(245, 240, 232, 0.04);
-    transition: all 0.6s ease;
-  }
-
-  .cm-eyebrow {
-    font-family: var(--body-font-family);
-    font-size: 0.38rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: rgba(245, 240, 232, 0.25);
-    margin-bottom: 6px;
-    transition: all 0.4s ease;
-  }
-
-  .cm-title {
-    font-family: var(--heading-font-family);
-    font-size: 1rem;
     font-weight: 600;
-    color: rgba(245, 240, 232, 0.85);
-    margin-bottom: 6px;
-    line-height: 1.2;
-    transition: all 0.4s ease;
-  }
-
-  .cm-subtitle {
-    font-family: var(--body-font-family);
-    font-size: 0.45rem;
-    color: rgba(245, 240, 232, 0.35);
-    line-height: 1.6;
-    transition: all 0.4s ease;
-  }
-
-  /* Cards */
-  .cm-cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-  }
-
-  .cm-card {
-    padding: 14px 12px;
-    border-radius: 6px;
-    border: 1px solid rgba(245, 240, 232, 0.06);
-    background: rgba(245, 240, 232, 0.02);
-    transition: all 0.5s ease;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-
-  .cm-card-eyebrow {
-    font-family: var(--body-font-family);
-    font-size: 0.35rem;
-    letter-spacing: 0.12em;
+    font-size: var(--button);
+    letter-spacing: var(--letter-spacing-button);
     text-transform: uppercase;
-    color: rgba(245, 240, 232, 0.25);
-    transition: all 0.4s ease;
+    border: 1px solid transparent;
+    border-radius: var(--radius-pill);
+    transition: background 0.3s ease, border-color 0.3s ease;
   }
 
-  .cm-card-text {
-    font-family: var(--body-font-family);
-    font-size: 0.45rem;
-    color: rgba(245, 240, 232, 0.5);
-    line-height: 1.4;
-    transition: all 0.4s ease;
+  .demo-video-cta:hover {
+    background: var(--color-accent);
+    color: var(--color-bg);
+    border: 1px solid var(--color-fg);
   }
-
-  .cm-card-bar {
-    height: 3px;
-    border-radius: 2px;
-    background: rgba(245, 240, 232, 0.06);
-    margin-top: 4px;
-    transition: all 0.5s ease;
-  }
-
-  /* CTA row */
-  .cm-cta-row {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    margin-top: auto;
-  }
-
-  .cm-btn {
-    padding: 7px 18px;
-    border-radius: 100px;
-    font-family: var(--body-font-family);
-    font-size: 0.4rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    transition: all 0.4s ease;
-  }
-
-  .cm-btn-primary {
-    background: rgba(245, 240, 232, 0.12);
-    color: rgba(245, 240, 232, 0.5);
-  }
-
-  .cm-btn-ghost {
-    background: transparent;
-    border: 1px solid rgba(245, 240, 232, 0.08);
-    color: rgba(245, 240, 232, 0.3);
-  }
-
-  /* Status bar at bottom */
-  .cm-status {
-    padding: 8px 12px;
-    text-align: center;
-    font-family: var(--body-font-family);
-    font-size: 0.42rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    border-top: 1px solid rgba(245, 240, 232, 0.04);
-    opacity: 0;
-    transition: opacity 0.5s ease;
-  }
-
-  .cm-status.visible { opacity: 1; }
-
-  .cm-status-bad { color: rgba(255, 61, 0, 0.6); }
-  .cm-status-good { color: var(--color-tertiary); }
-
-  /* Overlay for bounce effect */
-  .cm-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(10, 10, 10, 0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.6s ease;
-    z-index: 3;
-  }
-
-  .cm-overlay.visible { opacity: 1; }
-
-  .cm-overlay-text {
-    font-family: var(--body-font-family);
-    font-size: 0.6rem;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: rgba(255, 61, 0, 0.8);
-  }
-
-  /* Card states */
-  .cm-card.reject {
-    border-color: rgba(255, 61, 0, 0.25);
-    background: rgba(255, 61, 0, 0.04);
-  }
-  .cm-card.reject .cm-card-eyebrow { color: rgba(255, 61, 0, 0.5); }
-  .cm-card.reject .cm-card-bar { background: rgba(255, 61, 0, 0.15); }
-
-  .cm-card.match {
-    border-color: rgba(0, 229, 160, 0.25);
-    background: rgba(0, 229, 160, 0.05);
-  }
-  .cm-card.match .cm-card-eyebrow { color: rgba(0, 229, 160, 0.8); }
-  .cm-card.match .cm-card-bar { background: rgba(0, 229, 160, 0.3); }
 
   /* ========================================
      SECTION 6: WHY NOW (TEASER)
@@ -786,7 +460,7 @@
     color: var(--color-fg);
     text-decoration: none;
     padding: 0.5rem 1.5rem;
-    border: 1px solid rgba(245, 240, 232, 0.15);
+    border: 1px solid rgba(245, 240, 232, 0.35);
     border-radius: var(--radius-pill);
     transition: all 0.3s ease;
   }
@@ -839,14 +513,15 @@
 
   .proof-tag {
     display: inline-block;
-    padding: 0.5rem 1.5rem;
-    border: 1px solid rgba(245, 240, 232, 0.12);
-    border-radius: var(--radius-pill);
     font-family: var(--body-font-family);
     font-size: 0.6rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--color-fg-dim);
+  }
+  .proof-tags .proof-tag + .proof-tag::before {
+    content: "·";
+    margin-right: 0.75rem;
   }
 
   /* ========================================
@@ -975,29 +650,11 @@
     }
 
     .statement-number {
-      font-size: 3.5rem;
+      font-size: 2.5rem;
     }
 
-    .metrics {
-      grid-template-columns: 1fr;
-      gap: 0;
-    }
-
-    .key-line {
-      padding: 3rem var(--section-padding);
-    }
-
-    .contrast-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .contrast-before {
-      border-right: none;
-      border-bottom: 1px solid var(--color-fg-faint);
-    }
-
-    .cm-cards {
-      grid-template-columns: 1fr;
+    .demo-video-wrapper {
+      border-radius: 6px;
     }
 
     .cta {
@@ -1205,6 +862,7 @@
       of1 makes every person a market of one.
       <br><strong>The marketing nirvana is real</strong> — and it's simpler than you think.
     </p>
+    <a href="#demo" class="hero-demo-cta">Watch demo</a>
   </section>
 
   <div class="section-divider"></div>
@@ -1231,139 +889,22 @@
     </div>
   </section>
 
-  <!-- SECTION 3: METRICS -->
-  <section class="metrics bg-lifted" data-section="metrics" data-intent="crystallize the argument" data-layout="contained" data-items="3">
-    <div class="metric">
-      <div class="metric-value">1</div>
-      <div class="metric-label">Audience size that matters</div>
-    </div>
-    <div class="metric">
-      <div class="metric-value">0</div>
-      <div class="metric-label">Segments required</div>
-    </div>
-    <div class="metric">
-      <div class="metric-value">∞</div>
-      <div class="metric-label">Unique experiences</div>
-    </div>
-  </section>
-
-  <!-- SECTION 4: KEY LINE -->
-  <section class="key-line" data-section="key-line" data-intent="anchor statement" data-layout="contained" data-fragment="key-line-quote" data-fragment-role="source">
-    <blockquote>
+  <!-- SECTION 3: DEMO VIDEO -->
+  <section id="demo" class="demo-video bg-lifted" data-section="demo-video" data-intent="prove the concept with a real demo" data-layout="contained" data-media="video">
+    <blockquote class="demo-video-quote">
       "We made your website <strong>pay attention</strong> —
       so every visitor finds exactly what they came for,
       as if it had always been there."
     </blockquote>
-    <div class="attribution">of1.live</div>
-  </section>
-
-  <!-- SECTION 5: CONTRAST (BEFORE / AFTER) -->
-  <section class="contrast" data-section="contrast" data-intent="make the benefit tangible" data-layout="split-media">
-    <div class="contrast-eyebrow">The same visitor. A different website.</div>
-    <div class="contrast-grid">
-      <div class="contrast-col contrast-before">
-        <div class="contrast-label">Without of1</div>
-        <div class="contrast-headline">Your visitor arrives.</div>
-        <p class="contrast-body">They scroll past three sections that don't apply to them. They open the pricing page meant for enterprise when they're a startup. They leave. Your analytics say they "bounced."</p>
-        <div class="contrast-mock" id="mock-before">
-          <div class="contrast-mock-chrome">
-            <div class="contrast-mock-dot"></div>
-            <div class="contrast-mock-dot"></div>
-            <div class="contrast-mock-dot"></div>
-            <div class="contrast-mock-url">acme.com</div>
-          </div>
-          <div class="contrast-mock-page">
-            <div class="cm-signal cm-signal-bad">Generic · No signal</div>
-            <div class="cm-overlay"><div class="cm-overlay-text">Bounced</div></div>
-            <div class="cm-nav">
-              <div class="cm-logo">acme</div>
-              <div class="cm-nav-link">Product</div>
-              <div class="cm-nav-link">Pricing</div>
-              <div class="cm-nav-link">Enterprise</div>
-            </div>
-            <div class="cm-hero-area">
-              <div class="cm-eyebrow">Platform</div>
-              <div class="cm-title">Enterprise-grade solutions for global teams</div>
-              <div class="cm-subtitle">Trusted by Fortune 500 companies worldwide. Deploy at scale with our enterprise platform.</div>
-            </div>
-            <div class="cm-cards">
-              <div class="cm-card">
-                <div class="cm-card-eyebrow">Case study</div>
-                <div class="cm-card-text">Global bank saves $2M with compliance suite</div>
-                <div class="cm-card-bar"></div>
-              </div>
-              <div class="cm-card">
-                <div class="cm-card-eyebrow">Pricing</div>
-                <div class="cm-card-text">Enterprise — Contact sales for custom pricing</div>
-                <div class="cm-card-bar"></div>
-              </div>
-              <div class="cm-card">
-                <div class="cm-card-eyebrow">Guide</div>
-                <div class="cm-card-text">SOC 2 compliance checklist for regulated industries</div>
-                <div class="cm-card-bar"></div>
-              </div>
-            </div>
-            <div class="cm-cta-row">
-              <div class="cm-btn cm-btn-primary">Talk to sales</div>
-              <div class="cm-btn cm-btn-ghost">Book a demo</div>
-            </div>
-            <div class="cm-status cm-status-bad">↑ scrolled past · bounced at 0:08</div>
-          </div>
-        </div>
-      </div>
-      <div class="contrast-col contrast-after">
-        <div class="contrast-label">With of1</div>
-        <div class="contrast-headline">Your visitor arrives.</div>
-        <p class="contrast-body">The page already knows what they're looking for. The case study matches their industry. The pricing reflects their size. They don't scroll — they read. They don't bounce — they stay.</p>
-        <div class="contrast-mock" id="mock-after">
-          <div class="contrast-mock-chrome">
-            <div class="contrast-mock-dot"></div>
-            <div class="contrast-mock-dot"></div>
-            <div class="contrast-mock-dot"></div>
-            <div class="contrast-mock-url">acme.com — composed for this visitor</div>
-          </div>
-          <div class="contrast-mock-page">
-            <div class="cm-signal cm-signal-good">Series A · SaaS · 12 employees</div>
-            <div class="cm-nav">
-              <div class="cm-logo">acme</div>
-              <div class="cm-nav-link">Product</div>
-              <div class="cm-nav-link">Pricing</div>
-              <div class="cm-nav-link">Startups</div>
-            </div>
-            <div class="cm-hero-area">
-              <div class="cm-eyebrow">For startups</div>
-              <div class="cm-title">Scale your SaaS from Series A to B</div>
-              <div class="cm-subtitle">Built for startup teams shipping fast on lean budgets. No enterprise bloat.</div>
-            </div>
-            <div class="cm-cards">
-              <div class="cm-card">
-                <div class="cm-card-eyebrow">Case study</div>
-                <div class="cm-card-text">Series A SaaS grew pipeline 40% in 3 months</div>
-                <div class="cm-card-bar"></div>
-              </div>
-              <div class="cm-card">
-                <div class="cm-card-eyebrow">Pricing</div>
-                <div class="cm-card-text">Startup plan — $49/mo · no contracts</div>
-                <div class="cm-card-bar"></div>
-              </div>
-              <div class="cm-card">
-                <div class="cm-card-eyebrow">Guide</div>
-                <div class="cm-card-text">SaaS quickstart: live in 15 minutes</div>
-                <div class="cm-card-bar"></div>
-              </div>
-            </div>
-            <div class="cm-cta-row">
-              <div class="cm-btn cm-btn-primary">Start free trial</div>
-              <div class="cm-btn cm-btn-ghost">See startup plans</div>
-            </div>
-            <div class="cm-status cm-status-good">reading · 2:34 on page</div>
-          </div>
-        </div>
-      </div>
+    <div class="demo-video-wrapper">
+      <video controls preload="none" poster="/of1-demo-poster.jpg">
+        <source src="/of1-demo.mp4" type="video/mp4">
+      </video>
     </div>
+    <a href="https://arco.coffee/" class="demo-video-cta" target="_blank" rel="noopener">See it live</a>
   </section>
 
-  <!-- SECTION 6: WHY NOW (TEASER) -->
+  <!-- SECTION 4: WHY NOW (TEASER) -->
   <section class="why-teaser" data-section="why-teaser" data-intent="bridge to vision" data-layout="contained">
     <div class="why-teaser-eyebrow">Why now</div>
     <h2>Your visitors already know what <em>relevance</em> feels like.</h2>
@@ -1403,106 +944,6 @@
       &copy; 2026 Adobe. Early-stage technology by the <a href="https://business.adobe.com/products/experience-manager/sites.html">Adobe Experience Manager</a> team.
     </div>
   </footer>
-
-  <script>
-  (function() {
-    function animateBefore(mock) {
-      const signal = mock.querySelector('.cm-signal');
-      const cards = mock.querySelectorAll('.cm-card');
-      const status = mock.querySelector('.cm-status');
-      const overlay = mock.querySelector('.cm-overlay');
-      const ctaRow = mock.querySelector('.cm-cta-row');
-
-      function reset() {
-        signal.classList.remove('visible');
-        overlay.classList.remove('visible');
-        status.classList.remove('visible');
-        cards.forEach(c => c.classList.remove('reject'));
-        if (ctaRow) ctaRow.style.opacity = '';
-      }
-
-      reset();
-
-      const steps = [
-        [800, () => { signal.classList.add('visible'); }],
-        [2000, () => { cards[0].classList.add('reject'); }],
-        [2600, () => { cards[1].classList.add('reject'); }],
-        [3200, () => { cards[2].classList.add('reject'); }],
-        [4000, () => { if (ctaRow) ctaRow.style.opacity = '0.3'; }],
-        [4800, () => { status.classList.add('visible'); }],
-        [5600, () => { overlay.classList.add('visible'); }],
-        [8000, () => { reset(); }],
-      ];
-
-      const timers = steps.map(([delay, fn]) => setTimeout(fn, delay));
-      return { timers, reset, duration: 8500 };
-    }
-
-    function animateAfter(mock) {
-      const signal = mock.querySelector('.cm-signal');
-      const cards = mock.querySelectorAll('.cm-card');
-      const status = mock.querySelector('.cm-status');
-      const heroArea = mock.querySelector('.cm-hero-area');
-      const ctaRow = mock.querySelector('.cm-cta-row');
-
-      function reset() {
-        signal.classList.remove('visible');
-        status.classList.remove('visible');
-        cards.forEach(c => c.classList.remove('match'));
-        if (heroArea) heroArea.style.borderColor = '';
-        if (ctaRow) {
-          const btn = ctaRow.querySelector('.cm-btn-primary');
-          if (btn) { btn.style.background = ''; btn.style.color = ''; }
-        }
-      }
-
-      reset();
-
-      const steps = [
-        [800, () => { signal.classList.add('visible'); }],
-        [1800, () => {
-          if (heroArea) heroArea.style.borderColor = 'rgba(0, 229, 160, 0.15)';
-        }],
-        [2400, () => { cards[0].classList.add('match'); }],
-        [3000, () => { cards[1].classList.add('match'); }],
-        [3600, () => { cards[2].classList.add('match'); }],
-        [4400, () => {
-          if (ctaRow) {
-            const btn = ctaRow.querySelector('.cm-btn-primary');
-            if (btn) { btn.style.background = 'rgba(0,229,160,0.2)'; btn.style.color = 'rgba(0,229,160,0.9)'; }
-          }
-        }],
-        [5200, () => { status.classList.add('visible'); }],
-        [8000, () => { reset(); }],
-      ];
-
-      const timers = steps.map(([delay, fn]) => setTimeout(fn, delay));
-      return { timers, reset, duration: 8500 };
-    }
-
-    const beforeMock = document.getElementById('mock-before');
-    const afterMock = document.getElementById('mock-after');
-    let beforeLoop, afterLoop;
-
-    function startLoops() {
-      const b = animateBefore(beforeMock);
-      const a = animateAfter(afterMock);
-      beforeLoop = setInterval(() => animateBefore(beforeMock), b.duration);
-      afterLoop = setInterval(() => animateAfter(afterMock), a.duration);
-    }
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          startLoops();
-          observer.disconnect();
-        }
-      });
-    }, { threshold: 0.3 });
-
-    observer.observe(document.querySelector('.contrast'));
-  })();
-  </script>
 
   <!-- INTEREST MODAL -->
   <div class="interest-backdrop" id="interestBackdrop" role="dialog" aria-modal="true" aria-labelledby="interestTitle">
