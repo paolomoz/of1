@@ -9,12 +9,14 @@
 <meta property="og:image" content="https://of1.live/og-image.png">
 <meta property="og:url" content="https://of1.live/">
 <meta property="og:type" content="website">
+<meta name="description" content="of1 makes every visitor a market of one. Real-time website personalization that adapts to each person in 2.5 seconds — no segments, no compromises.">
 <meta name="twitter:card" content="summary_large_image">
 <!-- stardust:provenance { "brand": "stardust/brand-profile.json", "briefing": "stardust/briefings/landing.md", "wireframe": "stardust/wireframes/landing.html", "synthesized": [] } -->
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
 <style>
   :root {
     /* Colors */
@@ -276,8 +278,8 @@
   .bg-lifted .attribution { color: rgba(10, 10, 10, 0.35); }
 
   .bg-lifted h2 { color: var(--color-bg); }
-  .bg-lifted .social-proof-eyebrow { color: var(--color-accent); }
-  .bg-lifted .social-proof-sub { color: rgba(10, 10, 10, 0.5); }
+  .bg-lifted .social-proof-eyebrow { color: #BF2C00; }
+  .bg-lifted .social-proof-sub { color: rgba(10, 10, 10, 0.62); }
 
   .social-proof-cta {
     margin-top: 2rem;
@@ -290,7 +292,7 @@
     color: var(--color-bg);
   }
   .bg-lifted .proof-tag {
-    color: rgba(10, 10, 10, 0.5);
+    color: rgba(10, 10, 10, 0.62);
   }
 
   /* ========================================
@@ -318,8 +320,7 @@
     font-family: var(--heading-font-family);
     font-size: clamp(3rem, 5vw, 5rem);
     font-weight: 700;
-    color: #4D4DFF;
-    opacity: 0.6;
+    color: #7B7BFF;
     line-height: 1;
     min-width: 1.2em;
   }
@@ -614,13 +615,12 @@
 
   .footer-attribution {
     font-size: 0.6rem;
-    color: var(--color-fg-muted);
-    opacity: 0.7;
+    color: rgba(245, 240, 232, 0.45);
     line-height: 1.6;
   }
 
   .footer-attribution a {
-    color: var(--color-fg-muted);
+    color: rgba(245, 240, 232, 0.45);
     text-decoration: underline;
     text-underline-offset: 2px;
     transition: color 0.2s;
@@ -853,6 +853,8 @@
     </nav>
   </header>
 
+  <main>
+
   <!-- SECTION 1: HERO -->
   <section class="hero" data-section="hero" data-intent="emotional hook" data-layout="full-bleed">
     <div class="hero-eyebrow">Audience of One</div>
@@ -933,6 +935,8 @@
     <p class="cta-sub">Join the brands building the future of relevant experiences.</p>
     <a href="https://arco.coffee/" class="cta-btn" target="_blank" rel="noopener">See it live</a>
   </section>
+
+  </main>
 
   <!-- SECTION 8: FOOTER -->
   <footer class="site-footer" data-section="footer" data-intent="close" data-layout="contained">

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://of1.live/sitemap.xml
