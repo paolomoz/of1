@@ -1097,7 +1097,8 @@
 
   // Auto-open modal when hash is #register-interest
   if (window.location.hash === '#register-interest') {
-    openInterestModal();
+    // Small delay to let browser complete scroll-to-anchor
+    setTimeout(() => openInterestModal(), 100);
   }
 
   async function submitInterest(e) {
