@@ -1094,6 +1094,12 @@
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') closeInterestModal();
   });
+
+  // Auto-open modal when hash is #register-interest
+  if (window.location.hash === '#register-interest') {
+    openInterestModal();
+  }
+
   async function submitInterest(e) {
     e.preventDefault();
     const btn = document.getElementById('interestSubmit');
