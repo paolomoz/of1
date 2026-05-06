@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — of1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-bg: #0A0A0A; --color-fg: #F5F0E8; --color-accent: #FF3D00;
+    --color-tertiary: #00E5A0;
+    --color-fg-dim: rgba(245,240,232,0.55); --color-fg-faint: rgba(245,240,232,0.06);
+    --color-fg-muted: rgba(245,240,232,0.5);
+    --heading-font-family: 'Cormorant Garamond', serif;
+    --body-font-family: 'JetBrains Mono', monospace;
+    --heading-lg: clamp(24px,3vw,40px);
+    --heading-md: clamp(20px,2vw,28px);
+    --body: clamp(13px,1.1vw,16px); --body-sm: clamp(12px,1vw,14px);
+    --eyebrow: 0.65rem;
+    --letter-spacing-eyebrow: 0.35em;
+    --section-padding: 4rem; --reading-width: 680px; --max-width: 1200px;
+    --radius-pill: 100px;
+    --line-height-body: 1.9;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--color-bg); color: var(--color-fg); font-family: var(--body-font-family); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+  .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem var(--section-padding); background: rgba(10,10,10,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--color-fg-faint); }
+  .site-logo { font-family: var(--body-font-family); font-size: 1rem; font-weight: 700; color: var(--color-fg); text-decoration: none; letter-spacing: -0.02em; }
+  .site-nav { display: flex; align-items: center; gap: 2rem; }
+  .site-nav a { font-family: var(--body-font-family); font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-fg-dim); text-decoration: none; transition: color 0.2s ease; }
+  .site-nav a:hover { color: var(--color-fg); }
+  .site-nav .nav-cta { padding: 0.4rem 1.2rem; background: var(--color-accent); color: var(--color-bg); border-radius: var(--radius-pill); font-weight: 600; }
+  .site-nav .nav-cta:hover { background: var(--color-fg); }
+
+  .privacy-page { padding: 9rem var(--section-padding) 6rem; max-width: var(--reading-width); margin: 0 auto; }
+  .privacy-eyebrow { font-family: var(--body-font-family); font-size: var(--eyebrow); letter-spacing: var(--letter-spacing-eyebrow); text-transform: uppercase; color: var(--color-tertiary); margin-bottom: 2rem; font-weight: 500; }
+  .privacy-page h1 { font-family: var(--heading-font-family); font-size: var(--heading-lg); font-weight: 700; line-height: 1.1; margin-bottom: 2.5rem; }
+  .privacy-page h2 { font-family: var(--heading-font-family); font-size: var(--heading-md); font-weight: 600; line-height: 1.2; margin-top: 3rem; margin-bottom: 1rem; }
+  .privacy-page p { font-family: var(--body-font-family); font-size: var(--body-sm); line-height: var(--line-height-body); color: var(--color-fg-dim); margin-bottom: 1.2rem; }
+  .privacy-page ul { font-family: var(--body-font-family); font-size: var(--body-sm); line-height: var(--line-height-body); color: var(--color-fg-dim); margin-bottom: 1.2rem; padding-left: 1.5rem; }
+  .privacy-page li { margin-bottom: 0.5rem; }
+  .privacy-page strong { color: var(--color-fg); font-weight: 500; }
+  .last-updated { font-family: var(--body-font-family); font-size: 0.6rem; letter-spacing: 0.1em; color: var(--color-fg-muted); margin-top: 4rem; }
+
+  .site-footer { padding: 3rem var(--section-padding); border-top: 1px solid var(--color-fg-faint); display: flex; justify-content: space-between; font-family: var(--body-font-family); font-size: 0.65rem; color: var(--color-fg-muted); letter-spacing: 0.1em; }
+
+  @media (max-width: 600px) { :root { --section-padding: 1.5rem; } .privacy-page { padding-top: 6rem; } }
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <a href="/" class="site-logo">of1</a>
+    <nav class="site-nav">
+      <a href="/">Home</a>
+      <a href="/why.html">Why now</a>
+      <a href="/how-it-works.html">How it works</a>
+      <a href="https://arco.coffee/" class="nav-cta" target="_blank" rel="noopener">See it live</a>
+    </nav>
+  </header>
+
+  <main class="privacy-page">
+    <div class="privacy-eyebrow">Legal</div>
+    <h1>Privacy Policy</h1>
+
+    <p>This privacy policy describes how the <strong>Audience of One Preview</strong> Chrome extension ("the Extension") collects, uses, and protects your data.</p>
+
+    <h2>What we collect</h2>
+    <p>The Extension collects the following data to provide AI-powered website personalization:</p>
+    <ul>
+      <li><strong>Browsing activity</strong> — pages you visit on activated domains, including page titles and timestamps, to understand your interests and intent.</li>
+      <li><strong>Page content</strong> — text, images, and structure of web pages you visit, used to generate personalized alternatives.</li>
+      <li><strong>Interaction signals</strong> — scroll depth, time on page, and navigation patterns to infer preferences.</li>
+    </ul>
+
+    <h2>How we use your data</h2>
+    <ul>
+      <li>To analyze your browsing behavior and generate personalized content variations.</li>
+      <li>To send page content to our AI service for real-time personalization.</li>
+      <li>To store indexed page data locally and on our servers for faster personalization on return visits.</li>
+    </ul>
+
+    <h2>What we do NOT do</h2>
+    <ul>
+      <li>We do <strong>not</strong> sell or transfer your data to third parties.</li>
+      <li>We do <strong>not</strong> use your data for advertising or ad targeting.</li>
+      <li>We do <strong>not</strong> collect passwords, payment information, or personal communications.</li>
+      <li>We do <strong>not</strong> use your data to determine creditworthiness or for lending purposes.</li>
+    </ul>
+
+    <h2>Data storage</h2>
+    <p>Behavioral data and page models are stored locally in Chrome's storage API and on our Cloudflare Workers backend. Data is associated with your browser instance, not with a named account, unless you choose to sign in.</p>
+
+    <h2>Data retention</h2>
+    <p>Local data persists until you uninstall the Extension or clear its storage. Server-side data is retained for the duration of the demo period and deleted thereafter.</p>
+
+    <h2>Your control</h2>
+    <ul>
+      <li>You can deactivate any domain at any time from the side panel.</li>
+      <li>You can clear all stored data from the Extension settings.</li>
+      <li>Uninstalling the Extension removes all local data immediately.</li>
+    </ul>
+
+    <h2>Contact</h2>
+    <p>For questions about this policy or your data, reach out at <strong>of1.live</strong>.</p>
+
+    <div class="last-updated">Last updated: May 2025</div>
+  </main>
+
+  <footer class="site-footer">
+    <span>Audience of ONE</span>
+    <span>of1.live</span>
+  </footer>
+</body>
+</html>
