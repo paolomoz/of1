@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>of1 Labs — See it live</title>
+<meta property="og:title" content="of1 Labs — See it live">
+<meta property="og:description" content="Watch of1 personalize any website in real time. One click, no setup.">
+<meta property="og:image" content="https://of1.live/og-image.png">
+<meta property="og:url" content="https://of1.live/labs">
+<meta property="og:type" content="website">
+<meta name="description" content="Watch of1 personalize any website in real time. One click, no setup.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
+<style>
+  :root {
+    --color-bg: #1C1917;
+    --color-fg: #F5F0E8;
+    --color-accent: #FF3D00;
+    --color-secondary: #1A1AFF;
+    --color-tertiary: #00E5A0;
+    --color-fg-dim: rgba(245, 240, 232, 0.55);
+    --color-fg-faint: rgba(245, 240, 232, 0.06);
+    --color-fg-muted: rgba(245, 240, 232, 0.5);
+
+    --heading-font-family: 'Cormorant Garamond', serif;
+    --body-font-family: 'JetBrains Mono', monospace;
+
+    --heading-xxl: clamp(56px, 8vw, 128px);
+    --heading-xl: clamp(48px, 6vw, 96px);
+    --heading-lg: clamp(28px, 3.5vw, 48px);
+    --heading-md: clamp(24px, 2.5vw, 36px);
+    --body: clamp(14px, 1.2vw, 17px);
+    --body-sm: clamp(12px, 1vw, 15px);
+    --eyebrow: 0.7rem;
+    --button: 0.75rem;
+
+    --line-height-heading: 0.95;
+    --line-height-body: 1.8;
+    --letter-spacing-eyebrow: 0.35em;
+    --letter-spacing-button: 0.15em;
+
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 48px;
+    --spacing-2xl: 96px;
+
+    --section-padding: 4rem;
+    --max-width: 1200px;
+    --radius-card: 10px;
+    --radius-pill: 100px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--body-font-family);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem var(--section-padding);
+    background: rgba(28, 25, 23, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-fg-faint);
+  }
+
+  .site-logo {
+    font-family: var(--body-font-family);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-fg);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+  }
+
+  .site-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xl);
+  }
+
+  .site-nav a {
+    font-family: var(--body-font-family);
+    font-size: var(--eyebrow);
+    font-weight: 500;
+    color: var(--color-fg-dim);
+    text-decoration: none;
+    letter-spacing: var(--letter-spacing-eyebrow);
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .site-nav a:hover { color: var(--color-fg); }
+  .site-nav a.active { color: var(--color-fg); }
+
+  .site-nav .nav-cta {
+    color: var(--color-fg);
+    border: 1px solid var(--color-fg-dim);
+    padding: 0.5rem 1.25rem;
+    border-radius: var(--radius-pill);
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .site-nav .nav-cta:hover {
+    border-color: var(--color-fg);
+    background: var(--color-fg-faint);
+  }
+
+  .labs-hero {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8rem var(--section-padding) var(--spacing-2xl);
+  }
+
+  .labs-hero-inner {
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-xl);
+  }
+
+  .labs-eyebrow {
+    font-family: var(--body-font-family);
+    font-size: var(--eyebrow);
+    font-weight: 500;
+    color: var(--color-accent);
+    letter-spacing: var(--letter-spacing-eyebrow);
+    text-transform: uppercase;
+  }
+
+  .labs-headline {
+    font-family: var(--heading-font-family);
+    font-size: var(--heading-xl);
+    font-weight: 600;
+    line-height: var(--line-height-heading);
+    color: var(--color-fg);
+  }
+
+  .labs-headline em {
+    font-style: italic;
+    color: var(--color-fg-dim);
+  }
+
+  .labs-subtext {
+    font-family: var(--body-font-family);
+    font-size: var(--body);
+    color: var(--color-fg-dim);
+    line-height: var(--line-height-body);
+    max-width: 520px;
+  }
+
+  .labs-cta-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-md);
+  }
+
+  .labs-cta {
+    display: inline-block;
+    font-family: var(--body-font-family);
+    font-size: var(--button);
+    font-weight: 600;
+    letter-spacing: var(--letter-spacing-button);
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--color-fg);
+    background: var(--color-accent);
+    padding: 1rem 2.5rem;
+    border-radius: var(--radius-pill);
+    transition: opacity 0.2s, transform 0.2s;
+  }
+
+  .labs-cta:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+  }
+
+  .labs-extension-note {
+    font-family: var(--body-font-family);
+    font-size: var(--body-sm);
+    color: var(--color-fg-muted);
+    line-height: var(--line-height-body);
+  }
+
+  .labs-extension-note a {
+    color: var(--color-fg-dim);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s;
+  }
+
+  .labs-extension-note a:hover {
+    color: var(--color-fg);
+  }
+
+  .site-footer {
+    padding: var(--spacing-xl) var(--section-padding);
+    border-top: 1px solid var(--color-fg-faint);
+  }
+
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--eyebrow);
+    letter-spacing: var(--letter-spacing-eyebrow);
+    text-transform: uppercase;
+    color: var(--color-fg-dim);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .footer-attribution {
+    font-size: var(--body-sm);
+    color: var(--color-fg-muted);
+    line-height: var(--line-height-body);
+  }
+
+  .footer-attribution a {
+    color: var(--color-fg-dim);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  @media (max-width: 768px) {
+    .site-header {
+      padding: 1rem 1.5rem;
+    }
+
+    .site-nav {
+      gap: var(--spacing-lg);
+    }
+
+    .site-nav .nav-cta {
+      display: none;
+    }
+
+    .labs-hero {
+      padding: 7rem 1.5rem var(--spacing-2xl);
+    }
+
+    .site-footer {
+      padding: var(--spacing-xl) 1.5rem;
+    }
+  }
+</style>
+<script defer type="text/javascript" src="https://ot.aem.live/.rum/@adobe/helix-rum-js@^2/dist/rum-standalone.js"></script>
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="/" class="site-logo">of1</a>
+    <nav class="site-nav">
+      <a href="/">Home</a>
+      <a href="/why.html">Why now</a>
+      <a href="/how-it-works.html">How it works</a>
+      <a href="/labs.html" class="active">Labs</a>
+    </nav>
+  </header>
+
+  <main class="labs-hero">
+    <div class="labs-hero-inner">
+      <div class="labs-eyebrow">of1 / labs</div>
+      <h1 class="labs-headline">See your website become <em>everyone's</em> website</h1>
+      <p class="labs-subtext">Watch of1 personalize any site in real time — no setup, no segments. Just open any page and see it adapt to you.</p>
+      <div class="labs-cta-group">
+        <a
+          href="https://www.sliccy.ai/handoff?upskill=https://github.com/aem-growth-adoption/of1-demo"
+          class="labs-cta"
+        >Let's get started &rarr;</a>
+        <p class="labs-extension-note">
+          Requires the <a href="https://www.sliccy.ai" target="_blank" rel="noopener">SLICC Chrome extension</a>.
+          <a href="https://www.sliccy.ai" target="_blank" rel="noopener">Install it here</a> if you don't have it yet.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer" data-section="footer" data-intent="close" data-layout="contained">
+    <div class="footer-top">
+      <span>Audience of ONE</span>
+      <span>of1.live</span>
+    </div>
+    <div class="footer-attribution">
+      &copy; 2026 Adobe. Early-stage technology by the <a href="https://business.adobe.com/products/experience-manager/sites.html">Adobe Experience Manager</a> team.
+    </div>
+  </footer>
+
+</body>
+</html>
