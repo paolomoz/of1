@@ -260,6 +260,10 @@
       display: none;
     }
 
+    .site-nav a.active {
+      display: none;
+    }
+
     .labs-hero {
       padding: 7rem 1.5rem var(--spacing-2xl);
     }
@@ -280,6 +284,7 @@
       <a href="/why.html">Why now</a>
       <a href="/how-it-works.html">How it works</a>
       <a href="/labs.html" class="active">Labs</a>
+      <a href="https://arco.coffee/" class="nav-cta" target="_blank" rel="noopener">See it live</a>
     </nav>
   </header>
 
@@ -292,10 +297,9 @@
         <a
           href="https://www.sliccy.ai/handoff?upskill=https://github.com/aem-growth-adoption/of1-demo"
           class="labs-cta"
-        >Let's get started &rarr;</a>
+        >Let's get started <span aria-hidden="true">&rarr;</span></a>
         <p class="labs-extension-note">
-          Requires the <a href="https://www.sliccy.ai" target="_blank" rel="noopener">SLICC Chrome extension</a>.
-          <a href="https://www.sliccy.ai" target="_blank" rel="noopener">Install it here</a> if you don't have it yet.
+          Requires the <a href="https://www.sliccy.ai" target="_blank" rel="noopener">SLICC Chrome extension</a> — install it if you don't have it yet.
         </p>
       </div>
     </div>
