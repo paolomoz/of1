@@ -70,6 +70,10 @@
     flex-direction: column;
   }
 
+  /* ========================================
+     HEADER
+     ======================================== */
+
   .site-header {
     position: fixed;
     top: 0;
@@ -113,7 +117,6 @@
   }
 
   .site-nav a:hover { color: var(--color-fg); }
-  .site-nav a.active { color: var(--color-fg); }
 
   .site-nav .nav-cta {
     color: var(--color-fg);
@@ -128,8 +131,12 @@
     background: var(--color-fg-faint);
   }
 
+  /* ========================================
+     HERO — full viewport height
+     ======================================== */
+
   .labs-hero {
-    flex: 1;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -195,6 +202,8 @@
     padding: 1rem 2.5rem;
     border-radius: var(--radius-pill);
     transition: opacity 0.2s, transform 0.2s;
+    cursor: pointer;
+    border: none;
   }
 
   .labs-cta:hover {
@@ -216,13 +225,140 @@
     transition: color 0.2s;
   }
 
-  .labs-extension-note a:hover {
+  .labs-extension-note a:hover { color: var(--color-fg); }
+
+  /* ========================================
+     PIPELINE — below the fold
+     ======================================== */
+
+  .labs-pipeline {
+    padding: var(--spacing-2xl) var(--section-padding);
+    border-top: 1px solid var(--color-fg-faint);
+  }
+
+  .pipeline-inner {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .pipeline-eyebrow {
+    font-family: var(--body-font-family);
+    font-size: var(--eyebrow);
+    font-weight: 500;
+    color: var(--color-fg-muted);
+    letter-spacing: var(--letter-spacing-eyebrow);
+    text-transform: uppercase;
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .pipeline-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--color-fg-faint);
+    border: 1px solid var(--color-fg-faint);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+  }
+
+  .pipeline-step {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    padding: var(--spacing-xl);
+    background: var(--color-bg);
+  }
+
+  .step-number {
+    font-family: var(--body-font-family);
+    font-size: var(--eyebrow);
+    font-weight: 600;
+    color: var(--color-fg-muted);
+    letter-spacing: var(--letter-spacing-eyebrow);
+  }
+
+  .step-name {
+    font-family: var(--heading-font-family);
+    font-size: var(--heading-md);
+    font-weight: 600;
+    color: var(--color-fg);
+    line-height: 1.1;
+  }
+
+  .step-desc {
+    font-family: var(--body-font-family);
+    font-size: var(--body-sm);
+    color: var(--color-fg-dim);
+    line-height: var(--line-height-body);
+    flex: 1;
+  }
+
+  /* ========================================
+     INSTALL CTA
+     ======================================== */
+
+  .labs-install {
+    padding: var(--spacing-2xl) var(--section-padding);
+    text-align: center;
+  }
+
+  .labs-install-inner {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-lg);
+  }
+
+  .labs-install-headline {
+    font-family: var(--heading-font-family);
+    font-size: var(--heading-lg);
+    font-weight: 600;
+    line-height: var(--line-height-heading);
     color: var(--color-fg);
   }
+
+  .labs-install-sub {
+    font-family: var(--body-font-family);
+    font-size: var(--body-sm);
+    color: var(--color-fg-dim);
+    line-height: var(--line-height-body);
+  }
+
+  .labs-install-sub em {
+    color: var(--color-tertiary);
+    font-style: normal;
+  }
+
+  .labs-install-cta {
+    display: inline-block;
+    font-family: var(--body-font-family);
+    font-size: var(--button);
+    font-weight: 600;
+    letter-spacing: var(--letter-spacing-button);
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--color-bg);
+    background: var(--color-fg);
+    padding: 1rem 2.5rem;
+    border-radius: var(--radius-pill);
+    transition: opacity 0.2s, transform 0.2s;
+  }
+
+  .labs-install-cta:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+  }
+
+  /* ========================================
+     FOOTER
+     ======================================== */
 
   .site-footer {
     padding: var(--spacing-xl) var(--section-padding);
     border-top: 1px solid var(--color-fg-faint);
+    margin-top: auto;
   }
 
   .footer-top {
@@ -247,26 +383,24 @@
     text-underline-offset: 3px;
   }
 
+  /* ========================================
+     RESPONSIVE
+     ======================================== */
+
   @media (max-width: 768px) {
-    .site-header {
-      padding: 1rem 1.5rem;
-    }
+    .site-header { padding: 1rem 1.5rem; }
+    .site-nav { gap: var(--spacing-lg); }
+    .site-nav .nav-cta { display: none; }
 
-    .site-nav {
-      gap: var(--spacing-lg);
-    }
+    .labs-hero { padding: 7rem 1.5rem var(--spacing-2xl); }
 
-    .site-nav .nav-cta {
-      display: none;
-    }
+    .labs-pipeline { padding: var(--spacing-2xl) 1.5rem; }
 
-    .labs-hero {
-      padding: 7rem 1.5rem var(--spacing-2xl);
-    }
+    .pipeline-steps { grid-template-columns: repeat(2, 1fr); }
 
-    .site-footer {
-      padding: var(--spacing-xl) 1.5rem;
-    }
+    .labs-install { padding: var(--spacing-2xl) 1.5rem; }
+
+    .site-footer { padding: var(--spacing-xl) 1.5rem; }
   }
 </style>
 <script defer type="text/javascript" src="https://ot.aem.live/.rum/@adobe/helix-rum-js@^2/dist/rum-standalone.js"></script>
@@ -283,21 +417,73 @@
     </nav>
   </header>
 
-  <main class="labs-hero">
-    <div class="labs-hero-inner">
-      <div class="labs-eyebrow">of1 / labs</div>
-      <h1 class="labs-headline">See your website become <em>everyone's</em> website</h1>
-      <p class="labs-subtext">Watch of1 personalize any site in real time — no setup, no segments. Just open any page and see it adapt to you.</p>
-      <div class="labs-cta-group">
+  <main>
+
+    <!-- HERO -->
+    <section class="labs-hero">
+      <div class="labs-hero-inner">
+        <div class="labs-eyebrow">of1 / labs</div>
+        <h1 class="labs-headline">See your website become <em>everyone's</em> website</h1>
+        <p class="labs-subtext">Watch of1 personalize any site in real time — no setup, no segments. Just open any page and see it adapt to you.</p>
+        <div class="labs-cta-group">
+          <button class="labs-cta" onclick="document.getElementById('pipeline').scrollIntoView({behavior:'smooth'})">
+            Let's get started <span aria-hidden="true">&darr;</span>
+          </button>
+          <p class="labs-extension-note">
+            Requires the <a href="https://www.sliccy.ai" target="_blank" rel="noopener">SLICC Chrome extension</a> — install it if you don't have it yet.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PIPELINE -->
+    <section class="labs-pipeline" id="pipeline">
+      <div class="pipeline-inner">
+        <div class="pipeline-eyebrow">How it works</div>
+        <div class="pipeline-steps">
+
+          <div class="pipeline-step">
+            <span class="step-number">01</span>
+            <span class="step-name">Discovery</span>
+            <span class="step-desc">Understand the site — brand, products, audience.</span>
+          </div>
+
+          <div class="pipeline-step">
+            <span class="step-number">02</span>
+            <span class="step-name">Stardust</span>
+            <span class="step-desc">Extract design tokens and generate a prototype.</span>
+          </div>
+
+          <div class="pipeline-step">
+            <span class="step-number">03</span>
+            <span class="step-name">Snowflake</span>
+            <span class="step-desc">Turn the prototype into a live running EDS website.</span>
+          </div>
+
+          <div class="pipeline-step">
+            <span class="step-number">04</span>
+            <span class="step-name">of1</span>
+            <span class="step-desc">Switch on personalization. Every visitor gets their version.</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- INSTALL CTA -->
+    <section class="labs-install">
+      <div class="labs-install-inner">
+        <h2 class="labs-install-headline">Ready to build your demo?</h2>
+        <p class="labs-install-sub">Install OF1 skill in SLICC, then just ask: <em>"Build me a OF1 demo of my website."</em></p>
         <a
           href="https://www.sliccy.ai/handoff?msg=upskill%3Ahttps%3A%2F%2Fgithub.com%2Faem-growth-adoption%2Fof1-demo"
-          class="labs-cta"
-        >Let's get started <span aria-hidden="true">&rarr;</span></a>
-        <p class="labs-extension-note">
-          Requires the <a href="https://www.sliccy.ai" target="_blank" rel="noopener">SLICC Chrome extension</a> — install it if you don't have it yet.
-        </p>
+          class="labs-install-cta"
+          target="_blank"
+          rel="noopener"
+        >Install on SLICC <span aria-hidden="true">&rarr;</span></a>
       </div>
-    </div>
+    </section>
+
   </main>
 
   <footer class="site-footer" data-section="footer" data-intent="close" data-layout="contained">
