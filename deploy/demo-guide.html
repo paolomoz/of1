@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Demo Prep Guide — of1</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0A0A0A; --fg: #F5F0E8; --accent: #FF3D00;
+    --teal: #00E5A0; --blue: #4D4DFF; --gold: #C8A96E;
+    --fg-dim: rgba(245,240,232,0.55); --fg-faint: rgba(245,240,232,0.06);
+    --fg-muted: rgba(245,240,232,0.35); --fg-bright: rgba(245,240,232,0.9);
+    --border: rgba(245,240,232,0.08);
+    --heading: 'Cormorant Garamond', serif;
+    --mono: 'JetBrains Mono', monospace;
+    --header-h: 60px;
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--fg); font-family: var(--mono); -webkit-font-smoothing: antialiased; }
+
+  /* ── HEADER ── */
+  .site-header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    height: var(--header-h);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2rem;
+    background: rgba(10,10,10,0.9); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--fg-faint);
+  }
+  .site-logo { font-family: var(--mono); font-size: 0.9rem; font-weight: 700; color: var(--fg); text-decoration: none; letter-spacing: -0.02em; }
+  .header-right { display: flex; align-items: center; gap: 1.8rem; }
+  .header-right a { font-size: 0.55rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--fg-muted); text-decoration: none; transition: color 0.2s; }
+  .header-right a:hover { color: var(--fg); }
+  .header-badge {
+    font-size: 0.5rem; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.25rem 0.7rem; border-radius: 100px;
+    border: 1px solid rgba(200,169,110,0.3); color: var(--gold);
+    background: rgba(200,169,110,0.06);
+  }
+
+  /* ── LAYOUT ── */
+  .page-layout { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; padding-top: var(--header-h); }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    position: sticky; top: var(--header-h); height: calc(100vh - var(--header-h));
+    overflow-y: auto; border-right: 1px solid var(--fg-faint);
+    padding: 2rem 1.4rem 3rem;
+    scrollbar-width: thin; scrollbar-color: var(--fg-faint) transparent;
+  }
+  .sidebar::-webkit-scrollbar { width: 3px; }
+  .sidebar::-webkit-scrollbar-thumb { background: var(--fg-faint); border-radius: 2px; }
+
+  .sidebar-group { margin-bottom: 2rem; }
+  .sidebar-group-label {
+    font-size: 0.45rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--fg-muted); margin-bottom: 0.7rem;
+    padding-bottom: 0.4rem; border-bottom: 1px solid var(--fg-faint);
+  }
+  .sidebar-link {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-size: 0.58rem; color: var(--fg-dim); text-decoration: none;
+    padding: 0.3rem 0; transition: color 0.15s;
+  }
+  .sidebar-link:hover { color: var(--fg); }
+  .sidebar-link.active { color: var(--teal); }
+  .sidebar-link .sl-num {
+    font-size: 0.48rem; color: var(--fg-muted); min-width: 1.2rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .sidebar-link.active .sl-num { color: var(--teal); opacity: 0.6; }
+
+  .sidebar-note {
+    margin-top: 1.5rem; padding: 0.9rem 1rem;
+    background: rgba(200,169,110,0.06); border: 1px solid rgba(200,169,110,0.15); border-radius: 8px;
+  }
+  .sidebar-note-label { font-size: 0.45rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+  .sidebar-note-text { font-family: var(--heading); font-style: italic; font-size: 0.85rem; line-height: 1.55; color: var(--fg-dim); }
+
+  /* ── MAIN ── */
+  .main { padding: 3rem 3.5rem 5rem; max-width: 900px; }
+
+  /* ── HERO ── */
+  .page-hero { margin-bottom: 3rem; }
+  .page-hero-eyebrow {
+    font-size: 0.5rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .page-hero-eyebrow::after { content: ''; flex: 1; max-width: 60px; height: 1px; background: rgba(255,61,0,0.3); }
+  .page-hero-title { font-family: var(--heading); font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 700; line-height: 1.05; margin-bottom: 1rem; }
+  .page-hero-title em { font-style: italic; color: var(--fg-dim); }
+  .page-hero-sub { font-size: 0.65rem; line-height: 1.8; color: var(--fg-dim); max-width: 600px; margin-bottom: 1.5rem; }
+  .page-hero-meta { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .meta-pill {
+    display: flex; align-items: center; gap: 0.4rem;
+    font-size: 0.5rem; letter-spacing: 0.1em;
+    padding: 0.3rem 0.8rem; border-radius: 100px;
+    border: 1px solid var(--border); color: var(--fg-muted);
+  }
+  .meta-pill .dot { width: 5px; height: 5px; border-radius: 50%; }
+
+  /* ── SECTION ── */
+  .section { margin-bottom: 3.5rem; scroll-margin-top: calc(var(--header-h) + 16px); }
+  .section-header { margin-bottom: 1.5rem; }
+  .section-label { font-size: 0.48rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-muted); margin-bottom: 0.6rem; }
+  .section-title { font-family: var(--heading); font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 700; line-height: 1.1; }
+  .section-desc { font-size: 0.62rem; color: var(--fg-dim); line-height: 1.8; margin-top: 0.6rem; max-width: 640px; }
+  .divider { height: 1px; background: var(--fg-faint); margin-bottom: 3.5rem; }
+
+  /* ── PREREQ CARDS ── */
+  .prereq-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+  .prereq-card {
+    border: 1px solid var(--border); border-radius: 10px; padding: 1.2rem 1.3rem;
+    background: rgba(245,240,232,0.02); transition: border-color 0.2s, background 0.2s;
+    cursor: default;
+  }
+  .prereq-card:hover { border-color: rgba(245,240,232,0.12); background: rgba(245,240,232,0.03); }
+  .prereq-card-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 0.8rem; }
+  .prereq-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; }
+  .prereq-status { font-size: 0.45rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.5rem; border-radius: 100px; }
+  .status-required { color: var(--accent); background: rgba(255,61,0,0.08); border: 1px solid rgba(255,61,0,0.15); }
+  .status-optional { color: var(--fg-muted); background: rgba(245,240,232,0.04); border: 1px solid var(--border); }
+  .prereq-name { font-size: 0.65rem; font-weight: 600; color: var(--fg); margin-bottom: 0.3rem; }
+  .prereq-desc { font-size: 0.57rem; color: var(--fg-dim); line-height: 1.7; }
+  .prereq-cmd { font-size: 0.54rem; color: var(--teal); margin-top: 0.7rem; background: rgba(0,229,160,0.05); border: 1px solid rgba(0,229,160,0.1); border-radius: 5px; padding: 0.4rem 0.6rem; word-break: break-all; }
+
+  /* ── PIPELINE ── */
+  .pipeline { display: flex; flex-direction: column; gap: 0; }
+  .pipeline-step {
+    display: grid; grid-template-columns: 48px 1fr; gap: 1.2rem;
+    padding: 1.5rem 0; border-bottom: 1px solid var(--fg-faint);
+    position: relative;
+  }
+  .pipeline-step:last-child { border-bottom: none; }
+
+  .step-spine { display: flex; flex-direction: column; align-items: center; position: relative; }
+  .step-num {
+    width: 36px; height: 36px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--heading); font-size: 1rem; font-weight: 700;
+    flex-shrink: 0; z-index: 1; position: relative;
+  }
+  .step-line { width: 1px; flex: 1; margin-top: 6px; }
+  .pipeline-step:last-child .step-line { display: none; }
+
+  .sn-red { background: rgba(255,61,0,0.12); color: var(--accent); border: 1px solid rgba(255,61,0,0.2); }
+  .sn-teal { background: rgba(0,229,160,0.08); color: var(--teal); border: 1px solid rgba(0,229,160,0.15); }
+  .sn-blue { background: rgba(77,77,255,0.08); color: var(--blue); border: 1px solid rgba(77,77,255,0.15); }
+  .sn-gold { background: rgba(200,169,110,0.08); color: var(--gold); border: 1px solid rgba(200,169,110,0.15); }
+
+  .sl-red { background: linear-gradient(to bottom, rgba(255,61,0,0.15), transparent); }
+  .sl-teal { background: linear-gradient(to bottom, rgba(0,229,160,0.12), transparent); }
+  .sl-blue { background: linear-gradient(to bottom, rgba(77,77,255,0.12), transparent); }
+  .sl-gold { background: linear-gradient(to bottom, rgba(200,169,110,0.12), transparent); }
+
+  .step-body { padding-bottom: 0.4rem; }
+  .step-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 0.6rem; flex-wrap: wrap; }
+  .step-title-group { }
+  .step-name { font-size: 0.72rem; font-weight: 600; color: var(--fg); margin-bottom: 0.2rem; }
+  .step-skill-tag { font-size: 0.48rem; color: var(--fg-muted); }
+  .step-skill-tag code { color: var(--teal); background: rgba(0,229,160,0.06); border: 1px solid rgba(0,229,160,0.12); border-radius: 3px; padding: 1px 5px; font-family: var(--mono); }
+  .step-badges { display: flex; gap: 0.4rem; flex-wrap: wrap; align-items: center; }
+  .badge {
+    font-size: 0.43rem; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 0.15rem 0.5rem; border-radius: 100px; white-space: nowrap;
+  }
+  .badge-review { color: var(--gold); background: rgba(200,169,110,0.08); border: 1px solid rgba(200,169,110,0.2); }
+  .badge-parallel { color: var(--blue); background: rgba(77,77,255,0.08); border: 1px solid rgba(77,77,255,0.2); }
+  .badge-auto { color: var(--fg-muted); background: rgba(245,240,232,0.04); border: 1px solid var(--border); }
+  .badge-inline { color: var(--accent); background: rgba(255,61,0,0.06); border: 1px solid rgba(255,61,0,0.15); }
+
+  .step-desc { font-size: 0.6rem; line-height: 1.8; color: var(--fg-dim); margin-bottom: 1rem; }
+
+  /* ── STEP EXPAND ── */
+  .step-toggle {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.5rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--fg-muted); cursor: pointer; background: none; border: none;
+    font-family: var(--mono); padding: 0; transition: color 0.15s;
+  }
+  .step-toggle:hover { color: var(--fg); }
+  .toggle-arrow {
+    width: 12px; height: 12px; border: 1px solid currentColor; border-radius: 3px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.6rem; line-height: 1; transition: transform 0.2s, background 0.15s;
+  }
+  .step-toggle[aria-expanded="true"] .toggle-arrow { transform: rotate(90deg); background: rgba(245,240,232,0.06); }
+
+  .step-detail {
+    display: none; margin-top: 1rem;
+    padding-top: 1rem; border-top: 1px solid var(--fg-faint);
+  }
+  .step-detail.open { display: block; }
+
+  .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+  .detail-col { }
+  .detail-label { font-size: 0.45rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--fg-muted); margin-bottom: 0.5rem; }
+  .detail-items { display: flex; flex-direction: column; gap: 0.3rem; }
+  .detail-item {
+    font-size: 0.58rem; color: var(--fg-dim); line-height: 1.6;
+    padding-left: 0.8rem; position: relative;
+  }
+  .detail-item::before { content: '·'; position: absolute; left: 0; color: var(--fg-muted); }
+  .detail-item code { font-family: var(--mono); font-size: 0.85em; background: rgba(245,240,232,0.06); border: 1px solid rgba(245,240,232,0.1); border-radius: 3px; padding: 1px 4px; color: var(--fg-bright); }
+  .detail-item strong { color: var(--fg); }
+
+  /* note / tip / warn boxes */
+  .callout { border-radius: 0 6px 6px 0; padding: 0.7rem 0.9rem; margin-top: 0.7rem; }
+  .callout-label { font-size: 0.43rem; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.3rem; }
+  .callout-body { font-size: 0.58rem; line-height: 1.75; color: var(--fg-dim); }
+  .callout-body code { font-family: var(--mono); font-size: 0.85em; background: rgba(245,240,232,0.06); border-radius: 3px; padding: 1px 4px; color: var(--fg-bright); border: 1px solid rgba(245,240,232,0.1); }
+  .callout-body strong { color: var(--fg); }
+  .callout.note { background: rgba(77,77,255,0.05); border-left: 2px solid rgba(77,77,255,0.35); }
+  .callout.note .callout-label { color: var(--blue); }
+  .callout.tip { background: rgba(0,229,160,0.05); border-left: 2px solid rgba(0,229,160,0.3); }
+  .callout.tip .callout-label { color: var(--teal); }
+  .callout.warn { background: rgba(255,61,0,0.05); border-left: 2px solid rgba(255,61,0,0.25); }
+  .callout.warn .callout-label { color: var(--accent); }
+  .callout.gold { background: rgba(200,169,110,0.05); border-left: 2px solid rgba(200,169,110,0.25); }
+  .callout.gold .callout-label { color: var(--gold); }
+
+  /* ── CONCEPTS ── */
+  .concept-list { display: flex; flex-direction: column; gap: 0.6rem; }
+  .concept-item { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .concept-q {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.9rem 1.1rem; cursor: pointer;
+    background: rgba(245,240,232,0.02); transition: background 0.15s;
+  }
+  .concept-q:hover { background: rgba(245,240,232,0.04); }
+  .concept-q-inner { display: flex; align-items: center; gap: 0.8rem; }
+  .concept-tag {
+    font-size: 0.43rem; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.15rem 0.5rem; border-radius: 100px; flex-shrink: 0;
+  }
+  .ct-eds { color: var(--blue); background: rgba(77,77,255,0.08); border: 1px solid rgba(77,77,255,0.15); }
+  .ct-of1 { color: var(--accent); background: rgba(255,61,0,0.06); border: 1px solid rgba(255,61,0,0.15); }
+  .ct-tool { color: var(--teal); background: rgba(0,229,160,0.05); border: 1px solid rgba(0,229,160,0.12); }
+  .ct-arch { color: var(--gold); background: rgba(200,169,110,0.06); border: 1px solid rgba(200,169,110,0.15); }
+  .concept-name { font-size: 0.63rem; font-weight: 600; color: var(--fg); }
+  .concept-chevron { font-size: 0.65rem; color: var(--fg-muted); transition: transform 0.2s; }
+  .concept-item.open .concept-chevron { transform: rotate(90deg); }
+  .concept-body { display: none; padding: 0 1.1rem 1rem; border-top: 1px solid var(--fg-faint); background: rgba(245,240,232,0.01); }
+  .concept-item.open .concept-body { display: block; }
+  .concept-text { font-size: 0.6rem; line-height: 1.8; color: var(--fg-dim); padding-top: 0.8rem; }
+  .concept-text code { font-family: var(--mono); font-size: 0.85em; background: rgba(245,240,232,0.06); border: 1px solid rgba(245,240,232,0.1); border-radius: 3px; padding: 1px 4px; color: var(--fg-bright); }
+  .concept-text strong { color: var(--fg); }
+
+  /* ── PITFALLS ── */
+  .pitfall-list { display: flex; flex-direction: column; gap: 0.5rem; }
+  .pitfall {
+    display: grid; grid-template-columns: 28px 1fr; gap: 0.9rem; align-items: start;
+    padding: 0.9rem 1rem; border: 1px solid var(--border); border-radius: 8px;
+    background: rgba(245,240,232,0.015); transition: border-color 0.2s;
+  }
+  .pitfall:hover { border-color: rgba(255,61,0,0.2); }
+  .pitfall-num {
+    width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.5rem; font-weight: 600; margin-top: 1px;
+    background: rgba(255,61,0,0.08); color: var(--accent); border: 1px solid rgba(255,61,0,0.15);
+  }
+  .pitfall-body { }
+  .pitfall-title { font-size: 0.6rem; font-weight: 600; color: var(--fg); margin-bottom: 0.3rem; }
+  .pitfall-desc { font-size: 0.57rem; color: var(--fg-dim); line-height: 1.75; }
+  .pitfall-desc code { font-family: var(--mono); font-size: 0.85em; background: rgba(245,240,232,0.06); border: 1px solid rgba(245,240,232,0.1); border-radius: 3px; padding: 1px 4px; color: var(--fg-bright); }
+  .pitfall-desc strong { color: var(--fg); }
+
+  /* ── OUTPUT MAP ── */
+  .output-map { display: flex; flex-direction: column; gap: 0.8rem; }
+  .output-dir { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .output-dir-head {
+    display: flex; align-items: center; gap: 0.7rem; padding: 0.8rem 1rem;
+    background: rgba(245,240,232,0.03); border-bottom: 1px solid var(--border);
+  }
+  .dir-icon { font-size: 0.75rem; }
+  .dir-path { font-size: 0.62rem; font-weight: 600; color: var(--fg); }
+  .dir-desc { font-size: 0.52rem; color: var(--fg-muted); margin-left: auto; }
+  .output-files { padding: 0.5rem 1rem; }
+  .output-file { display: flex; align-items: baseline; gap: 0.6rem; padding: 0.3rem 0; border-bottom: 1px solid rgba(245,240,232,0.04); }
+  .output-file:last-child { border-bottom: none; }
+  .file-name { font-size: 0.58rem; color: var(--teal); min-width: 200px; font-family: var(--mono); }
+  .file-desc { font-size: 0.55rem; color: var(--fg-dim); }
+  .file-step { font-size: 0.45rem; color: var(--fg-muted); margin-left: auto; white-space: nowrap; }
+
+  /* ── PARALLEL BAND ── */
+  .parallel-band {
+    margin: 1rem 0 0;
+    padding: 0.6rem 1rem;
+    background: rgba(77,77,255,0.05); border: 1px solid rgba(77,77,255,0.1); border-radius: 6px;
+    font-size: 0.55rem; color: var(--blue);
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .parallel-band::before { content: '⫸'; font-size: 0.7rem; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 860px) {
+    .page-layout { grid-template-columns: 1fr; }
+    .sidebar { position: static; height: auto; border-right: none; border-bottom: 1px solid var(--fg-faint); }
+    .main { padding: 2rem 1.5rem; }
+    .detail-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── ACTIVE SIDEBAR SCROLL ── */
+  .section-anchor { display: block; }
+</style>
+<script defer src="https://ot.aem.live/.rum/@adobe/helix-rum-js@^2/dist/rum-standalone.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="/" class="site-logo">of1</a>
+  <div class="header-right">
+    <a href="/">Home</a>
+    <a href="/labs.html">Labs</a>
+    <a href="/guide.html">Demo guide</a>
+    <span class="header-badge">Skills v2</span>
+  </div>
+</header>
+
+<div class="page-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">Getting started</div>
+      <a href="#overview" class="sidebar-link active">Overview</a>
+      <a href="#prerequisites" class="sidebar-link">Prerequisites</a>
+      <a href="#install" class="sidebar-link">Install command</a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">The pipeline</div>
+      <a href="#phase-setup" class="sidebar-link"><span class="sl-num">01–03</span> Setup &amp; discovery</a>
+      <a href="#phase-eds" class="sidebar-link"><span class="sl-num">04–06</span> EDS provisioning</a>
+      <a href="#phase-of1" class="sidebar-link"><span class="sl-num">07–11</span> OF1 provisioning</a>
+      <a href="#phase-deploy" class="sidebar-link"><span class="sl-num">12–13</span> Review &amp; deploy</a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">Demo flow</div>
+      <a href="#demo-flow" class="sidebar-link">Running the demo</a>
+      <a href="#demo-of1" class="sidebar-link">The /of1 page</a>
+      <a href="#demo-extension" class="sidebar-link">Extension flow</a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">Reference</div>
+      <a href="#concepts" class="sidebar-link">Key concepts</a>
+    </div>
+    <div class="sidebar-note">
+      <div class="sidebar-note-label">Command to start</div>
+      <div class="sidebar-note-text">"Build me an OF1 demo of my website."</div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- HERO -->
+    <div class="page-hero">
+      <div class="page-hero-eyebrow">Demo Prep Guide</div>
+      <div class="page-hero-title">Build any site<br><em>into an OF1 demo.</em></div>
+      <div class="page-hero-sub">A multistep pipeline that turns any web domain into a branded, AI-powered generative website — powered by Stardust, Snowflake and OF1. Run it all from SLICC with a single prompt.</div>
+      <div class="page-hero-meta">
+        <div class="meta-pill"><span class="dot" style="background:var(--teal)"></span>Multistep pipeline</div>
+        <div class="meta-pill"><span class="dot" style="background:var(--blue)"></span>SLICC-powered</div>
+        <div class="meta-pill"><span class="dot" style="background:var(--accent)"></span>skills-v2</div>
+      </div>
+    </div>
+    <div class="divider"></div>
+
+    <!-- OVERVIEW -->
+    <section class="section" id="overview">
+      <div class="section-header">
+        <div class="section-label">What this does</div>
+        <div class="section-title">End-to-end demo automation</div>
+        <div class="section-desc">The OF1 demo pipeline takes a URL and produces a fully deployed, working generative website — complete with the brand's real visual identity, an EDS block library, AI-trained config, and a live OF1 search experience. You own each review gate; SLICC does the rest.</div>
+      </div>
+      <div class="callout tip">
+        <div class="callout-label">Start here</div>
+        <div class="callout-body">Install the skills pack (<strong>upskill command below</strong>), open SLICC, and say: <em>"Build me an OF1 demo of [domain.com]."</em> The <code>/of1-demo</code> orchestrator opens a sprinkle panel and walks you through every step.</div>
+      </div>
+    </section>
+    <div class="divider"></div>
+
+    <!-- PREREQUISITES -->
+    <section class="section" id="prerequisites">
+      <div class="section-header">
+        <div class="section-label">Before you begin</div>
+        <div class="section-title">Prerequisites</div>
+        <div class="section-desc">Four plugins are required. Install them once — they persist across sessions.</div>
+      </div>
+      <div class="prereq-grid">
+        <div class="prereq-card">
+          <div class="prereq-card-top">
+            <div class="prereq-icon" style="background:rgba(255,61,0,0.08);font-size:1.1rem">🤖</div>
+            <span class="prereq-status status-required">Required</span>
+          </div>
+          <div class="prereq-name">OF1 Demo Skills</div>
+          <div class="prereq-desc">The orchestrator and all pipeline skills. Install via upskill from SLICC.</div>
+          <div class="prereq-cmd">↓ See install command below</div>
+        </div>
+        <div class="prereq-card">
+          <div class="prereq-card-top">
+            <div class="prereq-icon" style="background:rgba(0,229,160,0.08);font-size:1.1rem">⭐</div>
+            <span class="prereq-status status-required">Required</span>
+          </div>
+          <div class="prereq-name">Adobe Skills</div>
+          <div class="prereq-desc">Provides stardust:extract and stardust:prototype — used for site crawling and prototype generation.</div>
+          <div class="prereq-cmd">claude plugins install adobe/skills</div>
+        </div>
+        <div class="prereq-card">
+          <div class="prereq-card-top">
+            <div class="prereq-icon" style="background:rgba(77,77,255,0.08);font-size:1.1rem">🎨</div>
+            <span class="prereq-status status-required">Required</span>
+          </div>
+          <div class="prereq-name">Impeccable</div>
+          <div class="prereq-desc">Frontend design skill used to generate pixel-perfect HTML prototypes from brand extraction.</div>
+          <div class="prereq-cmd">claude plugins install pbakaus/impeccable</div>
+        </div>
+        <div class="prereq-card">
+          <div class="prereq-card-top">
+            <div class="prereq-icon" style="background:rgba(200,169,110,0.08);font-size:1.1rem">❄️</div>
+            <span class="prereq-status status-required">Required</span>
+          </div>
+          <div class="prereq-name">Snowflake</div>
+          <div class="prereq-desc">Converts stardust prototypes to EDS block format. Provides the stardust-to-snowflake skill for EDS provisioning.</div>
+          <div class="prereq-cmd">claude plugins install ai-ecoverse/snowflake</div>
+        </div>
+      </div>
+      <div class="callout note">
+        <div class="callout-label">Also needed</div>
+        <div class="callout-body"><strong>Playwright</strong> (<code>playwright-cli</code>) must be available — used for screenshots, DOM extraction, and auth token retrieval. <strong>DA_TOKEN</strong> env var is needed for DA.live uploads in step 6.</div>
+      </div>
+    </section>
+    <div class="divider"></div>
+
+    <!-- INSTALL COMMAND -->
+    <section class="section" id="install">
+      <div class="section-header">
+        <div class="section-label">How to install</div>
+        <div class="section-title">The upskill command</div>
+        <div class="section-desc">The OF1 demo skills are published on GitHub. Install them in SLICC with the upskill command — this fetches the <code>skills-v2</code> branch and makes the full pipeline available.</div>
+      </div>
+      <div class="callout tip">
+        <div class="callout-label">Install command</div>
+        <div class="callout-body" style="font-size:0.65rem">Type this in SLICC:<br><br><code>upskill:https://github.com/aem-growth-adoption/of1-demo-skills@skills-v2</code></div>
+      </div>
+      <div style="margin-top:1.2rem">
+        <a
+          href="https://www.sliccy.ai/handoff?msg=upskill%3Ahttps%3A%2F%2Fgithub.com%2Faem-growth-adoption%2Fof1-demo-skills%40skills-v2"
+          target="_blank"
+          rel="noopener"
+          style="display:inline-block;font-family:var(--mono);font-size:0.55rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;color:var(--bg);background:var(--fg);padding:0.75rem 2rem;border-radius:100px;transition:opacity 0.2s,transform 0.2s"
+          onmouseover="this.style.opacity='0.88';this.style.transform='translateY(-1px)'"
+          onmouseout="this.style.opacity='1';this.style.transform='translateY(0)'"
+        >Install in SLICC &rarr;</a>
+      </div>
+    </section>
+    <div class="divider"></div>
+
+    <!-- PIPELINE -->
+    <section class="section" id="pipeline">
+      <div class="section-header">
+        <div class="section-label">13 steps</div>
+        <div class="section-title">The pipeline</div>
+        <div class="section-desc">The orchestrator runs these steps in order, pausing at review gates for your approval. Steps 8–11 run in parallel once step 7 is approved.</div>
+      </div>
+
+      <div class="pipeline">
+
+        <!-- Step 1 -->
+        <div class="pipeline-step" id="phase-setup" style="scroll-margin-top:calc(var(--header-h) + 16px)">
+          <div class="step-spine"><div class="step-num sn-red">1</div><div class="step-line sl-red"></div></div>
+          <div class="step-body">
+            <div class="step-head">
+              <div class="step-title-group">
+                <div class="step-name">Install dependencies</div>
+                <div class="step-skill-tag">skill: <code>of1-setup</code> · automated</div>
+              </div>
+              <div class="step-badges"><span class="badge badge-auto">Auto</span></div>
+            </div>
+            <div class="step-desc">Verifies all required skills, plugins, and tools are installed and up to date. Checks for playwright-cli, node, and DA_TOKEN. Re-runs upskill to ensure latest versions. Reports a pass/fail summary — fails block the pipeline, warnings do not.</div>
+            <button class="step-toggle" onclick="toggleStep(this)" aria-expanded="false"><div class="toggle-arrow">›</div> Details</button>
+            <div class="step-detail">
+              <div class="detail-grid">
+                <div class="detail-col">
+                  <div class="detail-label">Checks</div>
+                  <div class="detail-items">
+                    <div class="detail-item">All 12 skill SKILL.md files exist</div>
+                    <div class="detail-item"><code>playwright-cli</code> is in PATH</div>
+                    <div class="detail-item"><code>node</code> is available</div>
+                    <div class="detail-item"><code>DA_TOKEN</code> env var is set</div>
+                    <div class="detail-item">adobe/skills, impeccable, snowflake updated</div>
+                  </div>
+                </div>
+                <div class="detail-col">
+                  <div class="detail-label">Output</div>
+                  <div class="detail-items">
+                    <div class="detail-item"><code>/shared/of1-demo/step-1-status.json</code></div>
+                    <div class="detail-item">Status: <strong>done</strong> or <strong>failed</strong></div>
+                  </div>
+                </div>
+              </div>
+              <div class="callout note">
+                <div class="callout-label">Note</div>
+                <div class="callout-body">Can run before a domain is entered — it checks global prerequisites only.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="pipeline-step">
+          <div class="step-spine"><div class="step-num sn-red">2</div><div class="step-line sl-red"></div></div>
+          <div class="step-body">
+            <div class="step-head">
+              <div class="step-title-group">
+                <div class="step-name">Setup AEM / DA repo</div>
+                <div class="step-skill-tag">skill: <code>of1-repo-setup</code></div>
+              </div>
+              <div class="step-badges"><span class="badge badge-review">Review gate</span></div>
+            </div>
+            <div class="step-desc">Creates or connects an AEM Edge Delivery Services repository. Prompts you to provide an existing repo URL or create a new one from the of1-boilerplate template. Handles GitHub repo creation, AEM Code Sync app installation, DA mounting, and end-to-end preview verification.</div>
+            <button class="step-toggle" onclick="toggleStep(this)" aria-expanded="false"><div class="toggle-arrow">›</div> Details</button>
+            <div class="step-detail">
+              <div class="detail-grid">
+                <div class="detail-col">
+                  <div class="detail-label">Inputs (from you)</div>
+                  <div class="detail-items">
+                    <div class="detail-item">Existing GitHub repo URL, or</div>
+                    <div class="detail-item">GitHub org name + new repo name</div>
+                  </div>
+                </div>
+                <div class="detail-col">
+                  <div class="detail-label">Output</div>
+                  <div class="detail-items">
+                    <div class="detail-item"><code>/shared/of1-demo/repo-config.json</code></div>
+                    <div class="detail-item">owner, repo, repoDir, previewUrl, daSource</div>
+                    <div class="detail-item">Repo cloned at <code>/workspace/{repo}</code></div>
+                    <div class="detail-item">DA mounted, preview URL verified</div>
+                  </div>
+                </div>
+              </div>
+              <div class="callout warn">
+                <div class="callout-label">Important</div>
+                <div class="callout-body">Every subsequent step reads <code>repo-config.json</code>. Never skip or short-circuit this step — it is the shared context for the entire pipeline.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="pipeline-step">
+          <div class="step-spine"><div class="step-num sn-red">3</div><div class="step-line sl-red"></div></div>
+          <div class="step-body">
+            <div class="step-head">
+              <div class="step-title-group">
+                <div class="step-name">Discovery</div>
+                <div class="step-skill-tag">skill: <code>of1-discovery</code></div>
+              </div>
+              <div class="step-badges"><span class="badge badge-review">Review gate</span></div>
+            </div>
+            <div class="step-desc">Crawls the target domain using Playwright (headed Chrome). Visits the homepage and 5–10 navigation pages. Proposes a demo focus, persona narrative, and the 2–3 key pages to reproduce. Generates a styled HTML discovery report and pushes it to the EDS repo as a deliverable.</div>
+            <button class="step-toggle" onclick="toggleStep(this)" aria-expanded="false"><div class="toggle-arrow">›</div> Details</button>
+            <div class="step-detail">
+              <div class="detail-grid">
+                <div class="detail-col">
+                  <div class="detail-label">What it analyzes</div>
+                  <div class="detail-items">
+                    <div class="detail-item">Product/service lines and categories</div>
+                    <div class="detail-item">Navigation structure and top-level pages</div>
+                    <div class="detail-item">Target audience and key CTAs</div>
+                    <div class="detail-item">Page types and block patterns</div>
+                  </div>
+                </div>
+                <div class="detail-col">
+                  <div class="detail-label">Output</div>
+                  <div class="detail-items">
+                    <div class="detail-item"><code>deliverables/discovery.html</code> — report</div>
+                    <div class="detail-item">Proposed demo focus + narrative</div>
+                    <div class="detail-item">2–3 pages selected for reproduction</div>
+                    <div class="detail-item">Status: <strong>review</strong> (your approval needed)</div>
+                  </div>
+                </div>
+              </div>
+              <div class="callout tip">
+                <div class="callout-label">Your job at this gate</div>
+                <div class="callout-body">Confirm the demo focus — which product line and persona — or redirect to a different part of the site. Everything downstream depends on this choice.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="pipeline-step" id="phase-eds" style="scroll-margin-top:calc(var(--header-h) + 16px)">
+          <div class="step-spine"><div class="step-num sn-teal">4</div><div class="step-line sl-teal"></div></div>
+          <div class="step-body">
+            <div class="step-head">
+              <div class="step-title-group">
+                <div class="step-name">Extraction</div>
+                <div class="step-skill-tag">skill: <code>stardust:extract</code> (adobe/skills plugin)</div>
+              </div>
+              <div class="step-badges"><span class="badge badge-review">Review gate</span></div>
+            </div>
+            <div class="step-desc">Runs the stardust extraction pipeline on the target domain. Crawls the site, captures screenshots, extracts the full design system (colors, typography, spacing, logo, icons), and produces structured brand data. Generates a brand-review.html deliverable with all extracted assets.</div>
+            <button class="step-toggle" onclick="toggleStep(this)" aria-expanded="false"><div class="toggle-arrow">›</div> Details</button>
+            <div class="step-detail">
+              <div class="detail-grid">
+                <div class="detail-col">
+                  <div class="detail-label">What gets extracted</div>
+                  <div class="detail-items">
+                    <div class="detail-item">Color palette and CSS tokens</div>
+                    <div class="detail-item">Typography — fonts, weights, sizes</div>
+                    <div class="detail-item">Spacing and layout grid</div>
+                    <div class="detail-item">Logo SVG (full, not truncated)</div>
+                    <div class="detail-item">Icon set from DOM</div>
+                    <div class="detail-item">Real image URLs from live site</div>
+                  </div>
+                </div>
+                <div class="detail-col">
+                  <div class="detail-label">Output</div>
+                  <div class="detail-items">
+                    <div class="detail-item"><code>stardust/current/</code> directory</div>
+                    <div class="detail-item"><code>DESIGN.json</code> brand tokens</div>
+                    <div class="detail-item"><code>PRODUCT.md</code> content model</div>
+                    <div class="detail-item"><code>deliverables/brand-review.html</code></div>
+                    <div class="detail-item">Screenshots in <code>deliverables/assets/</code></div>
+                  </div>
+                </div>
+              </div>
+              <div class="callout warn">
+                <div class="callout-label">Logo gotcha</div>
+                <div class="callout-body">Stardust can extract truncated SVG logos from sprites. The step scoop post-processes the extraction to verify the full logo SVG and replace it if truncated. Always check the brand-review deliverable before approving.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="pipeline-step">
+          <div class="step-spine"><div class="step-num sn-teal">5</div><div class="step-line sl-teal"></div></div>
+          <div class="step-body">
+            <div class="step-head">
+              <div class="step-title-group">
+                <div class="step-name">Prototype</div>
+                <div class="step-skill-tag">skill: <code>stardust:prototype</code> (adobe/skills plugin)</div>
+              </div>
+              <div class="step-badges"><span class="badge badge-review">Review gate</span></div>
+            </div>
+            <div class="step-desc">Generates pixel-perfect HTML prototypes of the target pages using the extracted brand data. Uses real images from the live site DOM, the actual brand logo, and the real icon set. Runs a screenshot diff loop (up to 3 iterations per page) comparing prototype output to live site screenshots and auto-fixing significant visual gaps.</div>
+            <button class="step-toggle" onclick="toggleStep(this)" aria-expanded="false"><div class="toggle-arrow">›</div> Details</button>
+            <div class="step-detail">
+              <div class="detail-grid">
+                <div class="detail-col">
+                  <div class="detail-label">Screenshot diff loop</div>
+                  <div class="detail-items">
+                    <div class="detail-item">Screenshots live site + prototype</div>
+                    <div class="detail-item">LLM vision comparison</div>
+                    <div class="detail-item">Targeted fix (not full regen)</div>
+                    <div class="detail-item">Up to 3 iterations per page</div>
+                    <div class="detail-item">Remaining gaps logged as "known"</div>
+                  </div>
+                </div>
+                <div class="detail-col">
+                  <div class="detail-label">Output</div>
+                  <div class="detail-items">
+                    <div class="detail-item"><code>stardust/prototypes/*.html</code></div>
+                    <div class="detail-item">Self-contained HTML with inline assets</div>
+                    <div class="detail-item">Deliverables linked via sprinkle</div>
+                  </div>
+                </div>
+              </div>
+              <div class="callout warn">
+                <div class="callout-label">Never redesign</div>
+                <div class="callout-body">The goal is a <strong>pixel-perfect copy</strong>, not a redesign. Never use placeholder images, colored boxes, or invented icons. Extract real image URLs with <code>playwright-cli eval</code> against the live site DOM.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 6 -->
+        <div class="pipeline-step">
+          <div class="step-spine"><div class="step-num sn-teal">6</div><div class="step-line sl-teal"></div></div>
+          <div class="step-body">
+            <div class="step-head">
+              <div class="step-title-group">
+                <div class="step-name">Snowflake — EDS conversion</div>
+                <div class="step-skill-tag">skill: <code>of1-snowflake</code> + <code>stardust-to-snowflake</code></div>
+              </div>
+              <div class="step-badges"><span class="badge badge-review">Review gate</span></div>
+            </div>
+            <div class="step-desc">Converts the HTML prototypes into a full AEM Edge Delivery Services site. Creates custom EDS blocks (JS + CSS) for each section, uploads content pages to DA.live, triggers preview, and runs another screenshot diff loop comparing the EDS preview to the prototype. Also installs the OF1 block infrastructure (<code>blocks/of1/</code>) and creates the block catalog page.</div>
+            <button class="step-toggle" onclick="toggleStep(this)" aria-expanded="false"><div class="toggle-arrow">›</div> Details</button>
+            <div class="step-detail">
+              <div class="detail-grid">
+                <div class="detail-col">
+                  <div class="detail-label">What gets built</div>
+                  <div class="detail-items">
+                    <div class="detail-item">Custom blocks in <code>blocks/</code> (JS + CSS)</div>
+                    <div class="detail-item"><code>styles/styles.css</code> with brand tokens</div>
+                    <div class="detail-item">Header + footer fragments in DA</div>
+                    <div class="detail-item">Content pages uploaded to DA.live</div>
+                    <div class="detail-item"><code>content/block-catalog.html</code></div>
+                    <div class="detail-item"><code>blocks/of1/of1.js</code> + <code>of1.css</code></div>
+                    <div class="detail-item"><code>content/of1.html</code> — search page</div>
+                  </div>
+                </div>
+                <div class="detail-col">
+                  <div class="detail-label">Critical EDS rules</div>
+                  <div class="detail-items">
+                    <div class="detail-item">Images must be text URLs in DA cells</div>
+                    <div class="detail-item">Logo via <code>/icons/logo.svg</code> + header.js</div>
+                    <div class="detail-item">Full-bleed blocks need wrapper override</div>
+                    <div class="detail-item"><code>strong/em</code> outside anchor for buttons</div>
+                    <div class="detail-item">Never use <code>--data-binary @file</code></div>
+                  </div>
+                </div>
+              </div>
+              <div class="callout tip">
+                <div class="callout-label">Review deliverable</div>
+                <div class="callout-body">The step sends multiple preview URLs to the sprinkle — one per content page. Open each to verify layout, images, and nav/footer before approving.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 7 -->
+        <div class="pipeline-step" id="phase-of1" style="scroll-margin-top:calc(var(--header-h) + 16px)">
+          <div class="step-spine"><div class="step-num sn-gold">7</div><div class="step-line sl-gold"></div></div>
+          <div class="step-body">
+            <div class="step-head">
+              <div class="step-title-group">
+                <div class="step-name">OF1 styling</div>
+                <div class="step-skill-tag">skill: <code>generative-block-styler</code></div>
+              </div>
+              <div class="step-badges"><span class="badge badge-review">Review gate</span><span class="badge badge-inline">Hard stop</span></div>
+            </div>
+            <div class="step-desc">Generates the brand-aligned CSS for the OF1 generative block — the visual layer over all dynamically-generated sections. Reads DESIGN.json and styles/styles.css to produce hero treatment, card grids, comparison tables, skeleton loading animations, and the follow-up suggestions UI. Uses the site's actual CSS custom properties throughout.</div>
+            <button class="step-toggle" onclick="toggleStep(this)" aria-expanded="false"><div class="toggle-arrow">›</div> Details</button>
+            <div class="step-detail">
+              <div class="detail-grid">
+                <div class="detail-col">
+                  <div class="detail-label">CSS sections generated</div>
+                  <div class="detail-items">
+                    <div class="detail-item">Container and layout</div>
+                    <div class="detail-item">Search landing + input UI</div>
+                    <div class="detail-item">Quick suggestion chips</div>
+                    <div class="detail-item">Loading skeleton animations</div>
+                    <div class="detail-item">Hero full-bleed treatment</div>
+                    <div class="detail-item">Card grids + hover states</div>
+                    <div class="detail-item">Tables, columns, follow-ups</div>
+                  </div>
+                </div>
+                <div class="detail-col">
+                  <div class="detail-label">Hard stop</div>
+                  <div class="detail-items">
+                    <div class="detail-item">Open the OF1 page deliverable</div>
+                    <div class="detail-item">Click suggestion chips</div>
+                    <div class="detail-item">Verify hero + cards + tables</div>
+                    <div class="detail-item">Approve to unlock steps 8–11</div>
+                  </div>
+                </div>
+              </div>
+              <div class="parallel-band">Steps 8, 9, 10, and 11 run in parallel after you approve step 7.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Steps 8–11 parallel -->
+        <div class="pipeline-step">
+          <div class="step-spine"><div class="step-num sn-blue">8</div><div class="step-line sl-blue"></div></div>
+          <div class="step-body">
+            <div class="step-head">
+              <div class="step-title-group">
+                <div class="step-name">Brand voice + content metadata</div>
+                <div class="step-skill-tag">skills: <code>brand-voice-extractor</code> + <code>content-metadata</code></div>
+              </div>
+              <div class="step-badges"><span class="badge badge-parallel">Parallel</span></div>
+            </div>
+            <div class="step-desc">Two scoops run simultaneously. Brand voice crawls 5–8 pages to extract tone, vocabulary, personality and avoid-words — producing <code>brand-voice.json</code>. Content metadata scrapes product data, personas, use cases, features, and FAQs — producing 5 separate JSON config files.</div>
+            <button class="step-toggle" onclick="toggleStep(this)" aria-expanded="false"><div class="toggle-arrow">›</div> Details</button>
+            <div class="step-detail">
+              <div class="detail-grid">
+                <div class="detail-col">
+                  <div class="detail-label">brand-voice.json fields</div>
+                  <div class="detail-items">
+                    <div class="detail-item"><code>personality</code> — 3–5 adjectives</div>
+                    <div class="detail-item"><code>tone</code> — 1–2 sentence description</div>
+                    <div class="detail-item"><code>vocabulary</code> — 10–15 domain terms</div>
+                    <div class="detail-item"><code>avoidWords</code> — off-brand terms</div>
+                    <div class="detail-item"><code>toneByContext</code> — per intent</div>
+                  </div>
+                </div>
+                <div class="detail-col">
+                  <div class="detail-label">Content files</div>
+                  <div class="detail-items">
+                    <div class="detail-item"><code>products.json</code> — name, image, desc</div>
+                    <div class="detail-item"><code>personas.json</code> — audience segments</div>
+                    <div class="detail-item"><code>use-cases.json</code> — intent scenarios</div>
+                    <div class="detail-item"><code>features.json</code> — product features</div>
+                    <div class="detail-item"><code>faqs.json</code> — Q&amp;A pairs</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pipeline-step">
+          <div class="step-spine"><div class="step-num sn-blue">9</div><div class="step-line sl-blue"></div></div>
+          <div class="step-body">
+            <div class="step-head">
+              <div class="step-title-group">
+                <div class="step-name">Block guide</div>
+                <div class="step-skill-tag">skill: <code>block-guide-builder</code></div>
+              </div>
+              <div class="step-badges"><span class="badge badge-parallel">Parallel</span><span class="badge badge-review">Review gate</span></div>
+            </div>
+            <div class="step-desc">Analyzes every block in <code>blocks/</code>, evaluates each for LLM generation suitability, selects 6–9 blocks that cover all intent types (discovery, deep-dive, comparison, recommendation), and generates <code>block-guide.json</code> — the prompt string that teaches the OF1 worker how to output structured JSON blocks. Also creates a block catalog page for visual reference.</div>
+            <button class="step-toggle" onclick="toggleStep(this)" aria-expanded="false"><div class="toggle-arrow">›</div> Details</button>
+            <div class="step-detail">
+              <div class="callout warn">
+                <div class="callout-label">Most critical config file</div>
+                <div class="callout-body">The block guide directly controls what the LLM generates. Every block example MUST use real image URLs from <code>products.json</code>. Never use invented paths — the LLM mirrors example patterns. Bad examples = broken generation.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pipeline-step">
+          <div class="step-spine"><div class="step-num sn-blue">10</div><div class="step-line sl-blue"></div></div>
+          <div class="step-body">
+            <div class="step-head">
+              <div class="step-title-group">
+                <div class="step-name">Suggestions</div>
+                <div class="step-skill-tag">skill: <code>quick-suggestions</code></div>
+              </div>
+              <div class="step-badges"><span class="badge badge-parallel">Parallel</span></div>
+            </div>
+            <div class="step-desc">Generates 6–12 branded suggestion chips and the search UI copy for the OF1 page. Each chip is a short, intent-driven query that matches a real product category or use case. Produces <code>suggestions.json</code>.</div>
+          </div>
+        </div>
+
+        <div class="pipeline-step">
+          <div class="step-spine"><div class="step-num sn-blue">11</div><div class="step-line sl-blue"></div></div>
+          <div class="step-body">
+            <div class="step-head">
+              <div class="step-title-group">
+                <div class="step-name">CTA template</div>
+                <div class="step-skill-tag">skill: <code>cta-template-builder</code></div>
+              </div>
+              <div class="step-badges"><span class="badge badge-parallel">Parallel</span></div>
+            </div>
+            <div class="step-desc">Extracts the site's design system and generates a branded CTA template that the generative engine can instantiate in generated pages. Produces <code>cta-template.json</code> with fallback content, color tokens, and button styles.</div>
+          </div>
+        </div>
+
+        <!-- Step 12 -->
+        <div class="pipeline-step" id="phase-deploy" style="scroll-margin-top:calc(var(--header-h) + 16px)">
+          <div class="step-spine"><div class="step-num sn-gold">12</div><div class="step-line sl-gold"></div></div>
+          <div class="step-body">
+            <div class="step-head">
+              <div class="step-title-group">
+                <div class="step-name">Config review</div>
+                <div class="step-skill-tag">orchestrator-inline — no scoop</div>
+              </div>
+              <div class="step-badges"><span class="badge badge-review">Review gate</span><span class="badge badge-inline">Inline</span></div>
+            </div>
+            <div class="step-desc">The orchestrator runs this step directly (no scoop). Builds a single review page — <code>deliverables/config-review.html</code> — showing all config files side by side: block guide vs block catalog, products grid, brand voice, personas, suggestions, CTA template. This is your final check before deploy.</div>
+            <button class="step-toggle" onclick="toggleStep(this)" aria-expanded="false"><div class="toggle-arrow">›</div> Details</button>
+            <div class="step-detail">
+              <div class="callout gold">
+                <div class="callout-label">What to check</div>
+                <div class="callout-body">
+                  Are the right blocks selected? (the guide should be a <strong>subset</strong> of the catalog)<br>
+                  Do all products have working image URLs?<br>
+                  Is the brand voice specific — not just "professional and friendly"?<br>
+                  Do suggestion chips cover discovery, deep-dive, and comparison intents?<br>
+                  Are persona keywords realistic search terms?
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 13 -->
+        <div class="pipeline-step">
+          <div class="step-spine"><div class="step-num sn-teal">13</div><div class="step-line sl-teal"></div></div>
+          <div class="step-body">
+            <div class="step-head">
+              <div class="step-title-group">
+                <div class="step-name">Deploy</div>
+                <div class="step-skill-tag">skill: <code>of1-deploy</code></div>
+              </div>
+              <div class="step-badges"><span class="badge badge-review">Review gate</span></div>
+            </div>
+            <div class="step-desc">Commits all config files to <code>of1/config/</code>, pushes to GitHub (EDS serves them as static files), calls <code>POST /api/tenants/{id}/sync</code> on the OF1 worker to fetch and index everything, then runs a generation test. Builds the Demo Hub page linking all deliverables.</div>
+            <button class="step-toggle" onclick="toggleStep(this)" aria-expanded="false"><div class="toggle-arrow">›</div> Details</button>
+            <div class="step-detail">
+              <div class="detail-grid">
+                <div class="detail-col">
+                  <div class="detail-label">Config files deployed</div>
+                  <div class="detail-items">
+                    <div class="detail-item"><code>brand-voice.json</code></div>
+                    <div class="detail-item"><code>block-guide.json</code></div>
+                    <div class="detail-item"><code>products.json</code></div>
+                    <div class="detail-item"><code>personas.json</code></div>
+                    <div class="detail-item"><code>use-cases.json</code></div>
+                    <div class="detail-item"><code>features.json</code></div>
+                    <div class="detail-item"><code>faqs.json</code></div>
+                    <div class="detail-item"><code>suggestions.json</code></div>
+                    <div class="detail-item"><code>cta-template.json</code></div>
+                    <div class="detail-item"><code>of1-endpoint.json</code></div>
+                  </div>
+                </div>
+                <div class="detail-col">
+                  <div class="detail-label">Final URLs</div>
+                  <div class="detail-items">
+                    <div class="detail-item">Demo Hub: <code>/deliverables/index.html</code></div>
+                    <div class="detail-item">OF1 page: <code>/of1</code></div>
+                    <div class="detail-item">Block catalog: <code>/block-catalog</code></div>
+                    <div class="detail-item">Config: <code>/of1/config/</code></div>
+                    <div class="detail-item">Tenant ID: <code>main--{repo}--{owner}</code></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /pipeline -->
+    </section>
+    <div class="divider"></div>
+
+    <!-- DEMO FLOW -->
+    <section class="section" id="demo-flow">
+      <div class="section-header">
+        <div class="section-label">After the pipeline</div>
+        <div class="section-title">Running the demo</div>
+        <div class="section-desc">Once the pipeline completes, you have two ways to experience OF1. Use them together for the most compelling demo — start with the extension to build context, then let the /of1 page do the reveal.</div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem">
+        <div style="border:1px solid rgba(0,229,160,0.2);border-radius:10px;padding:1.3rem;background:rgba(0,229,160,0.03)">
+          <div style="font-size:0.45rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal);margin-bottom:0.6rem">Mode A</div>
+          <div style="font-family:var(--heading);font-size:1.1rem;font-weight:700;margin-bottom:0.5rem">Direct — the /of1 page</div>
+          <div style="font-size:0.58rem;color:var(--fg-dim);line-height:1.75">Go straight to <code style="font-family:var(--mono);font-size:0.85em;background:rgba(245,240,232,0.06);border:1px solid rgba(245,240,232,0.1);border-radius:3px;padding:1px 4px;color:var(--fg)">/of1</code>, type a query or click a suggestion chip, and watch a personalized page generate in real time.</div>
+        </div>
+        <div style="border:1px solid rgba(255,61,0,0.2);border-radius:10px;padding:1.3rem;background:rgba(255,61,0,0.03)">
+          <div style="font-size:0.45rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:0.6rem">Mode B</div>
+          <div style="font-family:var(--heading);font-size:1.1rem;font-weight:700;margin-bottom:0.5rem">Extension — browse to personalise</div>
+          <div style="font-size:0.58rem;color:var(--fg-dim);line-height:1.75">Browse the original site with the OF1 Preview extension active. A profile builds silently. Hit Personalise — the page glows, a CTA appears, click it to open /of1 with no prompt needed.</div>
+        </div>
+      </div>
+    </section>
+    <div class="divider"></div>
+
+    <!-- THE /OF1 PAGE -->
+    <section class="section" id="demo-of1">
+      <div class="section-header">
+        <div class="section-label">Mode A</div>
+        <div class="section-title">The /of1 page</div>
+        <div class="section-desc">Your generative search experience. Every query produces a full branded page — assembled from the blocks you built, styled with the brand tokens you extracted, and written in the voice you configured.</div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:0.6rem;margin-bottom:1.5rem">
+
+        <div style="display:grid;grid-template-columns:28px 1fr;gap:1rem;align-items:start;padding:1rem;border:1px solid var(--border);border-radius:8px;background:rgba(245,240,232,0.015)">
+          <div style="width:24px;height:24px;border-radius:50%;background:rgba(0,229,160,0.08);border:1px solid rgba(0,229,160,0.2);display:flex;align-items:center;justify-content:center;font-size:0.55rem;font-weight:700;color:var(--teal);flex-shrink:0;margin-top:1px">1</div>
+          <div>
+            <div style="font-size:0.62rem;font-weight:600;color:var(--fg);margin-bottom:0.25rem">Prompt — type any query</div>
+            <div style="font-size:0.57rem;color:var(--fg-dim);line-height:1.75">The search input accepts any natural language query. The OF1 worker matches it against your products, personas, and use cases, then instructs the LLM to assemble a relevant page using your block guide. The result streams in section by section.</div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:28px 1fr;gap:1rem;align-items:start;padding:1rem;border:1px solid var(--border);border-radius:8px;background:rgba(245,240,232,0.015)">
+          <div style="width:24px;height:24px;border-radius:50%;background:rgba(0,229,160,0.08);border:1px solid rgba(0,229,160,0.2);display:flex;align-items:center;justify-content:center;font-size:0.55rem;font-weight:700;color:var(--teal);flex-shrink:0;margin-top:1px">2</div>
+          <div>
+            <div style="font-size:0.62rem;font-weight:600;color:var(--fg);margin-bottom:0.25rem">Quick suggestions — guided intent</div>
+            <div style="font-size:0.57rem;color:var(--fg-dim);line-height:1.75">Below the input, branded suggestion chips offer pre-set queries — generated during the pipeline from your products and use cases. Each chip launches a generation immediately, no typing required. Ideal for demos where you want a predictable, polished result on the first click.</div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:28px 1fr;gap:1rem;align-items:start;padding:1rem;border:1px solid var(--border);border-radius:8px;background:rgba(245,240,232,0.015)">
+          <div style="width:24px;height:24px;border-radius:50%;background:rgba(0,229,160,0.08);border:1px solid rgba(0,229,160,0.2);display:flex;align-items:center;justify-content:center;font-size:0.55rem;font-weight:700;color:var(--teal);flex-shrink:0;margin-top:1px">3</div>
+          <div>
+            <div style="font-size:0.62rem;font-weight:600;color:var(--fg);margin-bottom:0.25rem">Keep exploring — refine and go deeper</div>
+            <div style="font-size:0.57rem;color:var(--fg-dim);line-height:1.75">At the bottom of every generated page, follow-up suggestions appear — contextual chips that narrow or pivot the experience. A visitor looking at running shoes sees suggestions like "trail vs road", "for overpronation", or "under $120". Each click regenerates the page around the refined intent, creating a guided discovery loop without a search box in sight.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="callout tip">
+        <div class="callout-label">Demo tip</div>
+        <div class="callout-body">Click a suggestion chip for your first demo — it guarantees a strong result. Then show the prompt input for "what if" questions, and use Keep Exploring to show the conversation deepening naturally.</div>
+      </div>
+    </section>
+    <div class="divider"></div>
+
+    <!-- EXTENSION FLOW -->
+    <section class="section" id="demo-extension">
+      <div class="section-header">
+        <div class="section-label">Mode B</div>
+        <div class="section-title">Extension flow</div>
+        <div class="section-desc">The OF1 Preview chrome extension turns any browsing session on the original site into a personalisation trigger — no query needed.</div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:0;margin-bottom:1.5rem">
+
+        <div style="display:grid;grid-template-columns:40px 1fr;gap:1rem;padding:1.2rem 0;border-bottom:1px solid var(--fg-faint)">
+          <div style="display:flex;flex-direction:column;align-items:center;padding-top:2px">
+            <div style="width:30px;height:30px;border-radius:50%;background:rgba(255,61,0,0.08);border:1px solid rgba(255,61,0,0.2);display:flex;align-items:center;justify-content:center;font-family:var(--heading);font-size:0.95rem;font-weight:700;color:var(--accent);flex-shrink:0">1</div>
+            <div style="flex:1;width:1px;background:linear-gradient(to bottom,rgba(255,61,0,0.2),transparent);margin-top:6px"></div>
+          </div>
+          <div style="padding-bottom:0.4rem">
+            <div style="font-size:0.65rem;font-weight:600;color:var(--fg);margin-bottom:0.3rem">Download the extension</div>
+            <div style="font-size:0.58rem;color:var(--fg-dim);line-height:1.75;margin-bottom:0.8rem">Download the zip, unpack it, then load it in Chrome via <strong style="color:var(--fg)">chrome://extensions</strong> → Developer mode → Load unpacked. It activates on the domain your demo was built for.</div>
+            <a
+              href="/of1-preview-v0.2.zip"
+              download
+              style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--mono);font-size:0.52rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;color:var(--bg);background:var(--fg);padding:0.5rem 1.2rem;border-radius:100px;transition:opacity 0.2s,transform 0.2s"
+              onmouseover="this.style.opacity='0.88';this.style.transform='translateY(-1px)'"
+              onmouseout="this.style.opacity='1';this.style.transform='translateY(0)'"
+            >
+              <svg width="11" height="13" viewBox="0 0 11 13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.5 1v8M2 6.5l3.5 3.5 3.5-3.5M1 12h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Download OF1 Preview v0.2
+            </a>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:40px 1fr;gap:1rem;padding:1.2rem 0;border-bottom:1px solid var(--fg-faint)">
+          <div style="display:flex;flex-direction:column;align-items:center;padding-top:2px">
+            <div style="width:30px;height:30px;border-radius:50%;background:rgba(255,61,0,0.08);border:1px solid rgba(255,61,0,0.2);display:flex;align-items:center;justify-content:center;font-family:var(--heading);font-size:0.95rem;font-weight:700;color:var(--accent);flex-shrink:0">2</div>
+            <div style="flex:1;width:1px;background:linear-gradient(to bottom,rgba(255,61,0,0.2),transparent);margin-top:6px"></div>
+          </div>
+          <div style="padding-bottom:0.4rem">
+            <div style="font-size:0.65rem;font-weight:600;color:var(--fg);margin-bottom:0.3rem">Set up — enter your tenant ID and activate</div>
+            <div style="font-size:0.58rem;color:var(--fg-dim);line-height:1.75;margin-bottom:0.6rem">Navigate to the original site, then open the extension. You'll be prompted for a <strong style="color:var(--fg)">tenant ID</strong> — this tells the extension which OF1 demo to connect to. Not sure what yours is? Ask SLICC: <em style="color:var(--fg-dim)">"What is my OF1 tenant ID?"</em> — it will read it from the deployed config. Once entered, hit <strong style="color:var(--fg)">Activate</strong>. The extension is now live on this domain and ready to build a profile.</div>
+            <div class="callout note" style="margin-top:0.2rem">
+              <div class="callout-label">Tenant ID format</div>
+              <div class="callout-body">It follows the pattern <code>main--{repo}--{owner}</code> — e.g. <code>main--acme-demo--myorg</code>. SLICC knows it from the repo config written during step 2 of the pipeline.</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:40px 1fr;gap:1rem;padding:1.2rem 0;border-bottom:1px solid var(--fg-faint)">
+          <div style="display:flex;flex-direction:column;align-items:center;padding-top:2px">
+            <div style="width:30px;height:30px;border-radius:50%;background:rgba(255,61,0,0.08);border:1px solid rgba(255,61,0,0.2);display:flex;align-items:center;justify-content:center;font-family:var(--heading);font-size:0.95rem;font-weight:700;color:var(--accent);flex-shrink:0">3</div>
+            <div style="flex:1;width:1px;background:linear-gradient(to bottom,rgba(255,61,0,0.2),transparent);margin-top:6px"></div>
+          </div>
+          <div style="padding-bottom:0.4rem">
+            <div style="font-size:0.65rem;font-weight:600;color:var(--fg);margin-bottom:0.3rem">Browse the original site</div>
+            <div style="font-size:0.58rem;color:var(--fg-dim);line-height:1.75">Navigate to the original site — the one your demo was modelled on. Browse naturally: visit product pages, read categories, follow your interests. The extension watches every page visit and builds a silent user profile in the background. No input required from the user.</div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:40px 1fr;gap:1rem;padding:1.2rem 0;border-bottom:1px solid var(--fg-faint)">
+          <div style="display:flex;flex-direction:column;align-items:center;padding-top:2px">
+            <div style="width:30px;height:30px;border-radius:50%;background:rgba(255,61,0,0.08);border:1px solid rgba(255,61,0,0.2);display:flex;align-items:center;justify-content:center;font-family:var(--heading);font-size:0.95rem;font-weight:700;color:var(--accent);flex-shrink:0">4</div>
+            <div style="flex:1;width:1px;background:linear-gradient(to bottom,rgba(255,61,0,0.2),transparent);margin-top:6px"></div>
+          </div>
+          <div style="padding-bottom:0.4rem">
+            <div style="font-size:0.65rem;font-weight:600;color:var(--fg);margin-bottom:0.3rem">Profile builds — context accumulates</div>
+            <div style="font-size:0.58rem;color:var(--fg-dim);line-height:1.75">As you navigate, the extension accumulates intent signals — what categories you visited, which products you lingered on, what paths you followed. Once enough context exists, the Personalise button becomes available. The richer the browsing, the more precise the eventual generation.</div>
+            <div class="callout note" style="margin-top:0.7rem">
+              <div class="callout-label">Demo tip</div>
+              <div class="callout-body">Browse 3–5 pages with a clear theme (e.g. all from one product category). Consistent intent produces a more dramatic, specific personalisation than scattered browsing.</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:40px 1fr;gap:1rem;padding:1.2rem 0;border-bottom:1px solid var(--fg-faint)">
+          <div style="display:flex;flex-direction:column;align-items:center;padding-top:2px">
+            <div style="width:30px;height:30px;border-radius:50%;background:rgba(255,61,0,0.08);border:1px solid rgba(255,61,0,0.2);display:flex;align-items:center;justify-content:center;font-family:var(--heading);font-size:0.95rem;font-weight:700;color:var(--accent);flex-shrink:0">5</div>
+            <div style="flex:1;width:1px;background:linear-gradient(to bottom,rgba(255,61,0,0.2),transparent);margin-top:6px"></div>
+          </div>
+          <div style="padding-bottom:0.4rem">
+            <div style="font-size:0.65rem;font-weight:600;color:var(--fg);margin-bottom:0.3rem">Press Personalise — the page glows</div>
+            <div style="font-size:0.58rem;color:var(--fg-dim);line-height:1.75">Back on the homepage, open the extension panel and press <strong style="color:var(--fg)">Personalise</strong>. The page transforms — a visual glow effect signals activation, and a branded CTA is injected into the page based on the user profile the extension has built.</div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:40px 1fr;gap:1rem;padding:1.2rem 0">
+          <div style="display:flex;flex-direction:column;align-items:center;padding-top:2px">
+            <div style="width:30px;height:30px;border-radius:50%;background:rgba(0,229,160,0.08);border:1px solid rgba(0,229,160,0.2);display:flex;align-items:center;justify-content:center;font-family:var(--heading);font-size:0.95rem;font-weight:700;color:var(--teal);flex-shrink:0">6</div>
+          </div>
+          <div style="padding-bottom:0.4rem">
+            <div style="font-size:0.65rem;font-weight:600;color:var(--fg);margin-bottom:0.3rem">Click the CTA — /of1 opens, no prompt needed</div>
+            <div style="font-size:0.58rem;color:var(--fg-dim);line-height:1.75">The injected CTA opens the /of1 page and passes the user profile as context — no typing, no prompt. The generation begins immediately, producing a page tailored to exactly what the user browsed. The profile replaces the query. This is the reveal moment: the site already knew what they were looking for.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="callout gold">
+        <div class="callout-label">The reveal</div>
+        <div class="callout-body">The power of the extension flow is that the user never typed anything — yet the generated page is specific to them. Use this to close the demo: <em style="color:var(--fg)">"The site figured out what you were here for. You didn't ask. It just knew."</em></div>
+      </div>
+    </section>
+    <div class="divider"></div>
+
+    <!-- KEY CONCEPTS -->
+    <section class="section" id="concepts">
+      <div class="section-header">
+        <div class="section-label">Glossary</div>
+        <div class="section-title">Key concepts</div>
+        <div class="section-desc">Terms you'll encounter throughout the pipeline.</div>
+      </div>
+      <div class="concept-list">
+
+        <div class="concept-item">
+          <div class="concept-q" onclick="this.parentElement.classList.toggle('open')">
+            <div class="concept-q-inner"><span class="concept-tag ct-tool">Tool</span><span class="concept-name">Stardust</span></div>
+            <span class="concept-chevron">›</span>
+          </div>
+          <div class="concept-body">
+            <div class="concept-text">Stardust is a brand extraction and prototype generation pipeline (from the <code>adobe/skills</code> plugin). It crawls a live site, captures its visual design system — colors, typography, spacing, logo, icons, screenshots — and stores it in a structured <code>stardust/current/</code> directory with <code>DESIGN.json</code> and <code>PRODUCT.md</code>. The prototype step then uses this to generate pixel-perfect HTML pages. Stardust is NOT used to redesign the site — it extracts and faithfully reproduces it.</div>
+          </div>
+        </div>
+
+        <div class="concept-item">
+          <div class="concept-q" onclick="this.parentElement.classList.toggle('open')">
+            <div class="concept-q-inner"><span class="concept-tag ct-tool">Tool</span><span class="concept-name">Snowflake</span></div>
+            <span class="concept-chevron">›</span>
+          </div>
+          <div class="concept-body">
+            <div class="concept-text">Snowflake is the EDS conversion layer (from the <code>ai-ecoverse/snowflake</code> plugin). It takes the stardust prototypes (HTML files) and converts them into a working AEM Edge Delivery Services site — creating custom <code>blocks/</code> directories with JS and CSS, generating EDS-compatible content HTML for DA, and building a block catalog page. The result is a real EDS site that previews at <code>https://main--{repo}--{owner}.aem.page/</code>.</div>
+          </div>
+        </div>
+
+        <div class="concept-item">
+          <div class="concept-q" onclick="this.parentElement.classList.toggle('open')">
+            <div class="concept-q-inner"><span class="concept-tag ct-eds">EDS</span><span class="concept-name">AEM Edge Delivery Services</span></div>
+            <span class="concept-chevron">›</span>
+          </div>
+          <div class="concept-body">
+            <div class="concept-text">AEM Edge Delivery Services (EDS) is Adobe's JAMstack-style web platform. Content lives in DA.live (a headless CMS), code in GitHub. EDS builds blocks via a lightweight JS architecture: each block has a <code>decorate(block)</code> function that transforms raw HTML table markup into the final rendered component. Preview URLs follow the pattern <code>https://main--{repo}--{owner}.aem.page/</code>. Live URLs use <code>.aem.live</code>. Static files in git (like <code>/deliverables/*.html</code>) are served at their exact path including the <code>.html</code> extension.</div>
+          </div>
+        </div>
+
+        <div class="concept-item">
+          <div class="concept-q" onclick="this.parentElement.classList.toggle('open')">
+            <div class="concept-q-inner"><span class="concept-tag ct-eds">EDS</span><span class="concept-name">DA.live</span></div>
+            <span class="concept-chevron">›</span>
+          </div>
+          <div class="concept-body">
+            <div class="concept-text">DA (Document Authoring) is the headless CMS that powers EDS content. Content is uploaded via the DA Admin API (<code>PUT https://admin.da.live/source/{owner}/{repo}/{page}.html</code>) and then previewed via the AEM Admin API (<code>POST https://admin.hlx.page/preview/...</code>). DA requires both <code>Authorization</code> and <code>x-content-source-authorization</code> headers with the IMS token. <strong>Critical limitation</strong>: DA strips all <code>&lt;img&gt;</code>, <code>&lt;picture&gt;</code>, and inline <code>&lt;svg&gt;</code> from programmatically uploaded HTML. Images must be stored as plain text URLs in block cells.</div>
+          </div>
+        </div>
+
+        <div class="concept-item">
+          <div class="concept-q" onclick="this.parentElement.classList.toggle('open')">
+            <div class="concept-q-inner"><span class="concept-tag ct-of1">OF1</span><span class="concept-name">OF1 Worker + Tenant</span></div>
+            <span class="concept-chevron">›</span>
+          </div>
+          <div class="concept-body">
+            <div class="concept-text">The OF1 worker is a Cloudflare Worker at <code>of1-gen-web-service.franklin-prod.workers.dev</code> that handles AI generation. Each demo gets a <strong>tenant</strong> — identified by <code>main--{repo}--{owner}</code>. Config JSON files are committed to the git repo at <code>of1/config/</code>, served as static files by EDS, then synced to the worker's R2 storage via <code>POST /api/tenants/{id}/sync</code>. The worker auto-indexes vectors for products, features, and FAQs during sync. Generation is tested via <code>POST /api/generate</code>.</div>
+          </div>
+        </div>
+
+        <div class="concept-item">
+          <div class="concept-q" onclick="this.parentElement.classList.toggle('open')">
+            <div class="concept-q-inner"><span class="concept-tag ct-of1">OF1</span><span class="concept-name">Block Guide</span></div>
+            <span class="concept-chevron">›</span>
+          </div>
+          <div class="concept-body">
+            <div class="concept-text">The block guide (<code>of1/config/block-guide.json</code>) is a prompt string (stored in a <code>"guide"</code> field) that teaches the OF1 LLM what JSON to output. It defines each block with a description, rules, and a complete <code>rows</code>-format example. The worker's <code>json-to-html.js</code> converts the LLM output to EDS block HTML at runtime. Blocks are output as separate JSON objects separated by <code>===</code> — never wrapped in an array. The guide is the single most important config file for generation quality.</div>
+          </div>
+        </div>
+
+        <div class="concept-item">
+          <div class="concept-q" onclick="this.parentElement.classList.toggle('open')">
+            <div class="concept-q-inner"><span class="concept-tag ct-arch">Arch</span><span class="concept-name">Sprinkle + Scoop (SLICC architecture)</span></div>
+            <span class="concept-chevron">›</span>
+          </div>
+          <div class="concept-body">
+            <div class="concept-text">In SLICC's architecture, a <strong>scoop</strong> is a sub-agent (spawned via <code>scoop_scoop()</code>) that handles a specific task. A <strong>sprinkle</strong> is a persistent UI panel that the <strong>cone</strong> (orchestrator scoop) communicates with via <code>sprinkle send</code>. The of1-demo orchestrator is a cone — it opens the sprinkle panel, spawns step scoops named <code>of1-s1</code> through <code>of1-s13</code>, polls for status files, and pushes status updates to the sprinkle UI. Step scoops never call <code>sprinkle send</code> directly — they write status files and the cone picks them up.</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+  function toggleStep(btn) {
+    const detail = btn.nextElementSibling;
+    const open = detail.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+  }
+
+  // Active sidebar link on scroll
+  const sections = document.querySelectorAll('.section[id]');
+  const links = document.querySelectorAll('.sidebar-link');
+  const sectionMap = { overview: 0, prerequisites: 1, install: 2, pipeline: 3, 'demo-flow': 5, 'demo-of1': 6, 'demo-extension': 7, concepts: 9 };
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        links.forEach(l => l.classList.remove('active'));
+        const idx = sectionMap[id];
+        if (idx !== undefined) links[idx]?.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -60% 0px' });
+
+  sections.forEach(s => obs.observe(s));
+</script>
+</body>
+</html>
