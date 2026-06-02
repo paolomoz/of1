@@ -327,24 +327,33 @@
   }
   .version-label {
     font-size: 0.45rem; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--color-fg-muted); margin-bottom: 0.6rem;
+    color: var(--color-fg-muted); margin-bottom: 0.5rem;
   }
-  .version-pills {
-    display: flex; gap: 0.4rem;
+  .version-select-wrap {
+    position: relative;
   }
-  .version-pill {
-    flex: 1; padding: 0.35rem 0; text-align: center;
-    font-family: var(--body-font-family); font-size: 0.55rem;
-    font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
-    border-radius: 100px; border: 1px solid var(--color-fg-faint);
-    color: var(--color-fg-muted); background: transparent;
-    cursor: pointer; transition: all 0.15s ease;
+  .version-select-wrap::after {
+    content: '▾';
+    position: absolute; right: 0.7rem; top: 50%; transform: translateY(-50%);
+    font-size: 0.6rem; color: var(--color-fg-muted); pointer-events: none;
   }
-  .version-pill:hover { border-color: var(--color-fg-dim); color: var(--color-fg); }
-  .version-pill.active {
-    background: rgba(0,229,160,0.1); border-color: rgba(0,229,160,0.35);
+  .version-select {
+    width: 100%;
+    appearance: none; -webkit-appearance: none;
+    font-family: var(--body-font-family); font-size: 0.60rem;
+    font-weight: 500; letter-spacing: 0.08em;
     color: var(--color-tertiary);
+    background: rgba(0,229,160,0.06);
+    border: 1px solid rgba(0,229,160,0.2);
+    border-radius: 6px;
+    padding: 0.45rem 1.8rem 0.45rem 0.7rem;
+    cursor: pointer;
+    transition: border-color 0.15s;
+    outline: none;
   }
+  .version-select:hover { border-color: rgba(0,229,160,0.4); }
+  .version-select:focus { border-color: rgba(0,229,160,0.5); }
+  .version-select option { background: #1C1917; color: var(--color-fg); }
 </style>
 <script defer src="https://ot.aem.live/.rum/@adobe/helix-rum-js@^2/dist/rum-standalone.js"></script>
 </head>
@@ -367,9 +376,11 @@
   <aside class="sidebar">
     <div class="version-selector">
       <div class="version-label">Skills version</div>
-      <div class="version-pills">
-        <button class="version-pill" data-version="v2" onclick="setVersion('v2')">v2</button>
-        <button class="version-pill" data-version="v3" onclick="setVersion('v3')">v3</button>
+      <div class="version-select-wrap">
+        <select class="version-select" id="version-select" onchange="setVersion(this.value)">
+          <option value="v2">skills-v2</option>
+          <option value="v3">skills-v3</option>
+        </select>
       </div>
     </div>
     <div class="sidebar-group">
@@ -1277,7 +1288,8 @@
   function setVersion(v) {
     const data = VERSION_DATA[v];
     if (!data) return;
-    document.querySelectorAll('.version-pill').forEach(p => p.classList.toggle('active', p.dataset.version === v));
+    const sel = document.getElementById('version-select');
+    if (sel) sel.value = v;
     const badge = document.getElementById('version-badge');
     const branch = document.getElementById('version-branch');
     const cmd = document.getElementById('version-cmd');
