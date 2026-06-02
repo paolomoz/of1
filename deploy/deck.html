@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Audience of One — Generative Website</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-bg: #1C1917;
+    --color-fg: #F5F0E8;
+    --color-accent: #FF3D00;
+    --color-secondary: #1A1AFF;
+    --color-tertiary: #00E5A0;
+    --color-fg-dim: rgba(245, 240, 232, 0.78);
+    --color-fg-faint: rgba(245, 240, 232, 0.08);
+    --heading-font: 'Cormorant Garamond', serif;
+    --body-font: 'JetBrains Mono', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--body-font);
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .deck {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5rem 7rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+
+  .slide.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .eyebrow {
+    font-family: var(--body-font);
+    font-size: 0.75rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--color-tertiary);
+    font-weight: 500;
+    margin-bottom: 1.75rem;
+  }
+
+  .slide h1 {
+    font-family: var(--heading-font);
+    font-size: clamp(3rem, 6.5vw, 6rem);
+    font-weight: 700;
+    line-height: 0.95;
+    max-width: 14em;
+    margin-bottom: 2rem;
+  }
+
+  .slide h1 em {
+    font-style: italic;
+    color: var(--color-accent);
+  }
+
+  .slide h2 {
+    font-family: var(--heading-font);
+    font-size: clamp(2.5rem, 5.5vw, 5rem);
+    font-weight: 700;
+    line-height: 0.95;
+    margin-bottom: 2.5rem;
+  }
+
+  .slide h2 em {
+    font-style: italic;
+    color: var(--color-accent);
+  }
+
+  .body {
+    font-family: var(--body-font);
+    font-size: clamp(0.8rem, 1.1vw, 0.95rem);
+    line-height: 1.85;
+    color: var(--color-fg-dim);
+    max-width: 44em;
+  }
+
+  .body strong {
+    color: var(--color-fg);
+    font-weight: 500;
+  }
+
+  /* Slide 1 decoration */
+  .slide-1::after {
+    content: 'of1';
+    position: absolute;
+    right: 4rem;
+    bottom: -2rem;
+    font-family: var(--body-font);
+    font-size: clamp(14rem, 28vw, 26rem);
+    font-weight: 700;
+    color: rgba(245, 240, 232, 0.04);
+    line-height: 1;
+    pointer-events: none;
+    letter-spacing: -0.04em;
+  }
+
+  /* Slide 2 points */
+  .points {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .point {
+    display: flex;
+    gap: 1.75rem;
+    align-items: flex-start;
+  }
+
+  .point-number {
+    font-family: var(--heading-font);
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: rgba(26, 26, 255, 0.55);
+    line-height: 1;
+    min-width: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .point-text {
+    font-family: var(--body-font);
+    font-size: clamp(0.75rem, 1vw, 0.9rem);
+    line-height: 1.8;
+    color: var(--color-fg-dim);
+    padding-top: 0.3rem;
+  }
+
+  .point-text strong {
+    color: var(--color-fg);
+    font-weight: 500;
+  }
+
+  /* Slide 2 infra diagram */
+  .infra-diagram {
+    width: 100%;
+    height: auto;
+    max-width: 860px;
+  }
+
+  /* Slide 3 demo URL */
+  .demo-url {
+    display: inline-block;
+    font-family: var(--body-font);
+    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+    font-weight: 600;
+    color: var(--color-accent);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    margin-top: 1.75rem;
+    border-bottom: 1px solid rgba(255, 61, 0, 0.3);
+    padding-bottom: 0.2rem;
+    transition: border-color 0.2s ease;
+  }
+
+  .demo-url:hover {
+    border-color: var(--color-accent);
+  }
+
+  /* Slide 4 CTA */
+  .cta-btn {
+    display: inline-block;
+    align-self: flex-start;
+    margin-top: 2rem;
+    font-family: var(--body-font);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-bg);
+    background: var(--color-accent);
+    text-decoration: none;
+    padding: 0.8rem 2rem;
+    border-radius: 100px;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .cta-btn:hover {
+    background: var(--color-fg);
+    transform: translateY(-2px);
+  }
+
+  /* Logo */
+  .logo {
+    position: fixed;
+    top: 2rem;
+    left: 3rem;
+    font-family: var(--body-font);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: rgba(245, 240, 232, 0.70);
+    letter-spacing: -0.02em;
+    z-index: 100;
+  }
+
+  /* Navigation */
+  .nav {
+    position: fixed;
+    bottom: 2.5rem;
+    right: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    z-index: 100;
+  }
+
+  .nav-counter {
+    font-family: var(--body-font);
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    color: var(--color-fg-dim);
+  }
+
+  .nav-arrows {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .nav-btn {
+    background: none;
+    border: 1px solid rgba(245, 240, 232, 0.18);
+    color: var(--color-fg-dim);
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s ease, color 0.2s ease;
+    font-family: var(--body-font);
+  }
+
+  .nav-btn:hover:not(:disabled) {
+    border-color: var(--color-fg);
+    color: var(--color-fg);
+  }
+
+  .nav-btn:disabled {
+    opacity: 0.2;
+    cursor: default;
+  }
+
+  /* Progress bar */
+  .progress {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    background: var(--color-accent);
+    transition: width 0.4s ease;
+    z-index: 100;
+  }
+</style>
+</head>
+<body>
+
+<span class="logo">of1</span>
+
+<div class="deck">
+
+  <!-- SLIDE 1: HOOK -->
+  <div class="slide slide-1 active" data-slide="1">
+    <div class="eyebrow">Audience of One</div>
+    <h1>The end of <em>audiences.</em><br>The beginning of <em>every</em>one.</h1>
+    <p class="body">
+      For decades, marketing meant shouting at segments. Categories. Cohorts.<br>
+      <strong>of1 makes every person a market of one</strong> — a website that knows you, adapts to you, and feels like it was built just for you.
+    </p>
+  </div>
+
+  <!-- SLIDE 2: GENERATIVE WEBSITE -->
+  <div class="slide slide-2" data-slide="2">
+    <div class="eyebrow">How it works</div>
+    <h2>Generative<br><em>Website</em></h2>
+    <p class="body" style="margin-bottom: 3rem;">Your existing AEM content, retrieved intelligently and assembled by a fast LLM — in real time, for each visitor.</p>
+    <svg class="infra-diagram" viewBox="0 0 1000 220" xmlns="http://www.w3.org/2000/svg" aria-label="Infrastructure diagram: EDS Blocks, RAG, and User Intent all feed into LLM which produces a Unique Page">
+
+      <!-- ── INPUTS (left column) ── -->
+
+      <!-- EDS Blocks -->
+      <rect x="0" y="10" width="195" height="58" rx="6" fill="rgba(245,240,232,0.05)" stroke="rgba(245,240,232,0.14)" stroke-width="1"/>
+      <text x="97" y="38" text-anchor="middle" fill="#F5F0E8" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" letter-spacing="0.05em">EDS BLOCKS</text>
+      <text x="97" y="56" text-anchor="middle" fill="rgba(245,240,232,0.45)" font-family="JetBrains Mono, monospace" font-size="9.5">AEM Assets · Sites</text>
+
+      <!-- RAG -->
+      <rect x="0" y="81" width="195" height="58" rx="6" fill="rgba(245,240,232,0.05)" stroke="rgba(245,240,232,0.14)" stroke-width="1"/>
+      <text x="97" y="108" text-anchor="middle" fill="#F5F0E8" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" letter-spacing="0.05em">RAG</text>
+      <text x="97" y="126" text-anchor="middle" fill="rgba(245,240,232,0.45)" font-family="JetBrains Mono, monospace" font-size="9.5">Retrieval Index</text>
+
+      <!-- User Intent (green) -->
+      <rect x="0" y="152" width="195" height="58" rx="6" fill="rgba(0,229,160,0.06)" stroke="rgba(0,229,160,0.28)" stroke-width="1"/>
+      <text x="97" y="180" text-anchor="middle" fill="#00E5A0" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" letter-spacing="0.05em">USER INTENT</text>
+      <text x="97" y="198" text-anchor="middle" fill="rgba(0,229,160,0.5)" font-family="JetBrains Mono, monospace" font-size="9.5">Visitor Query</text>
+
+      <!-- ── CONVERGING LINES → LLM ── -->
+
+      <!-- EDS → LLM -->
+      <line x1="195" y1="39" x2="418" y2="110" stroke="rgba(245,240,232,0.15)" stroke-width="1.5" stroke-dasharray="5 3"/>
+      <!-- RAG → LLM -->
+      <line x1="195" y1="110" x2="418" y2="110" stroke="rgba(245,240,232,0.15)" stroke-width="1.5" stroke-dasharray="5 3"/>
+      <!-- User Intent → LLM (green) -->
+      <line x1="195" y1="181" x2="418" y2="110" stroke="rgba(0,229,160,0.22)" stroke-width="1.5" stroke-dasharray="5 3"/>
+
+      <!-- Arrowhead at LLM entrance -->
+      <polygon points="418,106 428,110 418,114" fill="rgba(245,240,232,0.3)"/>
+
+      <!-- ── LLM (center) ── -->
+      <rect x="428" y="81" width="158" height="58" rx="6" fill="rgba(245,240,232,0.08)" stroke="rgba(245,240,232,0.22)" stroke-width="1"/>
+      <text x="507" y="108" text-anchor="middle" fill="#F5F0E8" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" letter-spacing="0.05em">LLM</text>
+      <text x="507" y="126" text-anchor="middle" fill="rgba(245,240,232,0.45)" font-family="JetBrains Mono, monospace" font-size="9.5">Fast Model · &lt;100ms</text>
+
+      <!-- ── OUTPUT ARROW (accent) ── -->
+      <line x1="586" y1="110" x2="672" y2="110" stroke="rgba(255,61,0,0.55)" stroke-width="2"/>
+      <polygon points="672,106 684,110 672,114" fill="rgba(255,61,0,0.75)"/>
+
+      <!-- ── UNIQUE PAGE (output, highlighted) ── -->
+      <rect x="684" y="81" width="220" height="58" rx="6" fill="rgba(255,61,0,0.07)" stroke="rgba(255,61,0,0.38)" stroke-width="1"/>
+      <text x="794" y="108" text-anchor="middle" fill="#FF3D00" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" letter-spacing="0.05em">UNIQUE PAGE</text>
+      <text x="794" y="126" text-anchor="middle" fill="rgba(245,240,232,0.45)" font-family="JetBrains Mono, monospace" font-size="9.5">Per visitor · Under 2s</text>
+
+    </svg>
+  </div>
+
+  <!-- SLIDE 3: DEMO -->
+  <div class="slide slide-3" data-slide="3">
+    <div class="eyebrow">See it live</div>
+    <h2>Meet<br><em>arco.coffee</em></h2>
+    <p class="body">A live Generative Website. Every visitor gets a different page — built from the same content, shaped around their intent. No two visits are the same.</p>
+    <a href="https://arco.coffee/" class="demo-url" target="_blank" rel="noopener">arco.coffee →</a>
+  </div>
+
+  <!-- SLIDE 4: CO-INNOVATE -->
+  <div class="slide slide-4" data-slide="4">
+    <div class="eyebrow">Built by the AEM team</div>
+    <h2>We're building this.<br>Build it <em>with us.</em></h2>
+    <p class="body">We're opening co-innovation spots to a select group of AEM customers. <strong>You bring the brand and the content — we bring the technology.</strong> Together, we define what this looks like at scale.</p>
+    <a href="https://of1.live" class="cta-btn" target="_blank" rel="noopener">Register interest →</a>
+  </div>
+
+</div>
+
+<div class="nav">
+  <span class="nav-counter" id="counter">1 / 4</span>
+  <div class="nav-arrows">
+    <button class="nav-btn" id="prevBtn" onclick="navigate(-1)" disabled aria-label="Previous slide">←</button>
+    <button class="nav-btn" id="nextBtn" onclick="navigate(1)" aria-label="Next slide">→</button>
+  </div>
+</div>
+
+<div class="progress" id="progress"></div>
+
+<script>
+  let current = 0;
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+
+  function navigate(dir) {
+    const next = current + dir;
+    if (next < 0 || next >= total) return;
+    slides[current].classList.remove('active');
+    current = next;
+    slides[current].classList.add('active');
+    document.getElementById('counter').textContent = `${current + 1} / ${total}`;
+    document.getElementById('prevBtn').disabled = current === 0;
+    document.getElementById('nextBtn').disabled = current === total - 1;
+    document.getElementById('progress').style.width = `${((current + 1) / total) * 100}%`;
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') navigate(1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') navigate(-1);
+  });
+
+  document.getElementById('progress').style.width = `${(1 / total) * 100}%`;
+</script>
+
+</body>
+</html>

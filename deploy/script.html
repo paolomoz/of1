@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recording Script — of1</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-bg: #0A0A0A; --color-fg: #F5F0E8; --color-accent: #FF3D00;
+    --color-tertiary: #00E5A0; --color-blue: #4D4DFF;
+    --color-fg-dim: rgba(245, 240, 232, 0.78); --color-fg-faint: rgba(245, 240, 232, 0.08);
+    --color-fg-muted: rgba(245, 240, 232, 0.70);
+    --heading-font: 'Cormorant Garamond', serif;
+    --mono-font: 'JetBrains Mono', monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { font-size: 18px; }
+  body { background: var(--color-bg); color: var(--color-fg); font-family: var(--mono-font); -webkit-font-smoothing: antialiased; }
+
+  /* SITE HEADER */
+  .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 2.5rem; background: rgba(10,10,10,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--color-fg-faint); }
+  .site-logo { font-family: var(--mono-font); font-size: 1rem; font-weight: 700; color: var(--color-fg); text-decoration: none; letter-spacing: -0.02em; }
+  .site-nav { display: flex; align-items: center; gap: 2rem; }
+  .site-nav a { font-family: var(--mono-font); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-fg-dim); text-decoration: none; transition: color 0.2s ease; }
+  .site-nav a:hover { color: var(--color-fg); }
+  .site-nav .nav-cta { padding: 0.4rem 1.2rem; background: var(--color-accent); color: var(--color-bg); border-radius: 100px; font-weight: 600; }
+  .site-nav .nav-cta:hover { background: var(--color-fg); color: var(--color-bg); }
+
+  /* MAIN */
+  .main { max-width: 720px; margin: 0 auto; padding: 7rem 2.5rem 6rem; }
+
+  .page-eyebrow { font-family: var(--mono-font); font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--color-fg-muted); margin-bottom: 0.8rem; }
+  .page-title { font-family: var(--heading-font); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; font-style: italic; line-height: 1.1; margin-bottom: 0.5rem; }
+  .page-sub { font-family: var(--mono-font); font-size: 0.75rem; color: var(--color-fg-muted); margin-bottom: 3.5rem; letter-spacing: 0.05em; }
+
+  /* BEAT */
+  .beat { margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid var(--color-fg-faint); }
+  .beat:last-child { border-bottom: none; }
+
+  .beat-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1rem; }
+  .beat-num { font-family: var(--heading-font); font-size: 2.5rem; font-weight: 700; line-height: 1; color: var(--color-fg-faint); flex-shrink: 0; }
+  .beat-meta { display: flex; flex-direction: column; gap: 0.2rem; }
+  .beat-action { font-family: var(--mono-font); font-size: 0.78rem; font-weight: 600; color: var(--color-fg); letter-spacing: 0.03em; }
+  .beat-timing { font-family: var(--mono-font); font-size: 0.76rem; letter-spacing: 0.1em; color: var(--color-fg-muted); }
+
+  /* DO THIS */
+  .do-this { font-family: var(--mono-font); font-size: 0.75rem; line-height: 1.8; color: var(--color-fg-dim); margin-bottom: 1.2rem; }
+  .do-this strong { color: var(--color-fg); font-weight: 600; }
+
+  /* SAY THIS */
+  .say { background: rgba(0,229,160,0.05); border-left: 2px solid var(--color-tertiary); border-radius: 0 6px 6px 0; padding: 1rem 1.2rem; }
+  .say-label { font-family: var(--mono-font); font-size: 0.45rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-tertiary); margin-bottom: 0.5rem; }
+  .say-text { font-family: var(--heading-font); font-size: 1.25rem; font-style: italic; line-height: 1.6; color: var(--color-fg); }
+</style>
+<script defer type="text/javascript" src="https://ot.aem.live/.rum/@adobe/helix-rum-js@^2/dist/rum-standalone.js"></script>
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="/" class="site-logo">of1</a>
+    <nav class="site-nav">
+      <a href="/">Home</a>
+      <a href="/how-it-works.html">How it works</a>
+      <a href="https://arco.coffee/" class="nav-cta" target="_blank" rel="noopener">See it live</a>
+    </nav>
+  </header>
+
+  <main class="main">
+
+    <div class="page-eyebrow">of1 — Recording script</div>
+    <h1 class="page-title">Demo script</h1>
+    <div class="page-sub">arco.coffee · ~4 minutes · no audience</div>
+
+    <div class="beat">
+      <div class="beat-header">
+        <div class="beat-num">01</div>
+        <div class="beat-meta">
+          <div class="beat-action">Open arco.coffee — just browse</div>
+          <div class="beat-timing">~30 sec</div>
+        </div>
+      </div>
+      <div class="do-this">Navigate to <strong>arco.coffee</strong>. Don't click anything yet — just let the homepage sit. Then slowly scroll.</div>
+      <div class="say">
+        <div class="say-label">Say this</div>
+        <div class="say-text">"This is arco.coffee. A coffee brand — and a generative website. Every element on this page is designed to be personalized. Let me show you what that means."</div>
+      </div>
+    </div>
+
+    <div class="beat">
+      <div class="beat-header">
+        <div class="beat-num">02</div>
+        <div class="beat-meta">
+          <div class="beat-action">Browse a few pages — build intent</div>
+          <div class="beat-timing">~30 sec</div>
+        </div>
+      </div>
+      <div class="do-this">Click into <strong>2–3 pages</strong> with a consistent theme — products, a story, a category. Deliberate browsing. Then come back to the homepage.</div>
+      <div class="say">
+        <div class="say-label">Say this</div>
+        <div class="say-text">"I'm just browsing. But of1 is paying attention — every page I visit, every product I look at. It's building a picture of what I'm here for."</div>
+      </div>
+    </div>
+
+    <div class="beat">
+      <div class="beat-header">
+        <div class="beat-num">03</div>
+        <div class="beat-meta">
+          <div class="beat-action">Click Personalize — show the transformation</div>
+          <div class="beat-timing">~1 min</div>
+        </div>
+      </div>
+      <div class="do-this">Open the <strong>of1 side panel</strong>. Click <strong>Personalize</strong>. Let the page rewrite. Don't rush — let the transformation land before you speak.</div>
+      <div class="say">
+        <div class="say-label">Say this</div>
+        <div class="say-text">"Based on what I just browsed — here's what of1 decided to change. And here's why it changed each one."</div>
+      </div>
+    </div>
+
+    <div class="beat">
+      <div class="beat-header">
+        <div class="beat-num">04</div>
+        <div class="beat-meta">
+          <div class="beat-action">Walk the widget — before / after / reasoning</div>
+          <div class="beat-timing">~1 min</div>
+        </div>
+      </div>
+      <div class="do-this">Click through each mutation in the widget. Toggle <strong>before → after</strong> for at least two changes. Read the AI reasoning out loud for one of them.</div>
+      <div class="say">
+        <div class="say-label">Say this</div>
+        <div class="say-text">"This headline was rewritten. This product was swapped. This CTA changed. It's not guessing — it's explaining itself. That's the thing. The AI shows its work."</div>
+      </div>
+    </div>
+
+    <div class="beat">
+      <div class="beat-header">
+        <div class="beat-num">05</div>
+        <div class="beat-meta">
+          <div class="beat-action">Close — the pitch</div>
+          <div class="beat-timing">~30 sec</div>
+        </div>
+      </div>
+      <div class="do-this">Come off the widget. Let the personalized page sit in frame. Speak to camera.</div>
+      <div class="say">
+        <div class="say-label">Say this</div>
+        <div class="say-text">"This is of1. A website that pays attention — so every visitor finds exactly what they came for, as if it had always been there. We're in early access. of1.live."</div>
+      </div>
+    </div>
+
+  </main>
+
+</body>
+</html>

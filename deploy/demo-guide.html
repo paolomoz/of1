@@ -12,8 +12,8 @@
   :root {
     --bg: #0A0A0A; --fg: #F5F0E8; --accent: #FF3D00;
     --teal: #00E5A0; --blue: #4D4DFF; --gold: #C8A96E;
-    --fg-dim: rgba(245,240,232,0.55); --fg-faint: rgba(245,240,232,0.06);
-    --fg-muted: rgba(245,240,232,0.35); --fg-bright: rgba(245,240,232,0.9);
+    --fg-dim: rgba(245, 240, 232, 0.78); --fg-faint: rgba(245, 240, 232, 0.08);
+    --fg-muted: rgba(245, 240, 232, 0.70); --fg-bright: rgba(245,240,232,0.9);
     --border: rgba(245,240,232,0.08);
     --heading: 'Cormorant Garamond', serif;
     --mono: 'JetBrains Mono', monospace;
@@ -34,10 +34,10 @@
   }
   .site-logo { font-family: var(--mono); font-size: 0.9rem; font-weight: 700; color: var(--fg); text-decoration: none; letter-spacing: -0.02em; }
   .header-right { display: flex; align-items: center; gap: 1.8rem; }
-  .header-right a { font-size: 0.55rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--fg-muted); text-decoration: none; transition: color 0.2s; }
+  .header-right a { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--fg-muted); text-decoration: none; transition: color 0.2s; }
   .header-right a:hover { color: var(--fg); }
   .header-badge {
-    font-size: 0.5rem; letter-spacing: 0.12em; text-transform: uppercase;
+    font-size: 0.76rem; letter-spacing: 0.12em; text-transform: uppercase;
     padding: 0.25rem 0.7rem; border-radius: 100px;
     border: 1px solid rgba(200,169,110,0.3); color: var(--gold);
     background: rgba(200,169,110,0.06);
@@ -64,13 +64,13 @@
   }
   .sidebar-link {
     display: flex; align-items: center; gap: 0.6rem;
-    font-size: 0.58rem; color: var(--fg-dim); text-decoration: none;
+    font-size: 0.70rem; color: var(--fg-dim); text-decoration: none;
     padding: 0.3rem 0; transition: color 0.15s;
   }
   .sidebar-link:hover { color: var(--fg); }
   .sidebar-link.active { color: var(--teal); }
   .sidebar-link .sl-num {
-    font-size: 0.48rem; color: var(--fg-muted); min-width: 1.2rem;
+    font-size: 0.60rem; color: var(--fg-muted); min-width: 1.2rem;
     font-variant-numeric: tabular-nums;
   }
   .sidebar-link.active .sl-num { color: var(--teal); opacity: 0.6; }
@@ -88,18 +88,18 @@
   /* ── HERO ── */
   .page-hero { margin-bottom: 3rem; }
   .page-hero-eyebrow {
-    font-size: 0.5rem; letter-spacing: 0.2em; text-transform: uppercase;
+    font-size: 0.76rem; letter-spacing: 0.2em; text-transform: uppercase;
     color: var(--accent); margin-bottom: 1rem;
     display: flex; align-items: center; gap: 0.6rem;
   }
   .page-hero-eyebrow::after { content: ''; flex: 1; max-width: 60px; height: 1px; background: rgba(255,61,0,0.3); }
   .page-hero-title { font-family: var(--heading); font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 700; line-height: 1.05; margin-bottom: 1rem; }
   .page-hero-title em { font-style: italic; color: var(--fg-dim); }
-  .page-hero-sub { font-size: 0.65rem; line-height: 1.8; color: var(--fg-dim); max-width: 600px; margin-bottom: 1.5rem; }
+  .page-hero-sub { font-size: 0.78rem; line-height: 1.8; color: var(--fg-dim); max-width: 600px; margin-bottom: 1.5rem; }
   .page-hero-meta { display: flex; gap: 1.5rem; flex-wrap: wrap; }
   .meta-pill {
     display: flex; align-items: center; gap: 0.4rem;
-    font-size: 0.5rem; letter-spacing: 0.1em;
+    font-size: 0.76rem; letter-spacing: 0.1em;
     padding: 0.3rem 0.8rem; border-radius: 100px;
     border: 1px solid var(--border); color: var(--fg-muted);
   }
@@ -108,9 +108,9 @@
   /* ── SECTION ── */
   .section { margin-bottom: 3.5rem; scroll-margin-top: calc(var(--header-h) + 16px); }
   .section-header { margin-bottom: 1.5rem; }
-  .section-label { font-size: 0.48rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-muted); margin-bottom: 0.6rem; }
+  .section-label { font-size: 0.60rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-muted); margin-bottom: 0.6rem; }
   .section-title { font-family: var(--heading); font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 700; line-height: 1.1; }
-  .section-desc { font-size: 0.62rem; color: var(--fg-dim); line-height: 1.8; margin-top: 0.6rem; max-width: 640px; }
+  .section-desc { font-size: 0.76rem; color: var(--fg-dim); line-height: 1.8; margin-top: 0.6rem; max-width: 640px; }
   .divider { height: 1px; background: var(--fg-faint); margin-bottom: 3.5rem; }
 
   /* ── PREREQ CARDS ── */
@@ -126,7 +126,7 @@
   .prereq-status { font-size: 0.45rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.5rem; border-radius: 100px; }
   .status-required { color: var(--accent); background: rgba(255,61,0,0.08); border: 1px solid rgba(255,61,0,0.15); }
   .status-optional { color: var(--fg-muted); background: rgba(245,240,232,0.04); border: 1px solid var(--border); }
-  .prereq-name { font-size: 0.65rem; font-weight: 600; color: var(--fg); margin-bottom: 0.3rem; }
+  .prereq-name { font-size: 0.78rem; font-weight: 600; color: var(--fg); margin-bottom: 0.3rem; }
   .prereq-desc { font-size: 0.57rem; color: var(--fg-dim); line-height: 1.7; }
   .prereq-cmd { font-size: 0.54rem; color: var(--teal); margin-top: 0.7rem; background: rgba(0,229,160,0.05); border: 1px solid rgba(0,229,160,0.1); border-radius: 5px; padding: 0.4rem 0.6rem; word-break: break-all; }
 
@@ -163,7 +163,7 @@
   .step-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 0.6rem; flex-wrap: wrap; }
   .step-title-group { }
   .step-name { font-size: 0.72rem; font-weight: 600; color: var(--fg); margin-bottom: 0.2rem; }
-  .step-skill-tag { font-size: 0.48rem; color: var(--fg-muted); }
+  .step-skill-tag { font-size: 0.60rem; color: var(--fg-muted); }
   .step-skill-tag code { color: var(--teal); background: rgba(0,229,160,0.06); border: 1px solid rgba(0,229,160,0.12); border-radius: 3px; padding: 1px 5px; font-family: var(--mono); }
   .step-badges { display: flex; gap: 0.4rem; flex-wrap: wrap; align-items: center; }
   .badge {
@@ -175,12 +175,12 @@
   .badge-auto { color: var(--fg-muted); background: rgba(245,240,232,0.04); border: 1px solid var(--border); }
   .badge-inline { color: var(--accent); background: rgba(255,61,0,0.06); border: 1px solid rgba(255,61,0,0.15); }
 
-  .step-desc { font-size: 0.6rem; line-height: 1.8; color: var(--fg-dim); margin-bottom: 1rem; }
+  .step-desc { font-size: 0.75rem; line-height: 1.8; color: var(--fg-dim); margin-bottom: 1rem; }
 
   /* ── STEP EXPAND ── */
   .step-toggle {
     display: flex; align-items: center; gap: 0.5rem;
-    font-size: 0.5rem; letter-spacing: 0.1em; text-transform: uppercase;
+    font-size: 0.76rem; letter-spacing: 0.1em; text-transform: uppercase;
     color: var(--fg-muted); cursor: pointer; background: none; border: none;
     font-family: var(--mono); padding: 0; transition: color 0.15s;
   }
@@ -188,9 +188,9 @@
   .toggle-arrow {
     width: 12px; height: 12px; border: 1px solid currentColor; border-radius: 3px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 0.6rem; line-height: 1; transition: transform 0.2s, background 0.15s;
+    font-size: 0.75rem; line-height: 1; transition: transform 0.2s, background 0.15s;
   }
-  .step-toggle[aria-expanded="true"] .toggle-arrow { transform: rotate(90deg); background: rgba(245,240,232,0.06); }
+  .step-toggle[aria-expanded="true"] .toggle-arrow { transform: rotate(90deg); background: rgba(245, 240, 232, 0.08); }
 
   .step-detail {
     display: none; margin-top: 1rem;
@@ -203,18 +203,18 @@
   .detail-label { font-size: 0.45rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--fg-muted); margin-bottom: 0.5rem; }
   .detail-items { display: flex; flex-direction: column; gap: 0.3rem; }
   .detail-item {
-    font-size: 0.58rem; color: var(--fg-dim); line-height: 1.6;
+    font-size: 0.70rem; color: var(--fg-dim); line-height: 1.6;
     padding-left: 0.8rem; position: relative;
   }
   .detail-item::before { content: '·'; position: absolute; left: 0; color: var(--fg-muted); }
-  .detail-item code { font-family: var(--mono); font-size: 0.85em; background: rgba(245,240,232,0.06); border: 1px solid rgba(245,240,232,0.1); border-radius: 3px; padding: 1px 4px; color: var(--fg-bright); }
+  .detail-item code { font-family: var(--mono); font-size: 0.85em; background: rgba(245, 240, 232, 0.08); border: 1px solid rgba(245,240,232,0.1); border-radius: 3px; padding: 1px 4px; color: var(--fg-bright); }
   .detail-item strong { color: var(--fg); }
 
   /* note / tip / warn boxes */
   .callout { border-radius: 0 6px 6px 0; padding: 0.7rem 0.9rem; margin-top: 0.7rem; }
   .callout-label { font-size: 0.43rem; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.3rem; }
-  .callout-body { font-size: 0.58rem; line-height: 1.75; color: var(--fg-dim); }
-  .callout-body code { font-family: var(--mono); font-size: 0.85em; background: rgba(245,240,232,0.06); border-radius: 3px; padding: 1px 4px; color: var(--fg-bright); border: 1px solid rgba(245,240,232,0.1); }
+  .callout-body { font-size: 0.70rem; line-height: 1.75; color: var(--fg-dim); }
+  .callout-body code { font-family: var(--mono); font-size: 0.85em; background: rgba(245, 240, 232, 0.08); border-radius: 3px; padding: 1px 4px; color: var(--fg-bright); border: 1px solid rgba(245,240,232,0.1); }
   .callout-body strong { color: var(--fg); }
   .callout.note { background: rgba(77,77,255,0.05); border-left: 2px solid rgba(77,77,255,0.35); }
   .callout.note .callout-label { color: var(--blue); }
@@ -244,12 +244,12 @@
   .ct-tool { color: var(--teal); background: rgba(0,229,160,0.05); border: 1px solid rgba(0,229,160,0.12); }
   .ct-arch { color: var(--gold); background: rgba(200,169,110,0.06); border: 1px solid rgba(200,169,110,0.15); }
   .concept-name { font-size: 0.63rem; font-weight: 600; color: var(--fg); }
-  .concept-chevron { font-size: 0.65rem; color: var(--fg-muted); transition: transform 0.2s; }
+  .concept-chevron { font-size: 0.78rem; color: var(--fg-muted); transition: transform 0.2s; }
   .concept-item.open .concept-chevron { transform: rotate(90deg); }
   .concept-body { display: none; padding: 0 1.1rem 1rem; border-top: 1px solid var(--fg-faint); background: rgba(245,240,232,0.01); }
   .concept-item.open .concept-body { display: block; }
-  .concept-text { font-size: 0.6rem; line-height: 1.8; color: var(--fg-dim); padding-top: 0.8rem; }
-  .concept-text code { font-family: var(--mono); font-size: 0.85em; background: rgba(245,240,232,0.06); border: 1px solid rgba(245,240,232,0.1); border-radius: 3px; padding: 1px 4px; color: var(--fg-bright); }
+  .concept-text { font-size: 0.75rem; line-height: 1.8; color: var(--fg-dim); padding-top: 0.8rem; }
+  .concept-text code { font-family: var(--mono); font-size: 0.85em; background: rgba(245, 240, 232, 0.08); border: 1px solid rgba(245,240,232,0.1); border-radius: 3px; padding: 1px 4px; color: var(--fg-bright); }
   .concept-text strong { color: var(--fg); }
 
   /* ── PITFALLS ── */
@@ -263,13 +263,13 @@
   .pitfall-num {
     width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0;
     display: flex; align-items: center; justify-content: center;
-    font-size: 0.5rem; font-weight: 600; margin-top: 1px;
+    font-size: 0.76rem; font-weight: 600; margin-top: 1px;
     background: rgba(255,61,0,0.08); color: var(--accent); border: 1px solid rgba(255,61,0,0.15);
   }
   .pitfall-body { }
-  .pitfall-title { font-size: 0.6rem; font-weight: 600; color: var(--fg); margin-bottom: 0.3rem; }
+  .pitfall-title { font-size: 0.75rem; font-weight: 600; color: var(--fg); margin-bottom: 0.3rem; }
   .pitfall-desc { font-size: 0.57rem; color: var(--fg-dim); line-height: 1.75; }
-  .pitfall-desc code { font-family: var(--mono); font-size: 0.85em; background: rgba(245,240,232,0.06); border: 1px solid rgba(245,240,232,0.1); border-radius: 3px; padding: 1px 4px; color: var(--fg-bright); }
+  .pitfall-desc code { font-family: var(--mono); font-size: 0.85em; background: rgba(245, 240, 232, 0.08); border: 1px solid rgba(245,240,232,0.1); border-radius: 3px; padding: 1px 4px; color: var(--fg-bright); }
   .pitfall-desc strong { color: var(--fg); }
 
   /* ── OUTPUT MAP ── */
@@ -280,13 +280,13 @@
     background: rgba(245,240,232,0.03); border-bottom: 1px solid var(--border);
   }
   .dir-icon { font-size: 0.75rem; }
-  .dir-path { font-size: 0.62rem; font-weight: 600; color: var(--fg); }
+  .dir-path { font-size: 0.76rem; font-weight: 600; color: var(--fg); }
   .dir-desc { font-size: 0.52rem; color: var(--fg-muted); margin-left: auto; }
   .output-files { padding: 0.5rem 1rem; }
   .output-file { display: flex; align-items: baseline; gap: 0.6rem; padding: 0.3rem 0; border-bottom: 1px solid rgba(245,240,232,0.04); }
   .output-file:last-child { border-bottom: none; }
-  .file-name { font-size: 0.58rem; color: var(--teal); min-width: 200px; font-family: var(--mono); }
-  .file-desc { font-size: 0.55rem; color: var(--fg-dim); }
+  .file-name { font-size: 0.70rem; color: var(--teal); min-width: 200px; font-family: var(--mono); }
+  .file-desc { font-size: 0.68rem; color: var(--fg-dim); }
   .file-step { font-size: 0.45rem; color: var(--fg-muted); margin-left: auto; white-space: nowrap; }
 
   /* ── PARALLEL BAND ── */
@@ -294,7 +294,7 @@
     margin: 1rem 0 0;
     padding: 0.6rem 1rem;
     background: rgba(77,77,255,0.05); border: 1px solid rgba(77,77,255,0.1); border-radius: 6px;
-    font-size: 0.55rem; color: var(--blue);
+    font-size: 0.68rem; color: var(--blue);
     display: flex; align-items: center; gap: 0.5rem;
   }
   .parallel-band::before { content: '⫸'; font-size: 0.7rem; }
@@ -448,14 +448,14 @@
       </div>
       <div class="callout tip">
         <div class="callout-label">Install command</div>
-        <div class="callout-body" style="font-size:0.65rem">Type this in SLICC:<br><br><code>upskill:https://github.com/aem-growth-adoption/of1-demo-skills@skills-v2</code></div>
+        <div class="callout-body" style="font-size: 0.78rem">Type this in SLICC:<br><br><code>upskill:https://github.com/aem-growth-adoption/of1-demo-skills@skills-v2</code></div>
       </div>
       <div style="margin-top:1.2rem">
         <a
           href="https://www.sliccy.ai/handoff?msg=upskill%3Ahttps%3A%2F%2Fgithub.com%2Faem-growth-adoption%2Fof1-demo-skills%40skills-v2"
           target="_blank"
           rel="noopener"
-          style="display:inline-block;font-family:var(--mono);font-size:0.55rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;color:var(--bg);background:var(--fg);padding:0.75rem 2rem;border-radius:100px;transition:opacity 0.2s,transform 0.2s"
+          style="display:inline-block;font-family:var(--mono);font-size: 0.68rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;color:var(--bg);background:var(--fg);padding:0.75rem 2rem;border-radius:100px;transition:opacity 0.2s,transform 0.2s"
           onmouseover="this.style.opacity='0.88';this.style.transform='translateY(-1px)'"
           onmouseout="this.style.opacity='1';this.style.transform='translateY(0)'"
         >Install in SLICC &rarr;</a>
@@ -949,12 +949,12 @@
         <div style="border:1px solid rgba(0,229,160,0.2);border-radius:10px;padding:1.3rem;background:rgba(0,229,160,0.03)">
           <div style="font-size:0.45rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal);margin-bottom:0.6rem">Mode A</div>
           <div style="font-family:var(--heading);font-size:1.1rem;font-weight:700;margin-bottom:0.5rem">Direct — the /of1 page</div>
-          <div style="font-size:0.58rem;color:var(--fg-dim);line-height:1.75">Go straight to <code style="font-family:var(--mono);font-size:0.85em;background:rgba(245,240,232,0.06);border:1px solid rgba(245,240,232,0.1);border-radius:3px;padding:1px 4px;color:var(--fg)">/of1</code>, type a query or click a suggestion chip, and watch a personalized page generate in real time.</div>
+          <div style="font-size: 0.70rem;color:var(--fg-dim);line-height:1.75">Go straight to <code style="font-family:var(--mono);font-size:0.85em;background:rgba(245, 240, 232, 0.08);border:1px solid rgba(245,240,232,0.1);border-radius:3px;padding:1px 4px;color:var(--fg)">/of1</code>, type a query or click a suggestion chip, and watch a personalized page generate in real time.</div>
         </div>
         <div style="border:1px solid rgba(255,61,0,0.2);border-radius:10px;padding:1.3rem;background:rgba(255,61,0,0.03)">
           <div style="font-size:0.45rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:0.6rem">Mode B</div>
           <div style="font-family:var(--heading);font-size:1.1rem;font-weight:700;margin-bottom:0.5rem">Extension — browse to personalise</div>
-          <div style="font-size:0.58rem;color:var(--fg-dim);line-height:1.75">Browse the original site with the OF1 Preview extension active. A profile builds silently. Hit Personalise — the page glows, a CTA appears, click it to open /of1 with no prompt needed.</div>
+          <div style="font-size: 0.70rem;color:var(--fg-dim);line-height:1.75">Browse the original site with the OF1 Preview extension active. A profile builds silently. Hit Personalise — the page glows, a CTA appears, click it to open /of1 with no prompt needed.</div>
         </div>
       </div>
     </section>
@@ -971,25 +971,25 @@
       <div style="display:flex;flex-direction:column;gap:0.6rem;margin-bottom:1.5rem">
 
         <div style="display:grid;grid-template-columns:28px 1fr;gap:1rem;align-items:start;padding:1rem;border:1px solid var(--border);border-radius:8px;background:rgba(245,240,232,0.015)">
-          <div style="width:24px;height:24px;border-radius:50%;background:rgba(0,229,160,0.08);border:1px solid rgba(0,229,160,0.2);display:flex;align-items:center;justify-content:center;font-size:0.55rem;font-weight:700;color:var(--teal);flex-shrink:0;margin-top:1px">1</div>
+          <div style="width:24px;height:24px;border-radius:50%;background:rgba(0,229,160,0.08);border:1px solid rgba(0,229,160,0.2);display:flex;align-items:center;justify-content:center;font-size: 0.68rem;font-weight:700;color:var(--teal);flex-shrink:0;margin-top:1px">1</div>
           <div>
-            <div style="font-size:0.62rem;font-weight:600;color:var(--fg);margin-bottom:0.25rem">Prompt — type any query</div>
+            <div style="font-size: 0.76rem;font-weight:600;color:var(--fg);margin-bottom:0.25rem">Prompt — type any query</div>
             <div style="font-size:0.57rem;color:var(--fg-dim);line-height:1.75">The search input accepts any natural language query. The OF1 worker matches it against your products, personas, and use cases, then instructs the LLM to assemble a relevant page using your block guide. The result streams in section by section.</div>
           </div>
         </div>
 
         <div style="display:grid;grid-template-columns:28px 1fr;gap:1rem;align-items:start;padding:1rem;border:1px solid var(--border);border-radius:8px;background:rgba(245,240,232,0.015)">
-          <div style="width:24px;height:24px;border-radius:50%;background:rgba(0,229,160,0.08);border:1px solid rgba(0,229,160,0.2);display:flex;align-items:center;justify-content:center;font-size:0.55rem;font-weight:700;color:var(--teal);flex-shrink:0;margin-top:1px">2</div>
+          <div style="width:24px;height:24px;border-radius:50%;background:rgba(0,229,160,0.08);border:1px solid rgba(0,229,160,0.2);display:flex;align-items:center;justify-content:center;font-size: 0.68rem;font-weight:700;color:var(--teal);flex-shrink:0;margin-top:1px">2</div>
           <div>
-            <div style="font-size:0.62rem;font-weight:600;color:var(--fg);margin-bottom:0.25rem">Quick suggestions — guided intent</div>
+            <div style="font-size: 0.76rem;font-weight:600;color:var(--fg);margin-bottom:0.25rem">Quick suggestions — guided intent</div>
             <div style="font-size:0.57rem;color:var(--fg-dim);line-height:1.75">Below the input, branded suggestion chips offer pre-set queries — generated during the pipeline from your products and use cases. Each chip launches a generation immediately, no typing required. Ideal for demos where you want a predictable, polished result on the first click.</div>
           </div>
         </div>
 
         <div style="display:grid;grid-template-columns:28px 1fr;gap:1rem;align-items:start;padding:1rem;border:1px solid var(--border);border-radius:8px;background:rgba(245,240,232,0.015)">
-          <div style="width:24px;height:24px;border-radius:50%;background:rgba(0,229,160,0.08);border:1px solid rgba(0,229,160,0.2);display:flex;align-items:center;justify-content:center;font-size:0.55rem;font-weight:700;color:var(--teal);flex-shrink:0;margin-top:1px">3</div>
+          <div style="width:24px;height:24px;border-radius:50%;background:rgba(0,229,160,0.08);border:1px solid rgba(0,229,160,0.2);display:flex;align-items:center;justify-content:center;font-size: 0.68rem;font-weight:700;color:var(--teal);flex-shrink:0;margin-top:1px">3</div>
           <div>
-            <div style="font-size:0.62rem;font-weight:600;color:var(--fg);margin-bottom:0.25rem">Keep exploring — refine and go deeper</div>
+            <div style="font-size: 0.76rem;font-weight:600;color:var(--fg);margin-bottom:0.25rem">Keep exploring — refine and go deeper</div>
             <div style="font-size:0.57rem;color:var(--fg-dim);line-height:1.75">At the bottom of every generated page, follow-up suggestions appear — contextual chips that narrow or pivot the experience. A visitor looking at running shoes sees suggestions like "trail vs road", "for overpronation", or "under $120". Each click regenerates the page around the refined intent, creating a guided discovery loop without a search box in sight.</div>
           </div>
         </div>
@@ -1019,8 +1019,8 @@
             <div style="flex:1;width:1px;background:linear-gradient(to bottom,rgba(255,61,0,0.2),transparent);margin-top:6px"></div>
           </div>
           <div style="padding-bottom:0.4rem">
-            <div style="font-size:0.65rem;font-weight:600;color:var(--fg);margin-bottom:0.3rem">Download the extension</div>
-            <div style="font-size:0.58rem;color:var(--fg-dim);line-height:1.75;margin-bottom:0.8rem">Download the zip, unpack it, then load it in Chrome via <strong style="color:var(--fg)">chrome://extensions</strong> → Developer mode → Load unpacked. It activates on the domain your demo was built for.</div>
+            <div style="font-size: 0.78rem;font-weight:600;color:var(--fg);margin-bottom:0.3rem">Download the extension</div>
+            <div style="font-size: 0.70rem;color:var(--fg-dim);line-height:1.75;margin-bottom:0.8rem">Download the zip, unpack it, then load it in Chrome via <strong style="color:var(--fg)">chrome://extensions</strong> → Developer mode → Load unpacked. It activates on the domain your demo was built for.</div>
             <a
               href="/of1-preview-v0.2.0.zip"
               download
@@ -1040,8 +1040,8 @@
             <div style="flex:1;width:1px;background:linear-gradient(to bottom,rgba(255,61,0,0.2),transparent);margin-top:6px"></div>
           </div>
           <div style="padding-bottom:0.4rem">
-            <div style="font-size:0.65rem;font-weight:600;color:var(--fg);margin-bottom:0.3rem">Set up — enter your tenant ID and activate</div>
-            <div style="font-size:0.58rem;color:var(--fg-dim);line-height:1.75;margin-bottom:0.6rem">Navigate to the original site, then open the extension. You'll be prompted for a <strong style="color:var(--fg)">tenant ID</strong> — this tells the extension which OF1 demo to connect to. Not sure what yours is? Ask SLICC: <em style="color:var(--fg-dim)">"What is my OF1 tenant ID?"</em> — it will read it from the deployed config. Once entered, hit <strong style="color:var(--fg)">Activate</strong>. The extension is now live on this domain and ready to build a profile.</div>
+            <div style="font-size: 0.78rem;font-weight:600;color:var(--fg);margin-bottom:0.3rem">Set up — enter your tenant ID and activate</div>
+            <div style="font-size: 0.70rem;color:var(--fg-dim);line-height:1.75;margin-bottom:0.6rem">Navigate to the original site, then open the extension. You'll be prompted for a <strong style="color:var(--fg)">tenant ID</strong> — this tells the extension which OF1 demo to connect to. Not sure what yours is? Ask SLICC: <em style="color:var(--fg-dim)">"What is my OF1 tenant ID?"</em> — it will read it from the deployed config. Once entered, hit <strong style="color:var(--fg)">Activate</strong>. The extension is now live on this domain and ready to build a profile.</div>
             <div class="callout note" style="margin-top:0.2rem">
               <div class="callout-label">Tenant ID format</div>
               <div class="callout-body">It follows the pattern <code>main--{repo}--{owner}</code> — e.g. <code>main--acme-demo--myorg</code>. SLICC knows it from the repo config written during step 2 of the pipeline.</div>
@@ -1055,8 +1055,8 @@
             <div style="flex:1;width:1px;background:linear-gradient(to bottom,rgba(255,61,0,0.2),transparent);margin-top:6px"></div>
           </div>
           <div style="padding-bottom:0.4rem">
-            <div style="font-size:0.65rem;font-weight:600;color:var(--fg);margin-bottom:0.3rem">Browse the original site</div>
-            <div style="font-size:0.58rem;color:var(--fg-dim);line-height:1.75">Navigate to the original site — the one your demo was modelled on. Browse naturally: visit product pages, read categories, follow your interests. The extension watches every page visit and builds a silent user profile in the background. No input required from the user.</div>
+            <div style="font-size: 0.78rem;font-weight:600;color:var(--fg);margin-bottom:0.3rem">Browse the original site</div>
+            <div style="font-size: 0.70rem;color:var(--fg-dim);line-height:1.75">Navigate to the original site — the one your demo was modelled on. Browse naturally: visit product pages, read categories, follow your interests. The extension watches every page visit and builds a silent user profile in the background. No input required from the user.</div>
           </div>
         </div>
 
@@ -1066,8 +1066,8 @@
             <div style="flex:1;width:1px;background:linear-gradient(to bottom,rgba(255,61,0,0.2),transparent);margin-top:6px"></div>
           </div>
           <div style="padding-bottom:0.4rem">
-            <div style="font-size:0.65rem;font-weight:600;color:var(--fg);margin-bottom:0.3rem">Profile builds — context accumulates</div>
-            <div style="font-size:0.58rem;color:var(--fg-dim);line-height:1.75">As you navigate, the extension accumulates intent signals — what categories you visited, which products you lingered on, what paths you followed. Once enough context exists, the Personalise button becomes available. The richer the browsing, the more precise the eventual generation.</div>
+            <div style="font-size: 0.78rem;font-weight:600;color:var(--fg);margin-bottom:0.3rem">Profile builds — context accumulates</div>
+            <div style="font-size: 0.70rem;color:var(--fg-dim);line-height:1.75">As you navigate, the extension accumulates intent signals — what categories you visited, which products you lingered on, what paths you followed. Once enough context exists, the Personalise button becomes available. The richer the browsing, the more precise the eventual generation.</div>
             <div class="callout note" style="margin-top:0.7rem">
               <div class="callout-label">Demo tip</div>
               <div class="callout-body">Browse 3–5 pages with a clear theme (e.g. all from one product category). Consistent intent produces a more dramatic, specific personalisation than scattered browsing.</div>
@@ -1081,8 +1081,8 @@
             <div style="flex:1;width:1px;background:linear-gradient(to bottom,rgba(255,61,0,0.2),transparent);margin-top:6px"></div>
           </div>
           <div style="padding-bottom:0.4rem">
-            <div style="font-size:0.65rem;font-weight:600;color:var(--fg);margin-bottom:0.3rem">Press Personalise — the page glows</div>
-            <div style="font-size:0.58rem;color:var(--fg-dim);line-height:1.75">Back on the homepage, open the extension panel and press <strong style="color:var(--fg)">Personalise</strong>. The page transforms — a visual glow effect signals activation, and a branded CTA is injected into the page based on the user profile the extension has built.</div>
+            <div style="font-size: 0.78rem;font-weight:600;color:var(--fg);margin-bottom:0.3rem">Press Personalise — the page glows</div>
+            <div style="font-size: 0.70rem;color:var(--fg-dim);line-height:1.75">Back on the homepage, open the extension panel and press <strong style="color:var(--fg)">Personalise</strong>. The page transforms — a visual glow effect signals activation, and a branded CTA is injected into the page based on the user profile the extension has built.</div>
           </div>
         </div>
 
@@ -1091,8 +1091,8 @@
             <div style="width:30px;height:30px;border-radius:50%;background:rgba(0,229,160,0.08);border:1px solid rgba(0,229,160,0.2);display:flex;align-items:center;justify-content:center;font-family:var(--heading);font-size:0.95rem;font-weight:700;color:var(--teal);flex-shrink:0">6</div>
           </div>
           <div style="padding-bottom:0.4rem">
-            <div style="font-size:0.65rem;font-weight:600;color:var(--fg);margin-bottom:0.3rem">Click the CTA — /of1 opens, no prompt needed</div>
-            <div style="font-size:0.58rem;color:var(--fg-dim);line-height:1.75">The injected CTA opens the /of1 page and passes the user profile as context — no typing, no prompt. The generation begins immediately, producing a page tailored to exactly what the user browsed. The profile replaces the query. This is the reveal moment: the site already knew what they were looking for.</div>
+            <div style="font-size: 0.78rem;font-weight:600;color:var(--fg);margin-bottom:0.3rem">Click the CTA — /of1 opens, no prompt needed</div>
+            <div style="font-size: 0.70rem;color:var(--fg-dim);line-height:1.75">The injected CTA opens the /of1 page and passes the user profile as context — no typing, no prompt. The generation begins immediately, producing a page tailored to exactly what the user browsed. The profile replaces the query. This is the reveal moment: the site already knew what they were looking for.</div>
           </div>
         </div>
 
