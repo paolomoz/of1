@@ -318,6 +318,33 @@
 
   /* ── ACTIVE SIDEBAR SCROLL ── */
   .section-anchor { display: block; }
+
+  /* ── VERSION SELECTOR ── */
+  .version-selector {
+    margin-bottom: 1.8rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-fg-faint);
+  }
+  .version-label {
+    font-size: 0.45rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--color-fg-muted); margin-bottom: 0.6rem;
+  }
+  .version-pills {
+    display: flex; gap: 0.4rem;
+  }
+  .version-pill {
+    flex: 1; padding: 0.35rem 0; text-align: center;
+    font-family: var(--body-font-family); font-size: 0.55rem;
+    font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    border-radius: 100px; border: 1px solid var(--color-fg-faint);
+    color: var(--color-fg-muted); background: transparent;
+    cursor: pointer; transition: all 0.15s ease;
+  }
+  .version-pill:hover { border-color: var(--color-fg-dim); color: var(--color-fg); }
+  .version-pill.active {
+    background: rgba(0,229,160,0.1); border-color: rgba(0,229,160,0.35);
+    color: var(--color-tertiary);
+  }
 </style>
 <script defer src="https://ot.aem.live/.rum/@adobe/helix-rum-js@^2/dist/rum-standalone.js"></script>
 </head>
@@ -338,6 +365,13 @@
 
   <!-- SIDEBAR -->
   <aside class="sidebar">
+    <div class="version-selector">
+      <div class="version-label">Skills version</div>
+      <div class="version-pills">
+        <button class="version-pill" data-version="v2" onclick="setVersion('v2')">v2</button>
+        <button class="version-pill" data-version="v3" onclick="setVersion('v3')">v3</button>
+      </div>
+    </div>
     <div class="sidebar-group">
       <div class="sidebar-group-label">Getting started</div>
       <a href="#overview" class="sidebar-link active">Overview</a>
@@ -378,7 +412,7 @@
       <div class="page-hero-meta">
         <div class="meta-pill"><span class="dot" style="background:var(--color-tertiary)"></span>Multistep pipeline</div>
         <div class="meta-pill"><span class="dot" style="background:var(--color-secondary)"></span>SLICC-powered</div>
-        <div class="meta-pill"><span class="dot" style="background:var(--color-accent)"></span>skills-v2</div>
+        <div class="meta-pill"><span class="dot" style="background:var(--color-accent)"></span><span id="version-badge">skills-v2</span></div>
       </div>
     </div>
     <div class="divider"></div>
@@ -454,14 +488,15 @@
       <div class="section-header">
         <div class="section-label">How to install</div>
         <div class="section-title">The upskill command</div>
-        <div class="section-desc">The OF1 demo skills are published on GitHub. Install them in SLICC with the upskill command — this fetches the <code>skills-v2</code> branch and makes the full pipeline available.</div>
+        <div class="section-desc">The OF1 demo skills are published on GitHub. Install them in SLICC with the upskill command — this fetches the <code id="version-branch">skills-v2</code> branch and makes the full pipeline available.</div>
       </div>
       <div class="callout tip">
         <div class="callout-label">Install command</div>
-        <div class="callout-body" style="font-size: 0.78rem">Type this in SLICC:<br><br><code>upskill:https://github.com/aem-growth-adoption/of1-demo-skills@skills-v2 --all</code></div>
+        <div class="callout-body" style="font-size: 0.78rem">Type this in SLICC:<br><br><code id="version-cmd">upskill:https://github.com/aem-growth-adoption/of1-demo-skills@skills-v2 --all</code></div>
       </div>
       <div style="margin-top:1.2rem">
         <a
+          id="version-slicc-btn"
           href="https://www.sliccy.ai/handoff?msg=upskill%3Ahttps%3A%2F%2Fgithub.com%2Faem-growth-adoption%2Fof1-demo-skills%40skills-v2%20--all"
           target="_blank"
           rel="noopener"
@@ -1224,6 +1259,37 @@
   }, { rootMargin: '-20% 0px -60% 0px' });
 
   sections.forEach(s => obs.observe(s));
+
+  // ── VERSION SELECTOR ──
+  const VERSION_DATA = {
+    v2: {
+      branch: 'skills-v2',
+      cmd: 'upskill:https://github.com/aem-growth-adoption/of1-demo-skills@skills-v2 --all',
+      url: 'https://www.sliccy.ai/handoff?msg=upskill%3Ahttps%3A%2F%2Fgithub.com%2Faem-growth-adoption%2Fof1-demo-skills%40skills-v2%20--all',
+    },
+    v3: {
+      branch: 'skills-v3',
+      cmd: 'upskill:https://github.com/aem-growth-adoption/of1-demo-skills@skills-v3 --all',
+      url: 'https://www.sliccy.ai/handoff?msg=upskill%3Ahttps%3A%2F%2Fgithub.com%2Faem-growth-adoption%2Fof1-demo-skills%40skills-v3%20--all',
+    },
+  };
+
+  function setVersion(v) {
+    const data = VERSION_DATA[v];
+    if (!data) return;
+    document.querySelectorAll('.version-pill').forEach(p => p.classList.toggle('active', p.dataset.version === v));
+    const badge = document.getElementById('version-badge');
+    const branch = document.getElementById('version-branch');
+    const cmd = document.getElementById('version-cmd');
+    const btn = document.getElementById('version-slicc-btn');
+    if (badge) badge.textContent = data.branch;
+    if (branch) branch.textContent = data.branch;
+    if (cmd) cmd.textContent = data.cmd;
+    if (btn) btn.href = data.url;
+  }
+
+  // Init with v2 selected
+  setVersion('v2');
 </script>
 </body>
 </html>
