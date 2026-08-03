@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Documentation · OF1 Labs — of1</title>
+<meta property="og:title" content="Documentation · OF1 Labs — of1">
+<meta property="og:description" content="How of1 Labs works — sign in, point it at a website, and get a live AI-generated demo back. The workflow, the pipeline, and how to run your own experiment.">
+<meta property="og:image" content="https://of1.live/og-image.png">
+<meta property="og:url" content="https://of1.live/documentation-labs.html">
+<meta property="og:type" content="website">
+<meta name="description" content="How of1 Labs works — sign in, point it at a website, and get a live AI-generated demo back. The workflow, the pipeline, and how to run your own experiment.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
+<style>
+    :root {
+    --color-bg: #1C1917;
+    --color-fg: #F5F0E8;
+    --color-accent: #FF3D00;
+    --color-secondary: #1A1AFF;
+    --color-tertiary: #00E5A0;
+    --color-fg-dim: rgba(245, 240, 232, 0.78);
+    --color-fg-faint: rgba(245, 240, 232, 0.08);
+    --color-fg-muted: rgba(245, 240, 232, 0.70);
+    --heading-font-family: 'Cormorant Garamond', serif;
+    --body-font-family: 'JetBrains Mono', monospace;
+    --body: clamp(16px, 1.4vw, 19px);
+    --body-sm: clamp(14px, 1.2vw, 16px);
+    --eyebrow: 0.8rem;
+    --radius-pill: 100px;
+    --section-padding: 4rem;
+    /* page-local */
+    --gold: #C8A96E;
+    --fg-bright: rgba(245, 240, 232, 0.9);
+    --header-h: 60px;
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body { background: var(--color-bg); color: var(--color-fg); font-family: var(--body-font-family); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+
+  /* ── HEADER ── */
+  .site-header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    height: var(--header-h);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem var(--section-padding);
+    background: rgba(28, 25, 23, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-fg-faint);
+  }
+  .site-logo { font-family: var(--body-font-family); font-size: 1rem; font-weight: 700; color: var(--color-fg); text-decoration: none; letter-spacing: -0.02em; }
+  .site-nav { display: flex; align-items: center; gap: 2rem; }
+  .site-nav a { font-family: var(--body-font-family); font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-fg-dim); text-decoration: none; transition: color 0.2s ease; }
+  .site-nav a:hover { color: var(--color-fg); }
+  .site-nav a.active { color: var(--color-fg); }
+  .site-nav .nav-cta { padding: 0.4rem 1.2rem; background: var(--color-accent); color: var(--color-bg); border-radius: var(--radius-pill); font-weight: 600; }
+  .site-nav .nav-cta:hover { opacity: 0.85; }
+
+  /* ── LAYOUT ── */
+  .page-layout { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; padding-top: var(--header-h); }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    position: sticky; top: var(--header-h); height: calc(100vh - var(--header-h));
+    overflow-y: auto; border-right: 1px solid var(--color-fg-faint);
+    padding: 2rem 1.4rem 3rem;
+    scrollbar-width: thin; scrollbar-color: var(--color-fg-faint) transparent;
+  }
+  .sidebar::-webkit-scrollbar { width: 3px; }
+  .sidebar::-webkit-scrollbar-thumb { background: var(--color-fg-faint); border-radius: 2px; }
+
+  .sidebar-group { margin-bottom: 2rem; }
+  .sidebar-group-label {
+    font-size: 0.45rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--color-fg-muted); margin-bottom: 0.7rem;
+    padding-bottom: 0.4rem; border-bottom: 1px solid var(--color-fg-faint);
+  }
+  .sidebar-link {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-size: 0.70rem; color: var(--color-fg-dim); text-decoration: none;
+    padding: 0.3rem 0; transition: color 0.15s;
+  }
+  .sidebar-link:hover { color: var(--color-fg); }
+  .sidebar-link.active { color: var(--color-tertiary); }
+
+  /* ── DOC SWITCHER ── */
+  .doc-switch { display: flex; gap: 0.4rem; margin-bottom: 1.8rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--color-fg-faint); }
+  .doc-switch a { flex: 1; text-align: center; font-size: 0.5rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.5rem 0.4rem; border-radius: 6px; text-decoration: none; border: 1px solid var(--color-fg-faint); color: var(--color-fg-dim); transition: all 0.15s; }
+  .doc-switch a:hover { border-color: rgba(245,240,232,0.2); color: var(--color-fg); }
+  .doc-switch a.active { background: rgba(255,61,0,0.08); border-color: rgba(255,61,0,0.25); color: var(--color-accent); }
+
+  /* ── MAIN ── */
+  .main { padding: 3rem 3.5rem 5rem; max-width: 920px; }
+
+  /* ── HERO ── */
+  .page-hero { margin-bottom: 3rem; }
+  .page-hero-eyebrow {
+    font-size: 0.76rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--color-accent); margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .page-hero-eyebrow::after { content: ''; flex: 1; max-width: 60px; height: 1px; background: rgba(255,61,0,0.3); }
+  .page-hero-title { font-family: var(--heading-font-family); font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 700; line-height: 1.05; margin-bottom: 1rem; }
+  .page-hero-title em { font-style: italic; color: var(--color-fg-dim); }
+  .page-hero-sub { font-size: 0.78rem; line-height: 1.8; color: var(--color-fg-dim); max-width: 640px; margin-bottom: 1.5rem; }
+  .page-hero-meta { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .meta-pill {
+    display: flex; align-items: center; gap: 0.4rem;
+    font-size: 0.76rem; letter-spacing: 0.1em;
+    padding: 0.3rem 0.8rem; border-radius: 100px;
+    border: 1px solid var(--color-fg-faint); color: var(--color-fg-muted);
+  }
+  .meta-pill .dot { width: 5px; height: 5px; border-radius: 50%; }
+
+  /* ── SECTION ── */
+  .section { margin-bottom: 3.5rem; scroll-margin-top: calc(var(--header-h) + 16px); }
+  .section-header { margin-bottom: 1.5rem; }
+  .section-label { font-size: 0.60rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-fg-muted); margin-bottom: 0.6rem; }
+  .section-title { font-family: var(--heading-font-family); font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 700; line-height: 1.1; }
+  .section-desc { font-size: 0.76rem; color: var(--color-fg-dim); line-height: 1.8; margin-top: 0.6rem; max-width: 660px; }
+  .prose { font-size: 0.76rem; line-height: 1.85; color: var(--color-fg-dim); margin-bottom: 1rem; max-width: 660px; }
+  .prose strong { color: var(--color-fg); }
+  .prose em { font-style: italic; color: var(--color-accent); }
+  .prose code, .inline-code { font-family: var(--body-font-family); font-size: 0.85em; background: rgba(245,240,232,0.08); border: 1px solid rgba(245,240,232,0.1); border-radius: 3px; padding: 1px 5px; color: var(--fg-bright); }
+  .prose a { color: var(--color-tertiary); text-decoration: underline; text-underline-offset: 2px; }
+  .divider { height: 1px; background: var(--color-fg-faint); margin-bottom: 3.5rem; }
+
+  /* ── CARDS GRID ── */
+  .feat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.8rem; margin: 1.2rem 0; }
+  .feat-card { border: 1px solid var(--color-fg-faint); border-radius: 10px; padding: 1.1rem 1.2rem; background: rgba(245,240,232,0.02); transition: border-color 0.2s, background 0.2s; }
+  .feat-card:hover { border-color: rgba(245,240,232,0.12); background: rgba(245,240,232,0.03); }
+  .feat-card .fc-tag { font-size: 0.45rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-tertiary); display: block; margin-bottom: 0.5rem; }
+  .feat-card h4 { font-size: 0.72rem; color: var(--color-fg); margin-bottom: 0.4rem; font-weight: 600; }
+  .feat-card p { font-size: 0.62rem; color: var(--color-fg-dim); line-height: 1.7; }
+  .feat-card p code { font-family: var(--body-font-family); font-size: 0.9em; color: var(--color-tertiary); }
+
+  /* ── PIPELINE ── */
+  .pipeline { display: flex; flex-direction: column; gap: 0; margin-top: 1rem; }
+  .pipeline-step { display: grid; grid-template-columns: 48px 1fr; gap: 1.2rem; padding: 1.4rem 0; border-bottom: 1px solid var(--color-fg-faint); }
+  .pipeline-step:last-child { border-bottom: none; }
+  .step-spine { display: flex; flex-direction: column; align-items: center; }
+  .step-num {
+    width: 36px; height: 36px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--heading-font-family); font-size: 1rem; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .step-line { width: 1px; flex: 1; margin-top: 6px; }
+  .pipeline-step:last-child .step-line { display: none; }
+  .sn-red { background: rgba(255,61,0,0.12); color: var(--color-accent); border: 1px solid rgba(255,61,0,0.2); }
+  .sn-teal { background: rgba(0,229,160,0.08); color: var(--color-tertiary); border: 1px solid rgba(0,229,160,0.15); }
+  .sn-blue { background: rgba(77,77,255,0.08); color: var(--color-secondary); border: 1px solid rgba(77,77,255,0.15); }
+  .sn-gold { background: rgba(200,169,110,0.08); color: var(--gold); border: 1px solid rgba(200,169,110,0.15); }
+  .sl-red { background: linear-gradient(to bottom, rgba(255,61,0,0.15), transparent); }
+  .sl-teal { background: linear-gradient(to bottom, rgba(0,229,160,0.12), transparent); }
+  .sl-blue { background: linear-gradient(to bottom, rgba(77,77,255,0.12), transparent); }
+  .sl-gold { background: linear-gradient(to bottom, rgba(200,169,110,0.12), transparent); }
+  .step-body { padding-bottom: 0.2rem; }
+  .step-name { font-size: 0.75rem; font-weight: 600; color: var(--color-fg); margin-bottom: 0.3rem; }
+  .step-name .step-tag { font-size: 0.58rem; color: var(--color-fg-muted); font-weight: 400; margin-left: 0.5rem; }
+  .step-desc { font-size: 0.72rem; line-height: 1.75; color: var(--color-fg-dim); }
+  .step-desc code { font-family: var(--body-font-family); font-size: 0.85em; background: rgba(245,240,232,0.08); border: 1px solid rgba(245,240,232,0.1); border-radius: 3px; padding: 1px 4px; color: var(--fg-bright); }
+
+  /* ── CALLOUTS ── */
+  .callout { border-radius: 0 6px 6px 0; padding: 0.8rem 1rem; margin: 1.2rem 0; max-width: 660px; }
+  .callout-label { font-size: 0.43rem; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.3rem; }
+  .callout-body { font-size: 0.72rem; line-height: 1.75; color: var(--color-fg-dim); }
+  .callout-body code { font-family: var(--body-font-family); font-size: 0.85em; background: rgba(245,240,232,0.08); border-radius: 3px; padding: 1px 4px; color: var(--fg-bright); border: 1px solid rgba(245,240,232,0.1); }
+  .callout-body strong { color: var(--color-fg); }
+  .callout.note { background: rgba(77,77,255,0.05); border-left: 2px solid rgba(77,77,255,0.35); }
+  .callout.note .callout-label { color: var(--color-secondary); }
+  .callout.tip { background: rgba(0,229,160,0.05); border-left: 2px solid rgba(0,229,160,0.3); }
+  .callout.tip .callout-label { color: var(--color-tertiary); }
+  .callout.warn { background: rgba(255,61,0,0.05); border-left: 2px solid rgba(255,61,0,0.25); }
+  .callout.warn .callout-label { color: var(--color-accent); }
+
+  /* ── TABLE ── */
+  .doc-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.68rem; }
+  .doc-table th { text-align: left; font-size: 0.5rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-fg-muted); padding: 0.5rem 0.7rem; border-bottom: 1px solid var(--color-fg-faint); font-weight: 500; }
+  .doc-table td { padding: 0.55rem 0.7rem; border-bottom: 1px solid rgba(245,240,232,0.05); color: var(--color-fg-dim); line-height: 1.6; vertical-align: top; }
+  .doc-table td code { font-family: var(--body-font-family); font-size: 0.85em; background: rgba(245,240,232,0.08); border: 1px solid rgba(245,240,232,0.1); border-radius: 3px; padding: 1px 5px; color: var(--fg-bright); white-space: nowrap; }
+  .doc-table tr:hover td { background: rgba(245,240,232,0.02); }
+  .doc-table td strong { color: var(--color-fg); }
+  .doc-table td a { color: var(--color-tertiary); text-decoration: underline; text-underline-offset: 2px; }
+  .doc-table td a:hover { color: var(--color-fg); }
+
+  /* ── FOOT NOTE ── */
+  .doc-foot { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--color-fg-faint); font-size: 0.6rem; color: var(--color-fg-muted); line-height: 1.7; letter-spacing: 0.05em; }
+  .doc-foot a { color: var(--color-fg-muted); text-decoration: underline; text-underline-offset: 2px; }
+  .doc-foot a:hover { color: var(--color-fg); }
+
+  /* ── DIAGRAMS ── */
+  .diagram { border: 1px solid var(--color-fg-faint); border-radius: 12px; padding: 1.8rem 1.5rem 1.5rem; background: rgba(245,240,232,0.02); margin: 1.8rem 0; max-width: 720px; }
+  .diagram-title { font-size: 0.5rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-fg-muted); text-align: center; margin-bottom: 1.5rem; }
+  .dg-node { border: 1px solid var(--color-fg-faint); border-radius: 10px; padding: 0.85rem 1rem; background: rgba(28,25,23,0.55); }
+  .dg-node-label { font-size: 0.48rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-fg-muted); margin-bottom: 0.45rem; }
+  .dg-node-title { font-family: var(--heading-font-family); font-size: 1.05rem; font-weight: 700; color: var(--color-fg); line-height: 1.15; }
+  .dg-node-desc { font-size: 0.58rem; color: var(--color-fg-dim); line-height: 1.6; margin-top: 0.35rem; }
+  .dg-arrow { display: flex; justify-content: center; align-items: center; color: var(--color-fg-muted); padding: 0.4rem 0; font-size: 0.95rem; }
+  .dg-arrow.h { padding: 0 0.2rem; }
+  .dg-flow-v { display: flex; flex-direction: column; }
+  .dg-note { font-family: var(--heading-font-family); font-style: italic; font-size: 0.9rem; color: var(--color-fg-muted); text-align: center; margin-top: 1.1rem; }
+  .dg-node.accent { border-color: rgba(255,61,0,0.3); } .dg-node.accent .dg-node-label { color: var(--color-accent); }
+  .dg-node.teal { border-color: rgba(0,229,160,0.25); } .dg-node.teal .dg-node-label { color: var(--color-tertiary); }
+  .dg-node.blue { border-color: rgba(77,77,255,0.3); } .dg-node.blue .dg-node-label { color: var(--color-secondary); }
+  .dg-node.gold { border-color: rgba(200,169,110,0.3); } .dg-node.gold .dg-node-label { color: var(--gold); }
+  .dg-stages { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr; align-items: stretch; gap: 0.5rem; }
+  .dg-stages .dg-node { display: flex; flex-direction: column; justify-content: center; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 860px) {
+    .page-layout { grid-template-columns: 1fr; }
+    .sidebar { position: static; height: auto; border-right: none; border-bottom: 1px solid var(--color-fg-faint); }
+    .main { padding: 2rem 1.5rem; }
+    .site-nav { gap: 1rem; }
+  }
+  @media (max-width: 720px) {
+    .dg-stages { grid-template-columns: 1fr; }
+    .dg-stages .dg-arrow.h { transform: rotate(90deg); }
+  }
+</style>
+<script defer src="https://ot.aem.live/.rum/@adobe/helix-rum-js@^2/dist/rum-standalone.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="/" class="site-logo">of1</a>
+  <nav class="site-nav">
+    <a href="/">Home</a>
+    <a href="/why.html">Why now</a>
+    <a href="/how-it-works.html">How it works</a>
+    <a href="/documentation.html" class="active">Docs</a>
+    <a href="https://arco.coffee/" class="nav-cta" target="_blank" rel="noopener">See it live</a>
+  </nav>
+</header>
+
+<div class="page-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="doc-switch">
+      <a href="/documentation.html">OF1 Product</a>
+      <a href="/documentation-labs.html" class="active">OF1 Labs</a>
+    </div>
+
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">Labs</div>
+      <a href="#overview" class="sidebar-link active">What Labs is</a>
+      <a href="#flow" class="sidebar-link">How it works</a>
+      <a href="#types" class="sidebar-link">Experiment types</a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">The pipeline</div>
+      <a href="#pipeline" class="sidebar-link">The OF1 pipeline</a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">Using Labs</div>
+      <a href="#run" class="sidebar-link">Run an experiment</a>
+      <a href="#progress" class="sidebar-link">Following progress</a>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <div class="page-hero">
+      <div class="page-hero-eyebrow">Documentation · OF1 Labs</div>
+      <h1 class="page-hero-title">Point Labs at a website.<br>Get a live <em>demo</em> back.</h1>
+      <p class="page-hero-sub"><strong>OF1 Labs</strong> turns any website into a working OF1 demo. You sign in, choose an experiment, and give it a URL — Labs spins up a workspace, runs an AI pipeline that rebuilds and personalizes the site, and hands you a live preview. This page explains how that works, end to end, and how to run one yourself.</p>
+      <div class="page-hero-meta">
+        <span class="meta-pill"><span class="dot" style="background:var(--color-accent)"></span> No setup — it's a hosted service</span>
+        <span class="meta-pill"><span class="dot" style="background:var(--color-tertiary)"></span> Runs at labs.of1.live</span>
+      </div>
+    </div>
+
+    <!-- OVERVIEW -->
+    <section class="section" id="overview">
+      <div class="section-header">
+        <div class="section-label">Labs</div>
+        <h2 class="section-title">What Labs is</h2>
+      </div>
+      <p class="prose"><strong>OF1 Labs</strong> is an automated demo factory. Give it the address of any website and it produces a live, AI-generated demonstration of what OF1 can do for that brand — no manual build, no code to write. Under the hood it drives <strong>Claude Code</strong> through a repeatable pipeline packaged as a reusable AI skill, and publishes the result on <strong>AEM Edge Delivery Services</strong>.</p>
+      <p class="prose">It's the fastest way to go from "here's a website" to "here's that website, personalized." Sales and solution teams use it to spin up tailored demos; the of1 team uses it to test the generation pipeline against real sites.</p>
+      <div class="callout note">
+        <div class="callout-label">OF1 Labs vs. OF1 Product</div>
+        <div class="callout-body"><strong>OF1 Labs</strong> is the factory that builds a demo. <a href="/documentation.html"><strong>OF1 Product</strong></a> is what personalizes each page for each visitor once the site is live. Labs sets a site up; the product runs it.</div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- FLOW -->
+    <section class="section" id="flow">
+      <div class="section-header">
+        <div class="section-label">Labs</div>
+        <h2 class="section-title">How it works</h2>
+        <p class="section-desc">Four things happen between your URL and your demo. You do the first; Labs does the rest, automatically.</p>
+      </div>
+
+      <div class="diagram">
+        <div class="diagram-title">From a URL to a live demo</div>
+        <div class="dg-stages">
+          <div class="dg-node accent">
+            <div class="dg-node-label">You provide</div>
+            <div class="dg-node-title">A URL</div>
+            <div class="dg-node-desc">+ an experiment type</div>
+          </div>
+          <div class="dg-arrow h">&rarr;</div>
+          <div class="dg-node blue">
+            <div class="dg-node-label">Labs provisions</div>
+            <div class="dg-node-title">A workspace</div>
+            <div class="dg-node-desc">Fresh repo, wired to AEM, access granted</div>
+          </div>
+          <div class="dg-arrow h">&rarr;</div>
+          <div class="dg-node gold">
+            <div class="dg-node-label">Claude Code runs</div>
+            <div class="dg-node-title">The pipeline</div>
+            <div class="dg-node-desc">Discovers, rebuilds &amp; personalizes the site</div>
+          </div>
+          <div class="dg-arrow h">&rarr;</div>
+          <div class="dg-node teal">
+            <div class="dg-node-label">You get</div>
+            <div class="dg-node-title">A live preview</div>
+            <div class="dg-node-desc">On AEM, emailed when ready</div>
+          </div>
+        </div>
+      </div>
+
+      <p class="prose">Step by step, here's what each stage actually does:</p>
+      <div class="pipeline">
+        <div class="pipeline-step">
+          <div class="step-spine"><div class="step-num sn-red">1</div><div class="step-line sl-red"></div></div>
+          <div class="step-body">
+            <div class="step-name">Sign in &amp; submit</div>
+            <div class="step-desc">You sign in with your Adobe account, pick an experiment type, and paste the target website's URL. That's the entire manual step — everything after is automatic.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-spine"><div class="step-num sn-blue">2</div><div class="step-line sl-blue"></div></div>
+          <div class="step-body">
+            <div class="step-name">Provision a workspace</div>
+            <div class="step-desc">Labs creates a fresh project from the AEM boilerplate, registers it with AEM Edge Delivery Services so it has a live preview address, and grants you access to author and publish it.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-spine"><div class="step-num sn-gold">3</div><div class="step-line sl-gold"></div></div>
+          <div class="step-body">
+            <div class="step-name">Run the pipeline</div>
+            <div class="step-desc">Claude Code runs headless in an isolated sandbox, following a versioned skill. It studies the target site, rebuilds it as an of1 site, and wires up everything needed for personalization. See <a href="#pipeline">the OF1 pipeline</a>.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-spine"><div class="step-num sn-teal">4</div><div class="step-line sl-teal"></div></div>
+          <div class="step-body">
+            <div class="step-name">Report progress &amp; deliver</div>
+            <div class="step-desc">Each step reports as it starts and finishes, so you can watch the run move along. When it's done the status turns <strong>ready</strong> and you get an email with a link to the live AEM preview.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- TYPES -->
+    <section class="section" id="types">
+      <div class="section-header">
+        <div class="section-label">Labs</div>
+        <h2 class="section-title">Experiment types</h2>
+        <p class="section-desc">One button, three kinds of transformation. You choose the type when you start a run.</p>
+      </div>
+      <table class="doc-table">
+        <thead><tr><th>Type</th><th>What it produces</th><th>Good for</th></tr></thead>
+        <tbody>
+          <tr><td><strong>OF1 demo</strong></td><td>A personalized of1 version of the target site — the full generative-website experience</td><td>Showing what of1 does for a specific brand</td></tr>
+          <tr><td><strong><a href="https://stardust.style/" target="_blank" rel="noopener">Stardust redesign</a></strong></td><td>A fresh, modern redesign of the site in the <a href="https://stardust.style/" target="_blank" rel="noopener">Stardust</a> style</td><td>Demonstrating an AI-driven visual refresh</td></tr>
+          <tr><td><strong>Liftoff migration</strong></td><td>An existing page migrated onto AEM Edge Delivery</td><td>Showing a low-effort path onto modern AEM</td></tr>
+        </tbody>
+      </table>
+      <p class="prose">Every experiment is <strong>built on top of a reusable AI skill</strong> — a packaged set of instructions that tells Claude Code how to run that transformation, step by step. Each type has its own skill; the <strong>OF1 demo</strong> skill is the most involved and is described in full below.</p>
+      <div class="callout tip">
+        <div class="callout-label">What's an AI skill?</div>
+        <div class="callout-body">A skill is a versioned bundle of instructions, prompts and steps that an AI agent follows to do a specific job. Because Labs experiments <em>are</em> skills, improving how a demo is built means shipping a new skill version — not rewriting the platform — and adding a new experiment type simply means adding a new skill.</div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- PIPELINE -->
+    <section class="section" id="pipeline">
+      <div class="section-header">
+        <div class="section-label">The pipeline</div>
+        <h2 class="section-title">The OF1 pipeline</h2>
+        <p class="section-desc">The OF1 demo runs a fixed sequence of steps, grouped into four phases. It always runs in the same order, so every demo is built the same, reliable way.</p>
+      </div>
+
+      <div class="diagram">
+        <div class="diagram-title">Thirteen steps · four phases</div>
+        <div class="dg-flow-v">
+          <div class="dg-node accent">
+            <div class="dg-node-label">Steps 01–03</div>
+            <div class="dg-node-title">Setup &amp; discovery</div>
+            <div class="dg-node-desc">Prepare the workspace, crawl the target site, and extract its brand, products and content.</div>
+          </div>
+          <div class="dg-arrow">&darr;</div>
+          <div class="dg-node blue">
+            <div class="dg-node-label">Steps 04–06</div>
+            <div class="dg-node-title">EDS provisioning</div>
+            <div class="dg-node-desc">Stand up the AEM Edge Delivery site, generate page templates, and apply on-brand styling.</div>
+          </div>
+          <div class="dg-arrow">&darr;</div>
+          <div class="dg-node gold">
+            <div class="dg-node-label">Steps 07–11</div>
+            <div class="dg-node-title">OF1 provisioning</div>
+            <div class="dg-node-desc">Author brand voice, content metadata, quick suggestions and CTA templates — the ingredients personalization needs.</div>
+          </div>
+          <div class="dg-arrow">&darr;</div>
+          <div class="dg-node teal">
+            <div class="dg-node-label">Steps 12–13</div>
+            <div class="dg-node-title">Review &amp; deploy</div>
+            <div class="dg-node-desc">Review the generated config, commit it, sync to Edge Delivery, and verify the live preview works.</div>
+          </div>
+        </div>
+      </div>
+
+      <p class="prose">Some steps run in parallel to save time, and heavier reasoning steps use a more capable model than the lighter ones. The whole sequence is defined by a <strong>versioned skill</strong> — so improvements to how demos are built ship as a new skill version, and a run can be pinned to a specific version for consistency.</p>
+      <div class="callout tip">
+        <div class="callout-label">Where it ends up</div>
+        <div class="callout-body">The finished demo is published to an AEM preview URL of the form <code>https://main--&lt;project&gt;--of1-labs.aem.page/of1</code>. That link is what you share.</div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- RUN -->
+    <section class="section" id="run">
+      <div class="section-header">
+        <div class="section-label">Using Labs</div>
+        <h2 class="section-title">Run an experiment</h2>
+        <p class="section-desc">There's nothing to install. Everything happens in the browser at <code>labs.of1.live</code>.</p>
+      </div>
+      <div class="pipeline">
+        <div class="pipeline-step">
+          <div class="step-spine"><div class="step-num sn-red">1</div><div class="step-line sl-red"></div></div>
+          <div class="step-body">
+            <div class="step-name">Open Labs &amp; sign in</div>
+            <div class="step-desc">Go to <code>labs.of1.live</code> and sign in with your Adobe account (Adobe IMS). Your session is used to give you access to the workspace Labs creates.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-spine"><div class="step-num sn-blue">2</div><div class="step-line sl-blue"></div></div>
+          <div class="step-body">
+            <div class="step-name">Choose an experiment type</div>
+            <div class="step-desc">Pick <strong>OF1 demo</strong>, <strong>Stardust redesign</strong> or <strong>Liftoff migration</strong> depending on what you want to show.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-spine"><div class="step-num sn-teal">3</div><div class="step-line sl-teal"></div></div>
+          <div class="step-body">
+            <div class="step-name">Enter the target URL</div>
+            <div class="step-desc">Paste the address of the website you want to transform, then submit. Labs queues the run and immediately starts provisioning — you don't need to keep anything open for a hosted (container) run.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-spine"><div class="step-num sn-gold">4</div><div class="step-line sl-gold"></div></div>
+          <div class="step-body">
+            <div class="step-name">Wait for the email</div>
+            <div class="step-desc">A typical run takes several minutes. When it finishes you get an email with the live preview link — or you can watch progress in the Labs UI while it runs.</div>
+          </div>
+        </div>
+      </div>
+      <div class="callout note">
+        <div class="callout-label">Interactive runs</div>
+        <div class="callout-body">Some experiments run in an interactive sandbox instead of a hosted container. For those, Labs gives you a join link and you keep the tab open while it works — the run needs the live connection. Hosted runs need nothing kept open.</div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- PROGRESS -->
+    <section class="section" id="progress">
+      <div class="section-header">
+        <div class="section-label">Using Labs</div>
+        <h2 class="section-title">Following progress</h2>
+        <p class="section-desc">A run moves through a handful of states. You can see exactly which step it's on at any time.</p>
+      </div>
+      <table class="doc-table">
+        <thead><tr><th>Status</th><th>What it means</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Queued</strong></td><td>Submitted and waiting to start</td></tr>
+          <tr><td><strong>Provisioning</strong></td><td>Setting up the workspace and AEM site (this can take a couple of minutes)</td></tr>
+          <tr><td><strong>Running</strong></td><td>The pipeline is executing — each step reports as it starts and finishes</td></tr>
+          <tr><td><strong>Ready</strong></td><td>Done. The live preview link is available and an email has gone out</td></tr>
+          <tr><td><strong>Failed</strong></td><td>Something stalled — you can read the reason and start a new run</td></tr>
+        </tbody>
+      </table>
+      <p class="prose">While a run is <strong>running</strong>, the Labs UI shows the current step and a history of completed ones, so a long run is never a black box. When it reaches <strong>ready</strong>, open the AEM preview link, click <em>Personalize</em>, and you're looking at a working of1 demo of the site you started with.</p>
+      <div class="callout warn">
+        <div class="callout-label">If a run fails</div>
+        <div class="callout-body">Runs that stall (for example, if the target site's preview never comes online) are automatically marked <strong>failed</strong> rather than hanging forever. The failure reason is shown in the UI — usually it's safe to just start a fresh run.</div>
+      </div>
+    </section>
+
+    <div class="doc-foot">
+      <strong>OF1 Labs</strong> · the demo factory behind the OF1 demos, at <code>labs.of1.live</code>. For how the personalized pages themselves are generated once a site is live, see <a href="/documentation.html">OF1 Product</a>. © 2026 Adobe — early-stage technology by the Adobe Experience Manager team.
+    </div>
+
+  </main>
+</div>
+
+<script>
+  // Active sidebar link on scroll
+  const links = Array.from(document.querySelectorAll('.sidebar-link'));
+  const byId = {};
+  links.forEach(l => { const id = l.getAttribute('href').slice(1); if (id) byId[id] = l; });
+  const sections = document.querySelectorAll('.section[id]');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        byId[entry.target.id]?.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -60% 0px' });
+  sections.forEach(s => obs.observe(s));
+</script>
+</body>
+</html>
