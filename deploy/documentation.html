@@ -86,12 +86,6 @@
   .sidebar-link:hover { color: var(--color-fg); }
   .sidebar-link.active { color: var(--color-tertiary); }
 
-  /* ── DOC SWITCHER ── */
-  .doc-switch { display: flex; gap: 0.4rem; margin-bottom: 1.8rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--color-fg-faint); }
-  .doc-switch a { flex: 1; text-align: center; font-size: 0.5rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.5rem 0.4rem; border-radius: 6px; text-decoration: none; border: 1px solid var(--color-fg-faint); color: var(--color-fg-dim); transition: all 0.15s; }
-  .doc-switch a:hover { border-color: rgba(245,240,232,0.2); color: var(--color-fg); }
-  .doc-switch a.active { background: rgba(255,61,0,0.08); border-color: rgba(255,61,0,0.25); color: var(--color-accent); }
-
   /* ── MAIN ── */
   .main { padding: 3rem 3.5rem 5rem; max-width: 920px; }
 
@@ -312,11 +306,6 @@
 
   <!-- SIDEBAR -->
   <aside class="sidebar">
-    <div class="doc-switch">
-      <a href="/documentation.html" class="active">OF1 Product</a>
-      <a href="/documentation-labs.html">OF1 Labs</a>
-    </div>
-
     <div class="sidebar-group">
       <div class="sidebar-group-label">Overview</div>
       <a href="#overview" class="sidebar-link active">What of1 is</a>
@@ -778,7 +767,7 @@ OF1.<span class="k">init</span>(document.querySelector(<span class="t">'#of1'</s
     </section>
 
     <div class="doc-foot">
-      of1 · generative websites for an audience of one. This page documents <strong>OF1 Product</strong> — the runtime that produces personalized pages (<code>of1-gen-web-service</code>). For setting up and running experiments, see <a href="/documentation-labs.html">OF1 Labs</a>. © 2026 Adobe — early-stage technology by the Adobe Experience Manager team.
+      of1 · generative websites for an audience of one. This page documents <strong>OF1 Product</strong> — the runtime that produces personalized pages (<code>of1-gen-web-service</code>). © 2026 Adobe — early-stage technology by the Adobe Experience Manager team.
     </div>
 
   </main>
