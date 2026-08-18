@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Documentation · OF1 Product — of1</title>
+<title>Documentation — of1 on Adobe Edge Delivery Services</title>
 <meta property="og:title" content="Documentation · OF1 Product — of1">
 <meta property="og:description" content="How of1 generates a page for an audience of one — the request lifecycle, the two-phase LLM, what data is tracked, and how to integrate.">
 <meta property="og:image" content="https://of1.live/og-image.png">
 <meta property="og:url" content="https://of1.live/documentation">
 <meta property="og:type" content="website">
-<meta name="description" content="How of1 generates a page for an audience of one — the request lifecycle, the two-phase LLM, what data is tracked, and how to integrate.">
+<meta name="description" content="How of1 generates a page for an audience of one on Adobe Edge Delivery Services (AEM) — request lifecycle, two-phase LLM, data tracked, and integration.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://of1.live/documentation">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -357,6 +357,7 @@
       </div>
       <p class="prose">of1 is an AI service that assembles a web page in real time for the individual visitor in front of it. Instead of serving one page authored once by hand, it reads the visitor's context, works out what they're trying to do, retrieves the most relevant content from your own corpus, and composes a page that fits <em>that</em> intent — every time, with no rules to write and no segments to maintain.</p>
       <p class="prose">The critical design decision is that <strong>the LLM never writes HTML.</strong> It decides <em>what</em> to show and <em>in what order</em>; your design system decides how it renders. That keeps output on-brand, accessible, and impossible to break — while still being fully personalized.</p>
+      <p class="prose">of1 runs on <a href="https://aem.live/" target="_blank" rel="noopener">Adobe Edge Delivery Services</a> — Adobe's edge-native web platform. Edge Delivery Services is a hard requirement: of1 assembles pages from the block-based content model that EDS provides and delivers them at the edge.</p>
       <div class="feat-grid">
         <div class="feat-card">
           <span class="fc-tag">Adapts</span>
@@ -558,7 +559,7 @@
           </div>
         </div>
       </div>
-      <p class="prose">In AEM Edge Delivery Services a <strong>block</strong> is simply a named table in a document — authors write them in Google Docs or Word, developers style them with CSS. of1 selects from 30+ of these pre-built blocks; it never invents markup. A <strong>template</strong> is a block order that fits a visitor's intent, grouped into families:</p>
+      <p class="prose">In <a href="https://aem.live/" target="_blank" rel="noopener">AEM Edge Delivery Services</a> a <strong>block</strong> is simply a named table in a document — authors write them in Google Docs or Word, developers style them with CSS. of1 selects from 30+ of these pre-built blocks; it never invents markup. A <strong>template</strong> is a block order that fits a visitor's intent, grouped into families:</p>
       <table class="doc-table">
         <thead><tr><th>Family</th><th>When it's used</th><th>Example templates</th></tr></thead>
         <tbody>
