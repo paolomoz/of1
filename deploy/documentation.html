@@ -270,6 +270,44 @@
   .tp-mock .m-band { height: 20px; background: rgba(255,61,0,0.18); }
   .tp-authored { font-family: var(--heading-font-family); font-style: italic; font-size: 0.82rem; color: var(--color-fg-muted); line-height: 1.3; margin-top: auto; }
 
+  /* ── DA MOCK (author-view preview — mimics the DA editor) ── */
+  .da-mock {
+    background: #ffffff; color: #1b1b1b; border-radius: 12px;
+    padding: 2.1rem 2rem 1.6rem; margin: 1.4rem 0;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2), 0 16px 40px rgba(0,0,0,0.35);
+    max-width: 700px;
+  }
+  .da-mock-label {
+    font-family: var(--body-font-family); font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: #96938a; display: flex; align-items: center; gap: 0.9rem; margin: 1.7rem 0;
+  }
+  .da-mock-label:first-child { margin-top: 0; }
+  .da-mock-label::before, .da-mock-label::after { content: ''; flex: 1; height: 1px; background: #dedbd2; }
+  .da-mock h3, .da-mock h4 { font-family: Georgia, 'Times New Roman', serif; font-weight: 700; color: #111; margin-bottom: 0.8rem; }
+  .da-mock h3 { font-size: 1.4rem; }
+  .da-mock h4 { font-size: 1.15rem; }
+  .da-mock p { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 0.9rem; line-height: 1.65; color: #2b2b2b; margin-bottom: 0.6rem; }
+  .da-mock code { font-family: var(--body-font-family); font-size: 0.83em; background: #eaf0fb; color: #2f5fc4; border-radius: 4px; padding: 1px 6px; }
+  .da-mock table { width: 100%; border-collapse: collapse; margin-top: 1.1rem; border: 1px solid #dcdad2; }
+  .da-mock .block-name-row td { background: #f2f1eb; text-align: center; font-weight: 600; font-size: 0.82rem; letter-spacing: 0.02em; color: #1b1b1b; padding: 0.65rem; border-bottom: 1px solid #dcdad2; }
+  .da-mock td { border: 1px solid #e7e5dc; padding: 1.05rem; vertical-align: top; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; }
+  .da-mock .img-cell { width: 28%; }
+  .da-mock .img-placeholder { width: 100%; height: 84px; background: #ececE4; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #b7b4ab; font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .da-mock .cell-h { font-weight: 700; font-size: 0.94rem; margin-bottom: 0.45rem; color: #111; }
+  .da-mock .cell-p { font-size: 0.83rem; line-height: 1.55; color: #333; }
+  .da-mock .meta-row td { background: #fbfaf6; font-size: 0.83rem; color: #2b2b2b; }
+  .da-mock .meta-row .meta-key { width: 32%; font-weight: 600; color: #111; }
+  .da-mock-caption { font-size: 0.62rem; letter-spacing: 0.05em; color: var(--color-fg-muted); text-align: center; margin-top: -0.6rem; margin-bottom: 1.4rem; }
+
+  /* ── MECHANISM CARDS ── */
+  .mech-list { display: flex; flex-direction: column; gap: 0; margin-top: 0.6rem; }
+  .mech-item { padding: 1.3rem 0; border-bottom: 1px solid var(--color-fg-faint); }
+  .mech-item:last-child { border-bottom: none; }
+  .mech-head { display: flex; align-items: baseline; gap: 0.7rem; margin-bottom: 0.5rem; }
+  .mech-letter { font-family: var(--heading-font-family); font-size: 1.1rem; font-weight: 700; color: var(--color-accent); flex-shrink: 0; }
+  .mech-name { font-size: 0.82rem; font-weight: 600; color: var(--color-fg); }
+  .mech-when { font-size: 0.6rem; color: var(--color-fg-muted); margin-left: auto; text-align: right; }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 860px) {
     .page-layout { grid-template-columns: 1fr; }
@@ -318,6 +356,11 @@
       <a href="#lifecycle" class="sidebar-link">Request lifecycle</a>
       <a href="#two-phase" class="sidebar-link">The two-phase LLM</a>
       <a href="#blocks" class="sidebar-link">Blocks &amp; templates</a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">How of1 is authored</div>
+      <a href="#generative-components" class="sidebar-link">Generative components</a>
+      <a href="#generative-templates" class="sidebar-link">Generative templates (DA blocks)</a>
     </div>
     <div class="sidebar-group">
       <div class="sidebar-group-label">Data &amp; privacy</div>
@@ -582,6 +625,135 @@
           <div class="dg-block"><span class="dg-block-i">05</span> <code>recipe-cards</code></div>
         </div>
         <div class="dg-note">The LLM fills each block — it never reorders them.</div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- GENERATIVE COMPONENTS -->
+    <section class="section" id="generative-components">
+      <div class="section-header">
+        <div class="section-label">How of1 is authored</div>
+        <h2 class="section-title">Generative components</h2>
+        <p class="section-desc">Everything above describes <code>of1-gen-web-service</code> assembling a page from nothing. <code>of1-edge-proxy</code> does the opposite: it fronts a page you've already published and rewrites only the pieces an author marked, leaving structure and CSS exactly as authored.</p>
+      </div>
+      <p class="prose">There's no code to write. An author marks intent using ordinary DA conventions — a block variant, a Section Metadata key, or a directive typed straight into a sentence — and the proxy resolves it into an LLM instruction at request time, per visitor. Three mechanisms cover every shape of authored content: a whole block, one sentence, or plain body text with no block at all.</p>
+
+      <div class="mech-list">
+        <div class="mech-item">
+          <div class="mech-head"><span class="mech-letter">A</span><span class="mech-name">Block variant</span><span class="mech-when">Whole block, every text cell</span></div>
+          <p class="prose">Append <code>generative</code> to any block's name and every text cell inside it becomes a slot. Cells that carry only an image are left alone. A Section Metadata <code>generative-instruction</code> key next to it sets one instruction for every cell in the block — otherwise the proxy defaults to "adapt this to the visitor."</p>
+        </div>
+        <div class="mech-item">
+          <div class="mech-head"><span class="mech-letter">B</span><span class="mech-name">Inline marker</span><span class="mech-when">One sentence, anywhere</span></div>
+          <p class="prose"><code>{{generate: instruction}}</code> typed directly into a paragraph. Pair it with <code>{{default: fallback}}</code> to control exactly what a reader sees when generation is skipped or fails — a reader must never see raw <code>{{...}}</code> markup.</p>
+        </div>
+        <div class="mech-item">
+          <div class="mech-head"><span class="mech-letter">S</span><span class="mech-name">Section scope</span><span class="mech-when">Plain body text, no block</span></div>
+          <p class="prose">For ordinary headings and paragraphs with no block at all, a Section Metadata <code>generative-scope</code> key lists which tags are eligible (<code>h1</code>–<code>h6</code>, <code>p</code>). Fail-closed by design: a section with no scope key generates nothing, however it's styled.</p>
+        </div>
+      </div>
+
+      <p class="prose" style="margin-top:1.6rem;">What each mechanism looks like authored in DA — copy the text straight into a table or paragraph of your own:</p>
+
+      <div class="da-mock">
+        <div class="da-mock-label">Section break</div>
+        <h3>Feature highlights</h3>
+        <p>Authored as <code>Cards (generative)</code>. Every text cell becomes a slot; the image cells carry no text and must survive untouched.</p>
+        <table>
+          <tbody>
+            <tr class="block-name-row"><td colspan="2">Cards (generative)</td></tr>
+            <tr>
+              <td class="img-cell"><div class="img-placeholder">image</div></td>
+              <td><div class="cell-h">Precision Brewing</div><div class="cell-p">Every shot is measured to the gram, so the result never depends on guesswork.</div></td>
+            </tr>
+            <tr>
+              <td class="img-cell"><div class="img-placeholder">image</div></td>
+              <td><div class="cell-h">Built to Last</div><div class="cell-p">Stainless steel and brass age with grace, not with a replacement cycle.</div></td>
+            </tr>
+          </tbody>
+        </table>
+        <table style="margin-top:1rem;">
+          <tbody>
+            <tr class="block-name-row"><td colspan="2">Section Metadata</td></tr>
+            <tr class="meta-row"><td class="meta-key">generative-instruction</td><td>Translate the text to Spanish.</td></tr>
+          </tbody>
+        </table>
+        <div class="da-mock-label">Section break</div>
+      </div>
+      <div class="da-mock-caption">Mechanism A — block variant + a section-wide instruction</div>
+
+      <div class="da-mock">
+        <div class="da-mock-label">Section break</div>
+        <p>{{generate: Reframe this for a home barista, two sentences}}{{default: Consistent tamp pressure is the difference between a good shot and a great one. Ten thousand reps later, your wrist remembers what your eyes can't measure.}}</p>
+        <div class="da-mock-label">Section break</div>
+      </div>
+      <div class="da-mock-caption">Mechanism B — inline marker, typed straight into a paragraph</div>
+
+      <div class="da-mock">
+        <div class="da-mock-label">Section break</div>
+        <h3>Water quality</h3>
+        <p>Water quality shapes flavor as much as the beans do, so we filter every liter before it reaches the boiler.</p>
+        <table>
+          <tbody>
+            <tr class="block-name-row"><td colspan="2">Section Metadata</td></tr>
+            <tr class="meta-row"><td class="meta-key">generative-scope</td><td>h3, p</td></tr>
+            <tr class="meta-row"><td class="meta-key">generative-instruction</td><td>Translate the text to Japanese.</td></tr>
+          </tbody>
+        </table>
+        <div class="da-mock-label">Section break</div>
+      </div>
+      <div class="da-mock-caption">Mechanism S — plain body text, opted in by Section Metadata alone</div>
+
+      <div class="callout tip">
+        <div class="callout-label">Fails open, always</div>
+        <div class="callout-body">Every mechanism serves the authored fallback — the visible text, or an explicit <code>{{default:}}</code> — on a slow endpoint, a rejected slot id, or missing visitor consent. A reader can never end up with broken markup or a blank block; the worst case is simply the page as published.</div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- GENERATIVE TEMPLATES -->
+    <section class="section" id="generative-templates">
+      <div class="section-header">
+        <div class="section-label">How of1 is authored</div>
+        <h2 class="section-title">Generative templates (DA blocks)</h2>
+        <p class="section-desc">A generative component rewrites one element on a page that already exists. A template is the other end of the spectrum: the full block order <code>of1-gen-web-service</code> assembles from nothing (see <a href="#blocks">Blocks &amp; templates</a> above). Authoring a template means building the block library it draws from — not the template itself.</p>
+      </div>
+      <p class="prose">Every block name a template references — <code>hero</code>, <code>product-recommendation</code>, <code>comparison-table</code>, <code>verdict-card</code> — is a real DA block: built and CSS-styled once by your developers, exactly like any other EDS block. The LLM only ever picks names out of that library and fills their slots with RAG-retrieved content; it never invents a block and never touches the CSS. Once a block exists in the library, it's reusable across every template that names it.</p>
+
+      <div class="da-mock">
+        <div class="da-mock-label">Section break</div>
+        <p>Authored once, styled once — then reused as the target shape for every generated page that includes a <code>verdict-card</code>.</p>
+        <table>
+          <tbody>
+            <tr class="block-name-row"><td colspan="2">Verdict Card</td></tr>
+            <tr>
+              <td class="img-cell"><div class="img-placeholder">image</div></td>
+              <td><div class="cell-h">Verdict</div><div class="cell-p">Our pick for you, in one line — filled at generation time, from your own product data.</div></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="da-mock-label">Section break</div>
+      </div>
+      <div class="da-mock-caption">One block from the library, authored exactly like any other DA block — no generative markup needed here</div>
+
+      <p class="prose">The template itself isn't a DA page — it's a name and an ordered list of block names, declared in <code>templates.json</code>:</p>
+      <div class="codeblock"><span class="c">// templates.json</span>
+{
+  <span class="t">"first-full-recommendation"</span>: {
+    <span class="t">"blocks"</span>: [<span class="t">"hero"</span>, <span class="t">"product-recommendation"</span>, <span class="t">"comparison-table"</span>, <span class="t">"verdict-card"</span>, <span class="t">"recipe-cards"</span>]
+  }
+}</div>
+      <p class="prose">Phase 1 of generation (see <a href="#two-phase">The two-phase LLM</a>) picks one template name that fits the visitor's intent; Phase 2 fills each named block in that fixed order. A tenant that skips template routing can instead ship a <code>block-guide.json</code> — a looser set of rules the model composes from directly, without naming a fixed sequence up front.</p>
+      <div class="callout note">
+        <div class="callout-label">Two authoring surfaces, one library</div>
+        <div class="callout-body">Generative components and generative templates draw from the same idea — the LLM chooses <em>what</em> and <em>in what order</em>, never <em>how</em> — but they're separate authoring surfaces. Components mark up a page that already exists, one element at a time. Templates and their blocks are built once, ahead of time, as a reusable library <code>of1-gen-web-service</code> assembles from on every request.</div>
+      </div>
+
+      <div class="callout tip">
+        <div class="callout-label">Try it on a page you've already published</div>
+        <div class="callout-body">Nothing above needs a code change or an SDK embed on an existing EDS site. <code>of1-edge-proxy</code> fronts your site the same way <code>aem.page</code> / <code>aem.live</code> already does — swap the host and both generative components and the <code>/of1</code> template route work immediately: <code>main--&lt;repo&gt;--&lt;org&gt;.of1.live</code> instead of <code>main--&lt;repo&gt;--&lt;org&gt;.aem.live</code> (or the <code>prev--</code> prefix for a preview host). For example, <code>https://main--arco2--froesef--dev.of1.live/</code> serves the same content as the site's <code>aem.live</code> host, but already generative-component- and template-aware.</div>
       </div>
     </section>
 
